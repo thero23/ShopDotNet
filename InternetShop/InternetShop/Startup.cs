@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using InternetShop.Mappers;
+using IS.BLL.DI;
 
 namespace InternetShop
 {
@@ -27,6 +30,17 @@ namespace InternetShop
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddBusinessLogic(Configuration);
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+                mc.AddProfile(new IS.BLL.Mappers.MappingProfile());
+
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -43,7 +57,12 @@ namespace InternetShop
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InternetShop v1"));
             }
-
+            app.UseCors(op =>
+            {
+                op.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -20,12 +20,7 @@ namespace IS.DAL.Repositories
         {
             return await _dbSet.AsNoTracking().ToListAsync(ct);
         }
-
-        public virtual async Task<IEnumerable<TEntity>> GetByCondition(Expression<Func<TEntity, bool>> predicate, CancellationToken ct)
-        {
-            return await _dbSet.Where(predicate).AsNoTracking().ToListAsync(ct);
-        }
-
+        
         public virtual async Task<TEntity?> GetById(int id, CancellationToken ct)
         {
             return await _dbSet.FindAsync(new object[] { id }, ct);
