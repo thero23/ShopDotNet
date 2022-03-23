@@ -1,8 +1,13 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace IS.DAL.Interfaces
+namespace IS.BLL.Interfaces
 {
-    public interface IGenericRepository<TEntity> where TEntity: class
+    public interface IGenericService<TEntity>
     {
         Task<IEnumerable<TEntity>> GetAll(CancellationToken ct);
         Task<TEntity?> GetById(int id, CancellationToken ct);
