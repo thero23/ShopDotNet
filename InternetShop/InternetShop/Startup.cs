@@ -1,19 +1,10 @@
+using IS.BLL.DI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using InternetShop.Mappers;
-using IS.BLL.DI;
 
 namespace InternetShop
 {
@@ -32,16 +23,10 @@ namespace InternetShop
 
             services.AddBusinessLogic(Configuration);
 
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-                mc.AddProfile(new IS.BLL.Mappers.MappingProfile());
+            services.AddAutoMapper(typeof(Mappers.MappingProfile).Assembly, typeof(IS.BLL.Mappers.MappingProfile).Assembly);
 
-            });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InternetShop", Version = "v1" });
