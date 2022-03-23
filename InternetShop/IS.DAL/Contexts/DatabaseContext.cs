@@ -11,5 +11,6 @@ namespace IS.DAL.Contexts
         }
 
         public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<ProviderCountryEntity> ProducerCountries { get; set; }
     }
 }
