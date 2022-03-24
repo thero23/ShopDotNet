@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220324135310_addUser")]
+    partial class addUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,14 +32,7 @@ namespace IS.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Baskets");
                 });
@@ -57,55 +52,6 @@ namespace IS.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
-                {
-                    b.Property<int>("BasketId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BasketId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductBasketEntity");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProviderCountryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuantityInStock")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ProviderCountryId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
@@ -206,15 +152,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cc7d453f-4c18-449d-ac54-3330ff922eed",
-                            ConcurrencyStamp = "c9b5997c-ddab-4fe3-8faa-5940ebfbbdc4",
+                            Id = "139948ab-4c9d-44fb-8237-2b1ba2d251e4",
+                            ConcurrencyStamp = "de4ed99e-9438-4407-b602-a8866608be2b",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "b6fa95a3-f412-437f-a6fc-22e85a25668b",
-                            ConcurrencyStamp = "3d8f64a1-a957-4a38-bb43-856449347e30",
+                            Id = "739844fe-2fc6-4fe8-b00e-d619f7d9cb3c",
+                            ConcurrencyStamp = "2d3ee19d-712f-4eca-b7db-d4770bcbe21f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -231,81 +177,6 @@ namespace IS.DAL.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("IdentityUserRole<string>");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.UserEntity", "User")
-                        .WithOne("Basket")
-                        .HasForeignKey("IS.DAL.Entities.BasketEntity", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.BasketEntity", "Basket")
-                        .WithMany("ProductBasketEntities")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("ProductBasketEntities")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Basket");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.CategoryEntity", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProviderCountryEntity", "ProviderCountry")
-                        .WithMany("Products")
-                        .HasForeignKey("ProviderCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("ProviderCountry");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
-                {
-                    b.Navigation("ProductBasketEntities");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.CategoryEntity", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Navigation("ProductBasketEntities");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
-                {
-                    b.Navigation("Basket")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

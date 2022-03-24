@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220324152041_renameCountFieldInProducts")]
+    partial class renameCountFieldInProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,21 +59,6 @@ namespace IS.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
-                {
-                    b.Property<int>("BasketId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BasketId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductBasketEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
@@ -206,15 +193,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cc7d453f-4c18-449d-ac54-3330ff922eed",
-                            ConcurrencyStamp = "c9b5997c-ddab-4fe3-8faa-5940ebfbbdc4",
+                            Id = "364105bd-006c-4424-bfe8-97f0650a2bd2",
+                            ConcurrencyStamp = "b3b7f952-78af-4573-871f-8ede169f46e8",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "b6fa95a3-f412-437f-a6fc-22e85a25668b",
-                            ConcurrencyStamp = "3d8f64a1-a957-4a38-bb43-856449347e30",
+                            Id = "2824d195-c312-4b88-b4d6-dbc73225f3c2",
+                            ConcurrencyStamp = "68fd6ce6-0565-4a20-9458-70bbcb2f4dde",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -244,25 +231,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.BasketEntity", "Basket")
-                        .WithMany("ProductBasketEntities")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("ProductBasketEntities")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Basket");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.CategoryEntity", "Category")
@@ -282,19 +250,9 @@ namespace IS.DAL.Migrations
                     b.Navigation("ProviderCountry");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
-                {
-                    b.Navigation("ProductBasketEntities");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.CategoryEntity", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Navigation("ProductBasketEntities");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
