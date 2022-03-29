@@ -1,6 +1,5 @@
 # ShopDotNet
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=thero23_ShopDotNet&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=thero23_ShopDotNet)
-
 ![dotnet workflow](https://github.com/thero23/ShopDotNet/actions/workflows/build.yml/badge.svg)
 
 ![Alt-текст](https://bitworks.software/assets/img/2018-12-11/Feature.png "Gitflow")
