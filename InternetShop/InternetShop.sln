@@ -5,9 +5,13 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop", "InternetShop\InternetShop.csproj", "{29D3C04C-E40C-4695-9532-5B001E14EE7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.BLL", "IS.BLL\IS.BLL.csproj", "{E5F161B1-548B-448A-884A-D3D362DA9788}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IS.BLL", "IS.BLL\IS.BLL.csproj", "{E5F161B1-548B-448A-884A-D3D362DA9788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IS.DAL", "IS.DAL\IS.DAL.csproj", "{4A43C888-4401-4EFD-B8BF-342EB27859EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IS.DAL", "IS.DAL\IS.DAL.csproj", "{4A43C888-4401-4EFD-B8BF-342EB27859EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{93621A08-DD5A-4022-8D41-5CF8942C4EB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.Api.Tests", "InternetShop.Api.Tests\InternetShop.Api.Tests.csproj", "{20FA6AA2-75B8-4619-B917-EDA215F9B2CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +31,16 @@ Global
 		{4A43C888-4401-4EFD-B8BF-342EB27859EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A43C888-4401-4EFD-B8BF-342EB27859EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A43C888-4401-4EFD-B8BF-342EB27859EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20FA6AA2-75B8-4619-B917-EDA215F9B2CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20FA6AA2-75B8-4619-B917-EDA215F9B2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20FA6AA2-75B8-4619-B917-EDA215F9B2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20FA6AA2-75B8-4619-B917-EDA215F9B2CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20FA6AA2-75B8-4619-B917-EDA215F9B2CB} = {93621A08-DD5A-4022-8D41-5CF8942C4EB9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD6AA3CD-6701-4DD2-A4BF-A08AD9077BE6}
