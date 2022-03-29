@@ -35,7 +35,7 @@ jobs:
       with:
         sonarProjectKey: thero23
         sonarProjectName: InternetShop
-        sonarOrganization: thero23
+        sonarOrganization: ilya_levchenko
         dotnetBuildArguments: --configuration Release InternetShop/InternetShop.sln
         dotnetTestArguments: --no-build --configuration Release --verbosity normal InternetShop/InternetShop.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
         sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
