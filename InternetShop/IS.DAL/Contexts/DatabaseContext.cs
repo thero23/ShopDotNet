@@ -16,6 +16,7 @@ namespace IS.DAL.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
             modelBuilder.Entity<IdentityUserRole<string>>().HasKey(p => new { p.UserId, p.RoleId });
 
             modelBuilder.Entity<UserEntity>()
@@ -27,6 +28,11 @@ namespace IS.DAL.Contexts
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(x => x.CategoryId);
+
+            modelBuilder.Entity<ProductEntity>()
+                .HasOne(p => p.Currency)
+                .WithMany(c => c.Products)
+                .HasForeignKey(x => x.CurrencyId);
 
             modelBuilder.Entity<ProductEntity>()
                 .HasOne(x => x.ProviderCountry)
@@ -49,6 +55,7 @@ namespace IS.DAL.Contexts
         public DbSet<ProviderCountryEntity> ProducerCountries { get; set; }
         public DbSet<BasketEntity> Baskets { get; set; }
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<CurrenciesEntity> Currencies { get; set; }
         
     }
 }
