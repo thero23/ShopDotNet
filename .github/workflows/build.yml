@@ -33,7 +33,7 @@ jobs:
     - name: sonarscan-dotnet
       uses: highbyte/sonarscan-dotnet@v2.1.2
       with:
-        sonarProjectKey: ilya_levchenko_ShopDotNet
+        sonarProjectKey: thero23_ShopDotNet
         sonarProjectName: ShopDotNet
         sonarOrganization: thero23
         dotnetBuildArguments: --configuration Release InternetShop/InternetShop.sln
