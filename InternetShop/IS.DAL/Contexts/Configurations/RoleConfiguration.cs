@@ -16,13 +16,8 @@ namespace IS.DAL.Contexts.Configurations
             builder.HasData(
                 new IdentityRole
                 {
-                    Name = "Visitor",
-                    NormalizedName = "VISITOR"
-                },
-                new IdentityRole
-                {
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
+                    Name = "User",
+                    NormalizedName = "USER"
                 });
         }
     }
