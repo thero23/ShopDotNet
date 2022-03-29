@@ -24,6 +24,11 @@ namespace IS.DAL.Contexts
                 .WithOne(b => b.User)
                 .HasForeignKey<BasketEntity>(b => b.UserId);
 
+            modelBuilder.Entity<OrderEntity>()
+                .HasOne(a => a.User)
+                .WithMany(b => b.Orders)
+                .HasForeignKey(u => u.UserId);
+
             modelBuilder.Entity<ProductEntity>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
@@ -42,13 +47,27 @@ namespace IS.DAL.Contexts
             modelBuilder.Entity<ProductBasketEntity>()
                 .HasKey(ub => new { ub.BasketId, ub.ProductId });
             modelBuilder.Entity<ProductBasketEntity>()
-                .HasOne(ub =>ub.Basket)
+                .HasOne(ub => ub.Basket)
                 .WithMany(b => b.ProductBasketEntities)
                 .HasForeignKey(bc => bc.BasketId);
             modelBuilder.Entity<ProductBasketEntity>()
                 .HasOne(bc => bc.Product)
                 .WithMany(c => c.ProductBasketEntities)
                 .HasForeignKey(bc => bc.ProductId);
+
+            modelBuilder.Entity<OrderProductEntity>()
+                .HasKey(op => new { op.ProductId, op.OrderId });
+            modelBuilder.Entity<OrderProductEntity>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.OrderProductEntities)
+                .HasForeignKey(op => op.OrderId);
+            modelBuilder.Entity<OrderProductEntity>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProductEntities)
+                .HasForeignKey(op => op.ProductId);
+
+
+
         }
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
@@ -56,6 +75,9 @@ namespace IS.DAL.Contexts
         public DbSet<BasketEntity> Baskets { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<CurrenciesEntity> Currencies { get; set; }
-        
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<OrderProductEntity> OrdersProducts { get; set; }
+        public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
+
     }
 }

@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220329151206_AddOrders")]
+    partial class AddOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,21 +124,6 @@ namespace IS.DAL.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.OrderProductEntity", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "OrderId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrdersProducts");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
                     b.Property<int>("BasketId")
@@ -149,7 +136,7 @@ namespace IS.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductsBaskets");
+                    b.ToTable("ProductBasketEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
@@ -177,6 +164,9 @@ namespace IS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderEntityId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProviderCountryId")
                         .HasColumnType("int");
 
@@ -192,6 +182,8 @@ namespace IS.DAL.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("CurrencyId");
+
+                    b.HasIndex("OrderEntityId");
 
                     b.HasIndex("ProviderCountryId");
 
@@ -299,8 +291,8 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "df59ca97-8310-4dcd-ae63-f3ea8b040fcf",
-                            ConcurrencyStamp = "554c218e-5e89-435c-a2ea-064980b276e5",
+                            Id = "03f09a6d-db98-4f1f-a46c-e12f02ec703c",
+                            ConcurrencyStamp = "aea23832-2b8f-43d1-b971-c9d75fc88413",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -341,25 +333,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.OrderProductEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.OrderEntity", "Order")
-                        .WithMany("OrderProductEntities")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("OrderProductEntities")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.BasketEntity", "Basket")
@@ -393,6 +366,10 @@ namespace IS.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("IS.DAL.Entities.OrderEntity", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderEntityId");
+
                     b.HasOne("IS.DAL.Entities.ProviderCountryEntity", "ProviderCountry")
                         .WithMany("Products")
                         .HasForeignKey("ProviderCountryId")
@@ -423,13 +400,11 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
                 {
-                    b.Navigation("OrderProductEntities");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
                 {
-                    b.Navigation("OrderProductEntities");
-
                     b.Navigation("ProductBasketEntities");
                 });
 

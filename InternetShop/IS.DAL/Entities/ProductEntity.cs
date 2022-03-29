@@ -21,6 +21,7 @@ namespace IS.DAL.Entities
         public virtual ProviderCountryEntity ProviderCountry { get; set; }
         public int ProviderCountryId { get; set; }
         public ICollection<ProductBasketEntity> ProductBasketEntities { get; set; }
+        public ICollection<OrderProductEntity> OrderProductEntities { get; set; }
 
     }
 }

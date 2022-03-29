@@ -13,5 +13,7 @@ namespace IS.DAL.Entities
         public string LastName { get; set; }
         public BasketEntity Basket { get; set; }
         public int BasketId { get; set; }
+
+        public ICollection<OrderEntity> Orders { get; set; }
     }
 }
