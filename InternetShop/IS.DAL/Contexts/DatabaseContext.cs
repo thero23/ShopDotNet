@@ -66,7 +66,7 @@ namespace IS.DAL.Contexts
                 .WithMany(p => p.OrderProductEntities)
                 .HasForeignKey(op => op.ProductId);
 
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
 
         }
         public DbSet<ProductEntity> Products { get; set; }
