@@ -33,17 +33,6 @@ namespace IS.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Currencies", x => x.Id);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Currencies",
-                columns: new[] { "Id", "Name", "Sign" },
-                values: new object[,]
-                {
-                    { 1, "BYN", "BYN" },
-                    { 2, "USD", "$" },
-                    { 3, "EUR", "€" }
-                });
-
             migrationBuilder.InsertData(
                 table: "IdentityRole",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },

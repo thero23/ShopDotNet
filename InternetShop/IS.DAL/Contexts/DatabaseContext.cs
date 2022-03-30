@@ -29,7 +29,27 @@ namespace IS.DAL.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            modelBuilder.ApplyConfiguration(new CurrencyConfiguration());
+            modelBuilder.Entity<CurrenciesEntity>()
+                .HasData(
+                    new
+                    {
+                        Id = 1,
+                        Name = "BYN",
+                        Sign = "BYN",
+                    },
+                    new
+                    {
+                        Id = 2,
+                        Name = "USD",
+                        Sign = "$",
+                    },
+                    new
+                    {
+                        Id = 3,
+                        Name = "EUR",
+                        Sign = "€",
+                    }
+                );
             modelBuilder.Entity<IdentityUserRole<string>>().HasKey(p => new { p.UserId, p.RoleId });
 
             modelBuilder.Entity<UserEntity>()
