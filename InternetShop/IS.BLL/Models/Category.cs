@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IS.BLL.Models
+﻿namespace IS.BLL.Models
 {
     public class Category
     {
+#nullable disable
         public int Id { get; set; }
         public string Name { get; set; }
+#nullable enable
+
     }
 }

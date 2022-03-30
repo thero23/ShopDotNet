@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220330135552_InsertCurrencies")]
+    partial class InsertCurrencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,11 +62,11 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.CurrenciesEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -156,22 +158,22 @@ namespace IS.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CurrencyId")
+                    b.Property<int?>("CurrencyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Discount")
+                    b.Property<int>("Discount")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProviderCountryId")
+                    b.Property<int?>("ProviderCountryId")
                         .HasColumnType("int");
 
                     b.Property<int>("QuantityInStock")
@@ -215,7 +217,7 @@ namespace IS.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BasketId")
+                    b.Property<int>("BasketId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -289,15 +291,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e1248e9a-6975-4052-8a15-8f275b803d25",
-                            ConcurrencyStamp = "47b49ffd-cb5d-4542-9c4b-9f78788d5472",
+                            Id = "747d3509-6d7d-489a-a8df-fd9fe9f5aaa3",
+                            ConcurrencyStamp = "d96ffdf6-8898-4f45-8d9d-52793be5e695",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "18089121-01d7-4015-b167-10c7c9091100",
-                            ConcurrencyStamp = "0e1856e2-f163-4340-acc4-419b1e1d05e7",
+                            Id = "ee5654dc-20c6-4340-8b22-46e80c0c9bcf",
+                            ConcurrencyStamp = "9ee5f3c7-c355-46c9-8504-368012f6467e",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -376,21 +378,15 @@ namespace IS.DAL.Migrations
                 {
                     b.HasOne("IS.DAL.Entities.CategoryEntity", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("IS.DAL.Entities.CurrenciesEntity", "Currency")
                         .WithMany("Products")
-                        .HasForeignKey("CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrencyId");
 
                     b.HasOne("IS.DAL.Entities.ProviderCountryEntity", "ProviderCountry")
                         .WithMany("Products")
-                        .HasForeignKey("ProviderCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProviderCountryId");
 
                     b.Navigation("Category");
 
