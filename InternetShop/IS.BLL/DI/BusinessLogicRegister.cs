@@ -13,6 +13,7 @@ namespace IS.BLL.DI
         public static void AddBusinessLogic(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped(typeof(IGenericService<Category>), typeof(GenericService<Category, CategoryEntity>));
+            services.AddScoped<IProductService, ProductService>();
             services.AddDataAccess(config);
         }
     }
