@@ -11,17 +11,15 @@ namespace IS.DAL.Contexts.Configurations
             builder.HasData(
                 new CurrenciesEntity
                 {
-                    Id = 1,
                     Name = "BYN",
                     Sign = "BYN",
                 }, new CurrenciesEntity
                 {
-                    Id = 2,
+
                     Name = "USD",
                     Sign = "$",
                 }, new CurrenciesEntity
                 {
-                    Id = 3,
                     Name = "EUR",
                     Sign = "€",
                 });
