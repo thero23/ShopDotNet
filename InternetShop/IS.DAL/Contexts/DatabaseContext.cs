@@ -7,11 +7,24 @@ namespace IS.DAL.Contexts
 {
     public class DatabaseContext : DbContext
     {
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.Migrate();
         }
 
+   #nullable disable 
+        public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<ProviderCountryEntity> ProducerCountries { get; set; }
+        public DbSet<BasketEntity> Baskets { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<CurrenciesEntity> Currencies { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<OrderProductEntity> OrdersProducts { get; set; }
+        public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
+
+#nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -69,15 +82,5 @@ namespace IS.DAL.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
 
         }
-        public DbSet<ProductEntity> Products { get; set; }
-        public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<ProviderCountryEntity> ProducerCountries { get; set; }
-        public DbSet<BasketEntity> Baskets { get; set; }
-        public DbSet<UserEntity> Users { get; set; }
-        public DbSet<CurrenciesEntity> Currencies { get; set; }
-        public DbSet<OrderEntity> Orders { get; set; }
-        public DbSet<OrderProductEntity> OrdersProducts { get; set; }
-        public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
-
     }
 }

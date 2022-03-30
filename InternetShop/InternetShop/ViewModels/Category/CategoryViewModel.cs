@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace InternetShop.ViewModels.Category
+﻿namespace InternetShop.ViewModels.Category
 {
     public class CategoryViewModel
     {
