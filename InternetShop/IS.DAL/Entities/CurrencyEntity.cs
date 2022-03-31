@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace IS.DAL.Entities
+﻿namespace IS.DAL.Entities
 {
-    public class CurrenciesEntity
+    public class CurrencyEntity
     {
 #nullable disable
         public int Id { get; set; }

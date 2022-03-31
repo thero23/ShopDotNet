@@ -16,10 +16,10 @@ namespace IS.DAL.Contexts
    #nullable disable 
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<ProviderCountryEntity> ProducerCountries { get; set; }
+        public DbSet<ProviderCountryEntity> ProviderCountries { get; set; }
         public DbSet<BasketEntity> Baskets { get; set; }
         public DbSet<UserEntity> Users { get; set; }
-        public DbSet<CurrenciesEntity> Currencies { get; set; }
+        public DbSet<CurrencyEntity> Currencies { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
         public DbSet<OrderProductEntity> OrdersProducts { get; set; }
         public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
@@ -29,7 +29,7 @@ namespace IS.DAL.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
-            modelBuilder.Entity<CurrenciesEntity>()
+            modelBuilder.Entity<CurrencyEntity>()
                 .HasData(
                     new
                     {
