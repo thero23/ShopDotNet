@@ -4,9 +4,7 @@
     {
 #nullable disable
         public int Id { get; set; }
-        public int FinalPrice { get; set; }
-        
-
+        public int TotalPrice { get; set; }
         public virtual UserEntity User { get; set; }
         public string UserId { get; set; }
 

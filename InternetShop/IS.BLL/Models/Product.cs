@@ -13,19 +13,17 @@ namespace IS.BLL.Models
         public int QuantityInStock { get; set; }
 
         public int CurrencyId { get; set; }
-        public virtual CurrenciesEntity Currency { get; set; }
-        public int CategoryId { get; set; }
-        public virtual CategoryEntity Category { get; set; }
+        public virtual Currency Currency { get; set; }
 
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
         public int ProviderCountryId { get; set; }
-        public virtual ProviderCountryEntity ProviderCountry { get; set; }
+        public virtual ProviderCountry ProviderCountry { get; set; }
 
 #nullable enable
         public int? Discount { get; set; }
-        public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
-        public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
-
-        //change to BLL  models later?
+        public ICollection<ProductBasket>? ProductsBaskets { get; set; }
+        public ICollection<OrderProduct>? OrdersProducts { get; set; }
     }
 }

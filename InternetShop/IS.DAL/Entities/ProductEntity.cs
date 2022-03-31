@@ -10,7 +10,7 @@
         public int QuantityInStock { get; set; }
 
         public int CurrencyId { get; set; }
-        public virtual CurrenciesEntity Currency { get; set; }
+        public virtual CurrencyEntity Currency { get; set; }
         public int CategoryId { get; set; }
         public virtual CategoryEntity Category { get; set; }
 
@@ -22,8 +22,6 @@
         public int? Discount { get; set; }
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
         public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
-
-
 
     }
 }
