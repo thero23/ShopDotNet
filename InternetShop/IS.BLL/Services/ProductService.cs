@@ -8,10 +8,8 @@ namespace IS.BLL.Services
 {
     public class ProductService:GenericService<Product, ProductEntity>, IProductService
     {
-
         public ProductService(IProductRepository repository, IMapper mapper) : base(repository, mapper)
         {
-            
         }
     }
 }
