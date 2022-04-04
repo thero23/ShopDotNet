@@ -6,7 +6,7 @@ using IS.DAL.Interfaces;
 
 namespace IS.BLL.Services
 {
-    public class ProductService:GenericService<Product, ProductEntity>, IProductService
+    public class ProductService : GenericService<Product, ProductEntity>, IProductService
     {
         private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
@@ -20,14 +20,32 @@ namespace IS.BLL.Services
         {
             var products = await _repository.GetAll(ct);
 
+            if (products.ToList().Count == 0) return new List<Product>();
+
             var mappedProductsList = _mapper.Map<IEnumerable<Product>>(products).ToList();
-       
-            
+
+
             foreach (var product in mappedProductsList)
             {
-                product.PriceWithDiscount = (decimal)(100 - product.Discount) / 100 * product.Price;
+                product.PriceWithDiscount = CalculatePriceWithDiscount(product.Price, product.Discount);
             }
             return mappedProductsList;
+        }
+
+        public override async Task<Product?> GetById(int id, CancellationToken ct)
+        {
+            var product = await _repository.GetById(id, ct);
+
+            if (product == null) return null;
+
+            var mappedProduct = _mapper.Map<Product>(product);
+            mappedProduct.PriceWithDiscount = CalculatePriceWithDiscount(product.Price, product.Discount);
+            return mappedProduct;
+        }
+
+        private decimal CalculatePriceWithDiscount(decimal price, int discount)
+        {
+            return (decimal)(100 - discount) / 100 * price;
         }
     }
 }

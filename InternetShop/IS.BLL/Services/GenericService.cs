@@ -23,7 +23,7 @@ namespace IS.BLL.Services
         }
 
 
-        public async Task<TModel?> GetById(int id, CancellationToken ct)
+        public virtual async Task<TModel?> GetById(int id, CancellationToken ct)
         {
             return Mapper.Map<TModel>(await Repository.GetById(id, ct));
         }

@@ -1,4 +1,6 @@
-﻿namespace IS.DAL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace IS.DAL.Entities
 {
     public class ProductEntity
     {
@@ -14,10 +16,12 @@
         public int CategoryId { get; set; }
         public virtual CategoryEntity Category { get; set; }
 
-        
+
         public int ProviderCountryId { get; set; }
         public virtual ProviderCountryEntity ProviderCountry { get; set; }
+
         public int Discount { get; set; }
+
         public decimal Price { get; set; }
 
 #nullable enable
