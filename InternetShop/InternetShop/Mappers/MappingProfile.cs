@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using InternetShop.ViewModels.Category;
+using InternetShop.ViewModels.Product;
 using IS.BLL.Models;
 
 namespace InternetShop.Mappers
 {
-    public class MappingProfile:Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
@@ -13,6 +14,12 @@ namespace InternetShop.Mappers
 
             CreateMap<AddCategoryViewModel, Category>();
             CreateMap<UpdateCategoryViewModel, Category>();
+
+            CreateMap<AddProductViewModel, Product>();
+            CreateMap<UpdateProductViewModel, Product>();
+
+            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ShortProductViewModel>();
 
         }
     }

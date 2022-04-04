@@ -13,6 +13,9 @@ namespace IS.BLL.Mappers
 
             CreateMap<ProducerCountry, ProviderCountryEntity>();
             CreateMap<ProviderCountryEntity, ProducerCountry>();
+
+            CreateMap<Product, ProductEntity>();
+            CreateMap<ProductEntity, Product>();
         }
     }
 }

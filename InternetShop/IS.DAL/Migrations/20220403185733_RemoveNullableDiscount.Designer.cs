@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220403185733_RemoveNullableDiscount")]
+    partial class RemoveNullableDiscount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,9 +173,6 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("ProviderCountryId")
                         .HasColumnType("int");
 
@@ -292,15 +291,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4daad2fd-2d0c-4527-a1e9-7fb8fddd5499",
-                            ConcurrencyStamp = "f6c895b1-2ce3-48c2-a4ed-5ad0054d414d",
+                            Id = "1b2ea123-a72d-4432-a557-9d5532029499",
+                            ConcurrencyStamp = "364fa53a-c8a9-4591-b116-3c6c48c5ff6d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fe61a363-5c79-416c-b606-3c03adbac00e",
-                            ConcurrencyStamp = "ea8eab11-5f0d-4013-bd6b-9d9878dd4f37",
+                            Id = "a50790cb-14be-4d9b-92aa-9fc865e38afe",
+                            ConcurrencyStamp = "d5eb902c-566c-4dd6-9e39-bef7819108dd",
                             Name = "User",
                             NormalizedName = "USER"
                         });

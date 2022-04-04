@@ -17,13 +17,13 @@ namespace IS.BLL.Services
             Mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> GetAll(CancellationToken ct)
+        public virtual async Task<IEnumerable<TModel>> GetAll(CancellationToken ct)
         {
             return Mapper.Map<IEnumerable<TModel>>(await Repository.GetAll(ct));
         }
 
 
-        public async Task<TModel?> GetById(int id, CancellationToken ct)
+        public virtual async Task<TModel?> GetById(int id, CancellationToken ct)
         {
             return Mapper.Map<TModel>(await Repository.GetById(id, ct));
         }
