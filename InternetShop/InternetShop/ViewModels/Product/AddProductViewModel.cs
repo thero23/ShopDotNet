@@ -12,8 +12,9 @@
         public int CategoryId { get; set; }
 
         public int ProviderCountryId { get; set; }
+        public int Price { get; set; }
+        public int Discount { get; set; }
 
 #nullable enable
-        public int? Discount { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace IS.BLL.Services
             Mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> GetAll(CancellationToken ct)
+        public virtual async Task<IEnumerable<TModel>> GetAll(CancellationToken ct)
         {
             return Mapper.Map<IEnumerable<TModel>>(await Repository.GetAll(ct));
         }
