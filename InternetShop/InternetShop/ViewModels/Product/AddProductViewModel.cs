@@ -15,7 +15,5 @@
 
 #nullable enable
         public int? Discount { get; set; }
-
-        //change to ViewModel  later?
     }
 }

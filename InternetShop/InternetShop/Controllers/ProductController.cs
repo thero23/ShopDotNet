@@ -7,7 +7,6 @@ using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace InternetShop.Controllers
 {
@@ -26,10 +25,10 @@ namespace InternetShop.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ProductViewModel>> GetAll(CancellationToken ct)
+        public async Task<IEnumerable<ShortProductViewModel>> GetAll(CancellationToken ct)
         {
             var productList = await _service.GetAll(ct);
-            return _mapper.Map<IEnumerable<ProductViewModel>>(productList);
+            return _mapper.Map<IEnumerable<ShortProductViewModel>>(productList);
         }
 
         [HttpGet("{id}")]

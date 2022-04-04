@@ -19,6 +19,7 @@ namespace InternetShop.Mappers
             CreateMap<UpdateProductViewModel, Product>();
 
             CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ShortProductViewModel>();
 
         }
     }

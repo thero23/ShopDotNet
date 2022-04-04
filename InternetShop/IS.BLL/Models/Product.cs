@@ -20,9 +20,11 @@ namespace IS.BLL.Models
 
         public int ProviderCountryId { get; set; }
         public virtual ProviderCountry ProviderCountry { get; set; }
+        public decimal Price { get; set; }
+        public decimal PriceWithDiscount { get; set; }
+        public int Discount { get; set; }
 
 #nullable enable
-        public int? Discount { get; set; }
         public ICollection<ProductBasket>? ProductsBaskets { get; set; }
         public ICollection<OrderProduct>? OrdersProducts { get; set; }
     }
