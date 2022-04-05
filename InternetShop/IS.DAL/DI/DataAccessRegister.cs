@@ -15,6 +15,7 @@ namespace IS.DAL.DI
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
          
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProviderCountryRepository, ProviderCountryRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));
