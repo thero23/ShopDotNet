@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using IS.DAL.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace InternetShop.ViewModels.Product
 {

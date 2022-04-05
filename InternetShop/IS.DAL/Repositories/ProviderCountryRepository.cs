@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IS.DAL.Contexts;
+﻿using IS.DAL.Contexts;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
 

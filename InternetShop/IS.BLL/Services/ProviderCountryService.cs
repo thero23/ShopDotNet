@@ -8,7 +8,7 @@ namespace IS.BLL.Services
 {
     public class ProviderCountryService:GenericService<ProviderCountry, ProviderCountryEntity>, IProviderCountryService
     {
-        public ProviderCountryService(IGenericRepository<ProviderCountryEntity> repository, IMapper mapper) : base(repository, mapper)
+        public ProviderCountryService(IProviderCountryRepository repository, IMapper mapper) : base(repository, mapper)
         {
         }
     }

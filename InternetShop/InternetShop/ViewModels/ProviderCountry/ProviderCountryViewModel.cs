@@ -1,6 +1,6 @@
-﻿namespace InternetShop.ViewModels.ProducerCountry
+﻿namespace InternetShop.ViewModels.ProviderCountry
 {
-    public class ProducerCountryModelView
+    public class ProviderCountryViewModel
     {
 #nullable disable
         public int Id { get; set; }
