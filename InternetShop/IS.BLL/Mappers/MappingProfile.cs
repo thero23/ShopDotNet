@@ -11,8 +11,8 @@ namespace IS.BLL.Mappers
             CreateMap<CategoryEntity, Category>();
             CreateMap<Category, CategoryEntity>();
 
-            CreateMap<ProducerCountry, ProviderCountryEntity>();
-            CreateMap<ProviderCountryEntity, ProducerCountry>();
+            CreateMap<ProviderCountry, ProviderCountryEntity>();
+            CreateMap<ProviderCountryEntity, ProviderCountry>();
 
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
