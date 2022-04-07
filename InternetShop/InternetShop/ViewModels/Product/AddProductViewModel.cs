@@ -19,7 +19,6 @@ namespace InternetShop.ViewModels.Product
         public int Price { get; set; }
         [Range(0, 100, ErrorMessage = "The field {0} must be greater than {1}.")]
         public int Discount { get; set; }
-
 #nullable enable
     }
 }
