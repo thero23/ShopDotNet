@@ -6,8 +6,7 @@
 #nullable disable
         public int Id { get; set; }
         public string UserId { get; set; }
-        public virtual User User { get; set; }
-        public ICollection<ProductBasket> ProductsBaskets { get; set; }
+        public ICollection<Product> Products { get; set; }
 
 #nullable enable
     }

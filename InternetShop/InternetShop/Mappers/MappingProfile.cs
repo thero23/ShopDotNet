@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InternetShop.ViewModels.Basket;
 using InternetShop.ViewModels.Category;
 using InternetShop.ViewModels.Product;
 using IS.BLL.Models;
@@ -21,6 +22,7 @@ namespace InternetShop.Mappers
             CreateMap<Product, ProductViewModel>();
             CreateMap<Product, ShortProductViewModel>();
 
+            CreateMap<Basket, BasketViewModel>();
         }
     }
 }

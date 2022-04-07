@@ -19,6 +19,10 @@ namespace IS.BLL.Mappers
 
             CreateMap<Basket, BasketEntity>();
             CreateMap<BasketEntity, Basket>();
+
+            CreateMap<ProductBasketEntity, ProductBasket>();
+            CreateMap<ProductBasket, ProductBasketEntity>();
+
         }
     }
 }

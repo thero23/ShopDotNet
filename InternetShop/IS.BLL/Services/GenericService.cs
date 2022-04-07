@@ -35,9 +35,9 @@ namespace IS.BLL.Services
             ));
         }
 
-        public ValueTask Delete(int id, CancellationToken ct)
+        public async Task Delete(int id, CancellationToken ct)
         {
-            return Repository.Delete(id, ct);
+            await Repository.Delete(id, ct);
         }
 
         public async Task<TModel> Update(TModel entity, CancellationToken ct)
