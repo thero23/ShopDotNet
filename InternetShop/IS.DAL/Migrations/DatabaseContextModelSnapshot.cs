@@ -292,15 +292,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4daad2fd-2d0c-4527-a1e9-7fb8fddd5499",
-                            ConcurrencyStamp = "f6c895b1-2ce3-48c2-a4ed-5ad0054d414d",
+                            Id = "899b0a56-8836-4fe4-ad48-eaf70279c3d9",
+                            ConcurrencyStamp = "6f3da624-7d6d-4859-a87a-f8fab49b7798",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fe61a363-5c79-416c-b606-3c03adbac00e",
-                            ConcurrencyStamp = "ea8eab11-5f0d-4013-bd6b-9d9878dd4f37",
+                            Id = "8b6a1407-5b13-43cc-be22-f57e549746ab",
+                            ConcurrencyStamp = "8e639796-7b32-4fdd-84c5-ab82ee9b10ee",
                             Name = "User",
                             NormalizedName = "USER"
                         });

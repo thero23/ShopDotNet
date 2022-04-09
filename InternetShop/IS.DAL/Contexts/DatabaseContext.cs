@@ -24,6 +24,12 @@ namespace IS.DAL.Contexts
         public DbSet<OrderProductEntity> OrdersProducts { get; set; }
         public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
 
+        public DbSet<DetailsCharacteristic> DetailsCharacteristic { get; set; }
+
+        public DbSet<GenericCharacteristic> GenericCharacteristic { get; set; }
+
+        public DbSet<ProductGenericCharacteristic> ProductGenericCharacteristic { get; set; }
+
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
