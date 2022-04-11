@@ -99,6 +99,17 @@ namespace IS.DAL.Contexts
                 .WithMany(p => p.OrderProductEntities)
                 .HasForeignKey(op => op.ProductId);
 
+            modelBuilder.Entity<ProductGenericCharacteristic>()
+                .HasKey(pc => new { pc.ProductId, pc.GenericCharacteristicId });
+            modelBuilder.Entity<ProductGenericCharacteristic>()
+                .HasOne(pc => pc.Products)
+                .WithMany(pc=> pc.ProductGenericCharacteristics)
+                .HasForeignKey(pc => pc.ProductId);
+            modelBuilder.Entity<ProductGenericCharacteristic>()
+                .HasOne(pc => pc.GenericCharacteristics)
+                .WithMany(pc => pc.ProductGenericCharacteristics)
+                .HasForeignKey(pc => pc.GenericCharacteristicId);
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
 
         }

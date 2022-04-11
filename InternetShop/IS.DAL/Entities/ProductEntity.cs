@@ -28,5 +28,7 @@ namespace IS.DAL.Entities
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
         public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
 
+        public ICollection<ProductGenericCharacteristic>? ProductGenericCharacteristics { get; set; }
+
     }
 }
