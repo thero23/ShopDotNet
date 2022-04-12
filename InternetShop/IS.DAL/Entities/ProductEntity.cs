@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson.Serialization.Attributes;
 
 namespace IS.DAL.Entities
 {
     public class ProductEntity
     {
 #nullable disable
+        [BsonId]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

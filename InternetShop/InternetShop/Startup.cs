@@ -20,7 +20,6 @@ namespace InternetShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddBusinessLogic(Configuration);
 
             services.AddAutoMapper(typeof(Mappers.MappingProfile).Assembly, typeof(IS.BLL.Mappers.MappingProfile).Assembly);
