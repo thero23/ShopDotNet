@@ -29,6 +29,7 @@ namespace InternetShop.Controllers
         {
             var productList = await _service.GetAll(ct);
             return _mapper.Map<IEnumerable<ShortProductViewModel>>(productList);
+
         }
 
         [HttpGet("{id}")]

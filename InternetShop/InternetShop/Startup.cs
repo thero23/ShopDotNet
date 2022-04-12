@@ -1,10 +1,13 @@
 using IS.BLL.DI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Okta.AspNetCore;
 
 namespace InternetShop
 {
@@ -20,10 +23,32 @@ namespace InternetShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddBusinessLogic(Configuration);
 
             services.AddAutoMapper(typeof(Mappers.MappingProfile).Assembly, typeof(IS.BLL.Mappers.MappingProfile).Assembly);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = OktaDefaults.ApiAuthenticationScheme;
+                options.DefaultChallengeScheme = OktaDefaults.ApiAuthenticationScheme;
+                options.DefaultSignInScheme = OktaDefaults.ApiAuthenticationScheme;
+            })
+  .AddOktaWebApi(new OktaWebApiOptions()
+  {
+      OktaDomain = Configuration["Okta:OktaDomain"],
+      AuthorizationServerId = Configuration["Okta:AuthorizationServerId"],
+      Audience = Configuration["Okta:Audience"]
+  });
+
+            services.AddAuthorization();
+
+            services.AddMvc(o =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                  .RequireAuthenticatedUser()
+                  .Build();
+                o.Filters.Add(new AuthorizeFilter(policy));
+            });
 
             services.AddControllers();
 
@@ -51,7 +76,7 @@ namespace InternetShop
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
