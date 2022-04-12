@@ -1,6 +1,4 @@
-﻿using IS.DAL.Entities;
-
-namespace IS.BLL.Models
+﻿namespace IS.BLL.Models
 {
     public class Product
     {

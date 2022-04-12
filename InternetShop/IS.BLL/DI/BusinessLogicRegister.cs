@@ -14,6 +14,7 @@ namespace IS.BLL.DI
         {
             services.AddScoped(typeof(IGenericService<Category>), typeof(GenericService<Category, CategoryEntity>));
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProviderCountryService, ProviderCountryService>();
             services.AddDataAccess(config);
         }
     }

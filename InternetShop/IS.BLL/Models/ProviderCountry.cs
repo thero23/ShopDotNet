@@ -3,11 +3,9 @@
     public class ProviderCountry
     {
 #nullable disable
-        public virtual Product Product { get; set; }
-        public int ProductId { get; set; }
-
-        public virtual Basket Basket { get; set; }
-        public int BasketId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public ICollection<Product> Products { get; set; }
 #nullable enable
     }
 }

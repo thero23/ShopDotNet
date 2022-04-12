@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using IS.DAL.Entities;
-
-namespace InternetShop.ViewModels.Product
+﻿namespace InternetShop.ViewModels.Product
 {
     public class ProductViewModel
     {
