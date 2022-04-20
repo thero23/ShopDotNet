@@ -9,9 +9,7 @@ namespace InternetShop.ViewModels.Basket
 #nullable disable
         public int Id { get; set; }
         public string UserId { get; set; }
-        public ICollection<ProductViewModel> Products { get; set; }
-
-        public int Quantity { get; set; }
+        public ICollection<ProductBasket> ProductBasketEntities { get; set; }
 #nullable enable
     }
 }

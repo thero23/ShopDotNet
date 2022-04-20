@@ -22,20 +22,23 @@ namespace IS.BLL.Services
             _productRepository = productRepository;
         }
 
-        public Basket GetBasketWithProducts(string userId)
+        public async Task<Basket> GetBasketProducts(string userId)
         {
-            var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
-            if (basket is null) throw new ArgumentNullException();
 
-            var result = _mapper.Map<Basket>(basket);
-            var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
-             .ToList();
+            var basket = await _basketRepository.GetByCondition(userId);
 
-            var test = products.Select(x => x.Quantity).ToList();
+            var test2 = _mapper.Map<Basket>(basket);
+            /* if (basket is null) throw new ArgumentNullException();
 
-            result.Products = _mapper.Map<ICollection<Product>>(products);
+             var result = _mapper.Map<Basket>(basket);
+             var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
+              .ToList();
 
-            return result;
+             var test = products.Select(x => x.Quantity).ToList();
+
+             result.Products = _mapper.Map<ICollection<Product>>(products);*/
+
+            return _mapper.Map<Basket>(basket);
 
         }
 

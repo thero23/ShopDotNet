@@ -24,9 +24,9 @@ namespace InternetShop.Controllers
         }
 
         [HttpGet("userId")]
-        public BasketViewModel Get(string userId)
+        public async Task<BasketViewModel> Get(string userId)
         {
-            var basket = _service.GetBasketWithProducts(userId);
+            var basket = await _service.GetBasketProducts(userId);
             return _mapper.Map<BasketViewModel>(basket);
         }
 

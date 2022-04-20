@@ -25,7 +25,23 @@ namespace InternetShop
 
             services.AddAutoMapper(typeof(Mappers.MappingProfile).Assembly, typeof(IS.BLL.Mappers.MappingProfile).Assembly);
 
-            services.AddControllers();
+            services.AddControllers()
+             .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
+            /* services.AddControllers(op =>
+             {
+                 op.UseDateOnlyTimeOnlyStringConverters();
+             })
+                 .AddJsonOptions(op =>
+                 {
+                     op.UseDateOnlyTimeOnlyStringConverters();
+                 })
+                 .AddNewtonsoftJson(options =>
+                 {
+                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                 });*/
 
             services.AddSwaggerGen(c =>
             {

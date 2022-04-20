@@ -17,11 +17,10 @@ namespace IS.BLL.Mappers
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
 
-            CreateMap<Basket, BasketEntity>();
-            CreateMap<BasketEntity, Basket>();
-
             CreateMap<ProductBasketEntity, ProductBasket>();
             CreateMap<ProductBasket, ProductBasketEntity>();
+
+            CreateMap<Basket, BasketEntity>().ReverseMap();
 
         }
     }

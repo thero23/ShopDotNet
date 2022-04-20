@@ -5,6 +5,6 @@ namespace IS.DAL.Interfaces
 {
     public interface IBasketRepository:IGenericRepository<BasketEntity>
     {
-        IQueryable<BasketEntity> GetByCondition(Expression<Func<BasketEntity, bool>> expression);
+        Task<BasketEntity> GetByCondition(string id);
     }
 }
