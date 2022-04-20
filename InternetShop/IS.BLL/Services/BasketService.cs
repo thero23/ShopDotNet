@@ -30,13 +30,14 @@ namespace IS.BLL.Services
             var result = _mapper.Map<Basket>(basket);
             var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
                 .Select(x => x.Product).ToList();
+
             result.Products = _mapper.Map<ICollection<Product>>(products);
 
             return result;
 
         }
 
-        public async Task<Product> AddProductToBasketAsync(string userId, int productId, CancellationToken ct)
+        public async Task<Product> AddProductToBasketAsync(string userId, int productId, int quantity, CancellationToken ct)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
             if (basket is null) throw new ArgumentNullException();
@@ -45,6 +46,7 @@ namespace IS.BLL.Services
             {
                 BasketId = basket.Id,
                 ProductId = productId,
+                Quantity = quantity,
             };
             await _productBasketRepository.Add(_mapper.Map<ProductBasketEntity>(productBasketObject), ct);
             var result = await _productRepository.GetById(productId, ct);

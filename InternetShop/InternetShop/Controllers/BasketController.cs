@@ -34,7 +34,7 @@ namespace InternetShop.Controllers
         public async Task<ProductViewModel> AddProduct([FromBody] AddProductIntoBasketViewModel addProductIntoBasketViewModel, CancellationToken ct)
         {
             var product = await _service.AddProductToBasketAsync(addProductIntoBasketViewModel.UserId,
-                addProductIntoBasketViewModel.ProductId, ct);
+                addProductIntoBasketViewModel.ProductId, addProductIntoBasketViewModel.Quantity, ct);
             return _mapper.Map<ProductViewModel>(product);
         }
 
