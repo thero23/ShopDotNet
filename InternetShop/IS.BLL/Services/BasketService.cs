@@ -25,6 +25,8 @@ namespace IS.BLL.Services
         public Basket GetBasketWithProducts(string userId)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
+            if (basket is null) throw new ArgumentNullException();
+
             var result = _mapper.Map<Basket>(basket);
             var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
                 .Select(x => x.Product).ToList();
@@ -37,6 +39,8 @@ namespace IS.BLL.Services
         public async Task<Product> AddProductToBasketAsync(string userId, int productId, CancellationToken ct)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
+            if (basket is null) throw new ArgumentNullException();
+
             var productBasketObject = new ProductBasket()
             {
                 BasketId = basket.Id,
@@ -44,30 +48,37 @@ namespace IS.BLL.Services
             };
             await _productBasketRepository.Add(_mapper.Map<ProductBasketEntity>(productBasketObject), ct);
             var result = await _productRepository.GetById(productId, ct);
+
+            if (result is null) throw new ArgumentNullException();
+
             return _mapper.Map<Product>(result);
         }
 
         public async Task RemoveProductFromBasketAsync(string userId, int productId, CancellationToken ct)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
-            if (basket != null)
-            {
-                var basketProductToDelete = new ProductBasketEntity() { BasketId = basket.Id, ProductId = productId };
-                await _productBasketRepository.Delete(basketProductToDelete, ct);
-            }
+            if (basket is null) throw new ArgumentNullException();
+
+
+            var basketProductToDelete = new ProductBasketEntity() { BasketId = basket.Id, ProductId = productId };
+            await _productBasketRepository.Delete(basketProductToDelete, ct);
+
 
         }
 
         public async Task ClearBasketAsync(string userId, CancellationToken ct)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
-            var allProducts =  _productBasketRepository.GetByCondition(x=>x.BasketId.Equals(basket.Id)).AsEnumerable();
-            await _productBasketRepository.DeleteRange(allProducts,ct);
+            if (basket is null) throw new ArgumentNullException();
+
+            var allProducts = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id)).AsEnumerable();
+            await _productBasketRepository.DeleteRange(allProducts, ct);
         }
 
         public async Task DeleteBasketAsync(string userId, CancellationToken ct)
         {
             var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
+            if (basket is null) throw new ArgumentNullException();
             await _basketRepository.Delete(basket, ct);
         }
     }

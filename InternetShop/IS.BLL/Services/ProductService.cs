@@ -36,7 +36,7 @@ namespace IS.BLL.Services
         {
             var product = await _repository.GetById(id, ct);
 
-            if (product == null) return null;
+            if (product is null) throw new ArgumentNullException();
 
             var mappedProduct = _mapper.Map<Product>(product);
             mappedProduct.PriceWithDiscount = CalculatePriceWithDiscount(product.Price, product.Discount);
