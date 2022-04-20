@@ -7,8 +7,8 @@ namespace IS.DAL.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private readonly DatabaseContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        public readonly DatabaseContext _context;
+        public readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(DatabaseContext context)
         {
@@ -66,7 +66,7 @@ namespace IS.DAL.Repositories
             return entity;
         }
 
-        public IQueryable<TEntity> GetByCondition(Expression<Func<TEntity, bool>> expression)
+        public virtual IQueryable<TEntity> GetByCondition(Expression<Func<TEntity, bool>> expression)
         {
             return _dbSet.Where(expression).AsQueryable();
         }

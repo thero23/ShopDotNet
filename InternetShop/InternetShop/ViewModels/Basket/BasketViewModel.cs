@@ -11,6 +11,7 @@ namespace InternetShop.ViewModels.Basket
         public string UserId { get; set; }
         public ICollection<ProductViewModel> Products { get; set; }
 
+        public int Quantity { get; set; }
 #nullable enable
     }
 }

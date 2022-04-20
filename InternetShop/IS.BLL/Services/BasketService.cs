@@ -29,7 +29,9 @@ namespace IS.BLL.Services
 
             var result = _mapper.Map<Basket>(basket);
             var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
-                .Select(x => x.Product).ToList();
+             .ToList();
+
+            var test = products.Select(x => x.Quantity).ToList();
 
             result.Products = _mapper.Map<ICollection<Product>>(products);
 
