@@ -24,9 +24,9 @@ namespace InternetShop.Controllers
         }
 
         [HttpGet("userId")]
-        public BasketViewModel Get(string userId)
+        public BasketViewModel Get(string userId, CancellationToken ct)
         {
-            var basket = _service.GetBasketWithProducts(userId);
+            var basket = _service.GetBasketWithProducts(userId, ct);
             return _mapper.Map<BasketViewModel>(basket);
         }
 

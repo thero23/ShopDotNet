@@ -7,6 +7,5 @@
         public string Name { get; set; }
         public string Sign { get; set; }
 #nullable enable
-        public ICollection<Product>? Products { get; set; }
     }
 }

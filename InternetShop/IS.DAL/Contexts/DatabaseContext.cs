@@ -102,5 +102,6 @@ namespace IS.DAL.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
 
         }
+        
     }
 }

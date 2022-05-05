@@ -20,6 +20,7 @@ namespace InternetShop.Mappers
             CreateMap<UpdateProductViewModel, Product>();
 
             CreateMap<Product, ProductViewModel>();
+            CreateMap<ProductForBasket, ProductForBasketViewModel>();
             CreateMap<Product, ShortProductViewModel>();
 
             CreateMap<Basket, BasketViewModel>();

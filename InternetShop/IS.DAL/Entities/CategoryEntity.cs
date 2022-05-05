@@ -7,6 +7,6 @@
         public string Name { get; set; }
 
 #nullable enable
-        public ICollection<ProductEntity>? Products { get; set; }
+        public virtual ICollection<ProductEntity>? Products { get; set; }
     }
 }

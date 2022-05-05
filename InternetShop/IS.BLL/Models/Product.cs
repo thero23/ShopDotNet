@@ -25,7 +25,5 @@ namespace IS.BLL.Models
         public int Discount { get; set; }
 
 #nullable enable
-        public ICollection<ProductBasket>? ProductsBaskets { get; set; }
-        public ICollection<OrderProduct>? OrdersProducts { get; set; }
     }
 }

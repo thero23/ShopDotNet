@@ -9,6 +9,6 @@
         public string UserId { get; set; }
 
 #nullable enable
-        public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
+        public virtual ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
     }
 }

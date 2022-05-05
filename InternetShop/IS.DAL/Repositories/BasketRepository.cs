@@ -1,6 +1,7 @@
 ﻿using IS.DAL.Contexts;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace IS.DAL.Repositories
 {
@@ -9,5 +10,6 @@ namespace IS.DAL.Repositories
         public BasketRepository(DatabaseContext context) : base(context)
         {
         }
+
     }
 }

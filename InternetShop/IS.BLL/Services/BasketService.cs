@@ -22,18 +22,12 @@ namespace IS.BLL.Services
             _productRepository = productRepository;
         }
 
-        public Basket GetBasketWithProducts(string userId)
+        public Basket GetBasketWithProducts(string userId, CancellationToken ct)
         {
-            var basket = _basketRepository.GetByCondition(x => x.UserId.Equals(userId)).FirstOrDefault();
+            var basket =  _basketRepository.GetByCondition(x=>x.UserId.Equals(userId)).FirstOrDefault();
             if (basket is null) throw new ArgumentNullException();
-
-            var result = _mapper.Map<Basket>(basket);
-            var products = _productBasketRepository.GetByCondition(x => x.BasketId.Equals(basket.Id))
-                .Select(x => x.Product).ToList();
-
-            result.Products = _mapper.Map<ICollection<Product>>(products);
-
-            return result;
+            var mappedBasket = _mapper.Map<Basket>(basket);
+            return mappedBasket;
 
         }
 

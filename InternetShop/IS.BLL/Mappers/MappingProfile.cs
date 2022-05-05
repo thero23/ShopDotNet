@@ -11,18 +11,27 @@ namespace IS.BLL.Mappers
             CreateMap<CategoryEntity, Category>();
             CreateMap<Category, CategoryEntity>();
 
+            CreateMap<CurrencyEntity, Currency>();
+
             CreateMap<ProducerCountry, ProviderCountryEntity>();
             CreateMap<ProviderCountryEntity, ProducerCountry>();
 
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
+            CreateMap<ProductEntity, ProductForBasket>();
+            CreateMap<Product, ProductForBasket>();
 
             CreateMap<Basket, BasketEntity>();
-            CreateMap<BasketEntity, Basket>();
+            CreateMap<BasketEntity, Basket>()
+                .ForMember(b => b.Products, x => x.MapFrom(b => b.ProductBasketEntities.Select(pb => pb.Product)));
+
+            CreateMap<ProductBasketEntity, ProductForBasket>();
+                /*.ForMember(x => x.QuantityInBasket, o => o.MapFrom(x => x.Quantity));*/
+
+
 
             CreateMap<ProductBasketEntity, ProductBasket>();
             CreateMap<ProductBasket, ProductBasketEntity>();
-
         }
     }
 }

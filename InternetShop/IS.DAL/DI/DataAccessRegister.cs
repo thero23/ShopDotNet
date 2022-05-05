@@ -18,6 +18,7 @@ namespace IS.DAL.DI
             services.AddScoped<IProductBasketRepository, ProductBasketRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
+                context.UseLazyLoadingProxies();
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             });
         }

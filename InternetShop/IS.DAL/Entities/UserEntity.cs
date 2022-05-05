@@ -7,9 +7,9 @@ namespace IS.DAL.Entities
 #nullable disable
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public ICollection<OrderEntity> Orders { get; set; }
+        public virtual ICollection<OrderEntity> Orders { get; set; }
 #nullable enable
         public int? BasketId { get; set; }
-        public BasketEntity? Basket { get; set; }
+        public virtual BasketEntity? Basket { get; set; }
     }
 }

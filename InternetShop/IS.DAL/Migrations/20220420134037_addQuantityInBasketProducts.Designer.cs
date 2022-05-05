@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220420134037_addQuantityInBasketProducts")]
+    partial class addQuantityInBasketProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -295,15 +297,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b73e4e1e-1337-42db-b0c8-10af369e8e2a",
-                            ConcurrencyStamp = "a395d794-1834-428d-8690-59a003002309",
+                            Id = "b7483119-c0c6-47de-92f3-53b1a62a2a58",
+                            ConcurrencyStamp = "d718c724-1cd4-4661-874c-9f31a897e5d2",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "d836cc88-a3b5-449f-97bc-f0153eed932b",
-                            ConcurrencyStamp = "398b504a-e785-4cc1-9a0d-3c970b1996d6",
+                            Id = "e2cfa38a-d757-4e56-b040-6492fd11e432",
+                            ConcurrencyStamp = "4b4985e2-2556-4aa3-9f1e-718814492931",
                             Name = "User",
                             NormalizedName = "USER"
                         });

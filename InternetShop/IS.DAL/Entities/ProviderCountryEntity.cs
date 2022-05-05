@@ -5,7 +5,7 @@
 #nullable disable
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<ProductEntity> Products { get; set; }
+        public virtual ICollection<ProductEntity> Products { get; set; }
 #nullable enable
        
     }

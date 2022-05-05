@@ -25,8 +25,8 @@ namespace IS.DAL.Entities
         public decimal Price { get; set; }
 
 #nullable enable
-        public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
-        public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
+        public virtual ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
+        public virtual ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
 
     }
 }
