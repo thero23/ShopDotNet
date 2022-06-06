@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using InternetShop.ViewModels.Category;
-using InternetShop.ViewModels.Product;
-using InternetShop.ViewModels.ProviderCountry;
+using InternetShop.API.ViewModels.Category;
+using InternetShop.API.ViewModels.Product;
+using InternetShop.Api.ViewModels.ProductInBasket;
+using InternetShop.API.ViewModels.ProviderCountry;
 using IS.BLL.Models;
 
-namespace InternetShop.Mappers
+namespace InternetShop.API.Mappers
 {
     public class MappingProfile : Profile
     {
@@ -22,7 +23,9 @@ namespace InternetShop.Mappers
 
             CreateMap<AddProviderCountryViewModel, ProviderCountry>();
             CreateMap<ProviderCountry, ProviderCountryViewModel>();
-            CreateMap<UpdateProviderCountryViewModel, ProviderCountry>(); 
+            CreateMap<UpdateProviderCountryViewModel, ProviderCountry>();
+
+            CreateMap<ProductInBasketViewModel, ProductInBasket>().ReverseMap();
         }
     }
 }

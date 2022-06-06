@@ -1,13 +1,14 @@
-﻿namespace InternetShop.API.ViewModels.Product
+﻿namespace IS.BLL.Models
 {
-    public class ShortProductViewModel
+    public class ProductInBasket
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
+        public decimal Price { get; set; }
         public string ShortDescription { get; set; }
         public int Discount { get; set; }
-        public decimal Price { get; set; }
         public decimal PriceWithDiscount { get; set; }
-        public string Characteristic { get; set; }
+        public int Count { get; set; }
     }
 }

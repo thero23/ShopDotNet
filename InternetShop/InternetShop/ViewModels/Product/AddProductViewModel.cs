@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InternetShop.ViewModels.Product
+namespace InternetShop.API.ViewModels.Product
 {
     public class AddProductViewModel
     {

@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using InternetShop.ViewModels.ProviderCountry;
+﻿using AutoMapper;
+using InternetShop.API.ViewModels.ProviderCountry;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace InternetShop.Controllers
+namespace InternetShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

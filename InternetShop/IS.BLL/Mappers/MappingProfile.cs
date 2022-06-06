@@ -16,6 +16,8 @@ namespace IS.BLL.Mappers
 
             CreateMap<Product, ProductEntity>();
             CreateMap<ProductEntity, Product>();
+
+            CreateMap<ProductInBasket, ProductInBasketEntity>().ReverseMap();
         }
     }
 }

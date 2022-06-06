@@ -1,4 +1,4 @@
-﻿namespace InternetShop.ViewModels.ProviderCountry
+﻿namespace InternetShop.API.ViewModels.ProviderCountry
 {
     public class AddProviderCountryViewModel
     {

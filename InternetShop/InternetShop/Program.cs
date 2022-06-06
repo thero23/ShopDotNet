@@ -4,7 +4,7 @@ using Serilog;
 using System;
 using Microsoft.Extensions.Configuration;
 
-namespace InternetShop
+namespace InternetShop.API
 {
     public class Program
     {

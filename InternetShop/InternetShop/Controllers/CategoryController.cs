@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using InternetShop.ViewModels.Category;
+using InternetShop.API.ViewModels.Category;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InternetShop.Controllers
+namespace InternetShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

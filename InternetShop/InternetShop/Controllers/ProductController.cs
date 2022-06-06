@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using InternetShop.ViewModels.Product;
+﻿using AutoMapper;
+using InternetShop.API.ViewModels.Product;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 
-namespace InternetShop.Controllers
+namespace InternetShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -28,6 +28,10 @@ namespace InternetShop.Controllers
         public async Task<IEnumerable<ShortProductViewModel>> GetAll(CancellationToken ct)
         {
             var productList = await _service.GetAll(ct);
+            foreach (var el in productList)
+            {
+                el.Characteristic = "Characteristic1";
+            }
             return _mapper.Map<IEnumerable<ShortProductViewModel>>(productList);
         }
 

@@ -24,6 +24,8 @@ namespace IS.DAL.Contexts
         public DbSet<OrderProductEntity> OrdersProducts { get; set; }
         public DbSet<ProductBasketEntity> ProductsBaskets { get; set; }
 
+        public DbSet<ProductInBasketEntity> ProductInBasket { get; set; }
+
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

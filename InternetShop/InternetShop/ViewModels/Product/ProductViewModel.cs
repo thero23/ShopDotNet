@@ -1,4 +1,4 @@
-﻿namespace InternetShop.ViewModels.Product
+﻿namespace InternetShop.API.ViewModels.Product
 {
     public class ProductViewModel
     {
@@ -15,6 +15,8 @@
         public int Price { get; set; }
         public int PriceWithDiscount { get; set; }
         public int Discount { get; set; }
+
+        public string Characteristics { get; set; }
 #nullable enable
     }
 }

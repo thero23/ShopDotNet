@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InternetShop.ViewModels.Category
+namespace InternetShop.API.ViewModels.Category
 {
     public class UpdateCategoryViewModel
     {
