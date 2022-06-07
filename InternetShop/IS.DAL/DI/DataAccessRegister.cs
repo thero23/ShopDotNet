@@ -1,7 +1,6 @@
 ﻿using IS.DAL.Contexts;
 using IS.DAL.Interfaces;
 using IS.DAL.Repositories;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +16,7 @@ namespace IS.DAL.DI
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProviderCountryRepository, ProviderCountryRepository>();
             services.AddScoped<IProductInBasketRepository, ProductInBasketRepository>();
+            services.AddScoped<IBuyInOneClickRepository, BuyInOneClickRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));

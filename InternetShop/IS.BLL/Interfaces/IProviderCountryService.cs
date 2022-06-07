@@ -2,7 +2,7 @@
 
 namespace IS.BLL.Interfaces
 {
-    public interface IProviderCountryService:IGenericService<ProviderCountry>
+    public interface IProviderCountryService : IGenericService<ProviderCountry>
     {
     }
 }

@@ -35,5 +35,12 @@ namespace InternetShop.Api.Controllers
             var result = await _service.Add(_mapper.Map<ProductInBasket>(productInBasket), ct);
             return _mapper.Map<ProductInBasketViewModel>(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id, CancellationToken ct)
+        {
+            await _service.Delete(id, ct);
+            return Ok();
+        }
     }
 }

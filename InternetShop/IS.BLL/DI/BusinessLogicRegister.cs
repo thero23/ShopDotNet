@@ -16,6 +16,7 @@ namespace IS.BLL.DI
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductInBasketService, ProductInBasketService>();
             services.AddScoped<IProviderCountryService, ProviderCountryService>();
+            services.AddScoped<IBuyInOneClickService, BuyInOneClickService>();
             services.AddDataAccess(config);
         }
     }

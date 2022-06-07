@@ -26,6 +26,8 @@ namespace IS.DAL.Contexts
 
         public DbSet<ProductInBasketEntity> ProductInBasket { get; set; }
 
+        public DbSet<BuyInOneClickEntity> BuyInOneClick { get; set; }
+
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

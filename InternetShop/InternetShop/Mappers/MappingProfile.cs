@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InternetShop.API.ViewModels.Category;
+using InternetShop.Api.ViewModels.Product;
 using InternetShop.API.ViewModels.Product;
 using InternetShop.Api.ViewModels.ProductInBasket;
 using InternetShop.API.ViewModels.ProviderCountry;
@@ -27,6 +28,7 @@ namespace InternetShop.API.Mappers
 
             CreateMap<ProductInBasketViewModel, ProductInBasket>().ReverseMap();
             CreateMap<AddProductInBasketViewModel, ProductInBasket>().ReverseMap();
+            CreateMap<BuyInOneClickViewModel, BuyInOneClick>().ReverseMap();
         }
     }
 }
