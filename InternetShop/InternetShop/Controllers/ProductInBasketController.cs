@@ -30,7 +30,7 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ProductInBasketViewModel> Post([FromBody] ProductInBasketViewModel productInBasket, CancellationToken ct)
+        public async Task<ProductInBasketViewModel> Post([FromBody] AddProductInBasketViewModel productInBasket, CancellationToken ct)
         {
             var result = await _service.Add(_mapper.Map<ProductInBasket>(productInBasket), ct);
             return _mapper.Map<ProductInBasketViewModel>(result);

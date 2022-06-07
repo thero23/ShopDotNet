@@ -26,6 +26,7 @@ namespace InternetShop.API.Mappers
             CreateMap<UpdateProviderCountryViewModel, ProviderCountry>();
 
             CreateMap<ProductInBasketViewModel, ProductInBasket>().ReverseMap();
+            CreateMap<AddProductInBasketViewModel, ProductInBasket>().ReverseMap();
         }
     }
 }
