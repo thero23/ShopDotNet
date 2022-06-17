@@ -2,7 +2,6 @@
 {
     public class ProductViewModel
     {
-
 #nullable disable
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,8 +14,8 @@
         public int Price { get; set; }
         public int PriceWithDiscount { get; set; }
         public int Discount { get; set; }
-
         public string Characteristics { get; set; }
+        public int Rate { get; set; }
 #nullable enable
     }
 }

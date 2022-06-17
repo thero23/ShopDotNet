@@ -43,7 +43,6 @@ namespace IS.DAL.Repositories
            
         }
 
-
         public virtual async Task<TEntity> Update(TEntity entity, CancellationToken ct)
         {
             _context.Entry(entity).State = EntityState.Modified;

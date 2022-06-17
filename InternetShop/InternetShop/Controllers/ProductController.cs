@@ -49,7 +49,6 @@ namespace InternetShop.API.Controllers
             return _mapper.Map<ProductViewModel>(product);
         }
 
-
         [HttpPut("{id}")]
         public async Task<ProductViewModel> Put(int id, [FromBody] UpdateProductViewModel updateProductViewModel, CancellationToken ct)
         {
@@ -65,6 +64,13 @@ namespace InternetShop.API.Controllers
         {
             await _service.Delete(id, ct);
             return Ok();
+        }
+
+        [HttpGet("category/{categoryId}")]
+        public async Task<IEnumerable<ProductViewModel>> GetProductWithCategoryId(int categoryId, CancellationToken ct)
+        {
+            var result = await _service.GetProductWithCategory(categoryId, ct);
+            return _mapper.Map<IEnumerable<ProductViewModel>>(result);
         }
     }
 }

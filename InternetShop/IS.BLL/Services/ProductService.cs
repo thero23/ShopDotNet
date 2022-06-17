@@ -43,6 +43,13 @@ namespace IS.BLL.Services
             return mappedProduct;
         }
 
+        public async Task<IEnumerable<Product>> GetProductWithCategory(int categoryId, CancellationToken ct)
+        {
+            var products = await _repository.GetProductWithCategory(categoryId, ct);
+            var mappedProductsList = _mapper.Map<IEnumerable<Product>>(products).ToList();
+            return mappedProductsList;
+        }
+
         private decimal CalculatePriceWithDiscount(decimal price, int discount)
         {
             return (decimal)(100 - discount) / 100 * price;

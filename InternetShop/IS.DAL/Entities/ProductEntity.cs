@@ -21,6 +21,7 @@
         public int Discount { get; set; }
 
         public decimal Price { get; set; }
+        public int? Rate { get; set; }
 
 #nullable enable
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }

@@ -9,5 +9,6 @@
         public decimal Price { get; set; }
         public decimal PriceWithDiscount { get; set; }
         public string Characteristic { get; set; }
+        public int Rate { get; set; }
     }
 }

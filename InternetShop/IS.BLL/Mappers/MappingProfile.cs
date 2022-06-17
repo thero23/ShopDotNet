@@ -15,10 +15,11 @@ namespace IS.BLL.Mappers
             CreateMap<ProviderCountryEntity, ProviderCountry>();
 
             CreateMap<Product, ProductEntity>();
-            CreateMap<ProductEntity, Product>();
+            CreateMap<ProductEntity, Product>().ReverseMap();
 
             CreateMap<ProductInBasket, ProductInBasketEntity>().ReverseMap();
             CreateMap<BuyInOneClickEntity, BuyInOneClick>().ReverseMap();
+            CreateMap<WhishListEntity, WhishList>().ReverseMap();
         }
     }
 }

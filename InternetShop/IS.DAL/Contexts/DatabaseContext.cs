@@ -28,6 +28,8 @@ namespace IS.DAL.Contexts
 
         public DbSet<BuyInOneClickEntity> BuyInOneClick { get; set; }
 
+        public DbSet<WhishListEntity> WhishList { get; set; }
+
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

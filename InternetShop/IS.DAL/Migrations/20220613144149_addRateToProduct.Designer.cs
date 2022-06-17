@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220613144149_addRateToProduct")]
+    partial class addRateToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,25 +334,6 @@ namespace IS.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.WhishListEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WhishList");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -372,15 +355,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "53a85246-8c5e-461e-97e9-0927cda956e0",
-                            ConcurrencyStamp = "f9197a06-d20b-4b99-9b49-8e424f5fac43",
+                            Id = "6e73b1de-1eff-4d90-ad9e-7e2b926c225a",
+                            ConcurrencyStamp = "e465a430-5b9d-4666-b1a5-2499731d17e3",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e9bddf30-be9c-46dc-b342-267b09f99b4a",
-                            ConcurrencyStamp = "08967afd-c4f7-45b8-a601-dc1772aecf5f",
+                            Id = "128dacc2-c031-4531-acc8-0d3b9f9b544c",
+                            ConcurrencyStamp = "a28d863c-20cd-4ffc-9e87-b6296efa084d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
