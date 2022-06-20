@@ -42,5 +42,13 @@ namespace InternetShop.Api.Controllers
             await _service.Delete(id, ct);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IEnumerable<ProductInBasketViewModel>> Put(IEnumerable<UpdateProductInBasketViewModel> updateProductInBasketViewModels, CancellationToken ct)
+        {
+            
+            var result = await _service.Update(_mapper.Map<IEnumerable<ProductInBasket>>(updateProductInBasketViewModels), ct);
+            return _mapper.Map<IEnumerable<ProductInBasketViewModel>>(result);
+        }
     }
 }

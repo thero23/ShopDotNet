@@ -22,5 +22,11 @@ namespace IS.BLL.Services
             var products = await _repository.GetById(id, ct);
             return _mapper.Map<IEnumerable<ProductInBasket>>(products);
         }
+
+        public async Task<IEnumerable<ProductInBasket>> Update(IEnumerable<ProductInBasket> productsInBaskets, CancellationToken ct)
+        {
+            var products = await _repository.Update(_mapper.Map<IEnumerable<ProductInBasketEntity>>(productsInBaskets), ct);
+            return _mapper.Map<IEnumerable<ProductInBasket>>(products);
+        }
     }
 }

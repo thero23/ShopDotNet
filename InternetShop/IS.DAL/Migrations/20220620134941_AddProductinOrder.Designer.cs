@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220620134941_AddProductinOrder")]
+    partial class AddProductinOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,44 +257,6 @@ namespace IS.DAL.Migrations
                     b.ToTable("ProductInBasket");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AddressToDelivery")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("productInOrderEntities");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -410,15 +374,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "18ac56b5-68a0-43b7-98e7-68b3e0a17fea",
-                            ConcurrencyStamp = "82a9290c-03d2-4aaa-b285-540646436136",
+                            Id = "ba1f4d17-d0ca-45ea-97fa-4c113d197043",
+                            ConcurrencyStamp = "36ff9aaf-ffae-4d27-876c-bb627867739d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "bf24f7b9-369d-44ef-8d0f-b72d68143804",
-                            ConcurrencyStamp = "dc22312d-09f9-4c54-be67-f67e9f766254",
+                            Id = "898e80b9-607d-4d75-a677-9a8c53354518",
+                            ConcurrencyStamp = "4adc4621-7ff5-4f2b-8e14-c17d631b21b4",
                             Name = "User",
                             NormalizedName = "USER"
                         });

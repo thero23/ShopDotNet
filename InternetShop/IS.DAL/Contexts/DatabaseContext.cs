@@ -30,6 +30,8 @@ namespace IS.DAL.Contexts
 
         public DbSet<WhishListEntity> WhishList { get; set; }
 
+        public DbSet<ProductInOrderEntity> productInOrderEntities { get; set; }
+
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

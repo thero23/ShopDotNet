@@ -32,6 +32,8 @@ namespace InternetShop.API.Mappers
             CreateMap<BuyInOneClickViewModel, BuyInOneClick>().ReverseMap();
             CreateMap<WhishList, WhishListViewModel>().ReverseMap();
             CreateMap<WhishListAddViewModel, WhishList>().ReverseMap();
+            CreateMap<UpdateProductInBasketViewModel, ProductInBasket>().ReverseMap();
+            CreateMap<AddProductInBasketViewModel, ProductInOrder>().ReverseMap();
         }
     }
 }

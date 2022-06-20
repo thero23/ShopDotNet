@@ -16,6 +16,12 @@ namespace IS.DAL.Repositories
         {
             return await _dbSet.AsNoTracking().Where(x => x.USerId == id).ToListAsync(ct);
         }
+
+        public async Task<IEnumerable<ProductInBasketEntity>> Update(IEnumerable<ProductInBasketEntity> entities, CancellationToken ct)
+        {
+            _context.UpdateRange(entities);
+            await _context.SaveChangesAsync(ct);
+            return entities;
+        }
     }
 }
- 
