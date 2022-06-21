@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InternetShop.Api.ViewModels.ProductInOrder;
+using InternetShop.Api.ViewModels.User;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,9 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddProductInOrderViewModel prodctInOrderViewModel, CancellationToken ct)
+        public async Task<IActionResult> Post([FromBody] AddUserViewModel productInOrderViewModel, CancellationToken ct)
         {
-            await _productInOrderService.Post(_mapper.Map<ProductInOrder>(prodctInOrderViewModel), ct);
+            await _productInOrderService.Post(_mapper.Map<UserData>(productInOrderViewModel), ct);
             return Ok();
         }
     }

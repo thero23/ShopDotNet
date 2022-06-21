@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220621122148_DeleteUserDataEntityFromProductInOrderEntity")]
+    partial class DeleteUserDataEntityFromProductInOrderEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -274,8 +276,6 @@ namespace IS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserDataId");
-
                     b.ToTable("productInOrderEntities");
                 });
 
@@ -293,38 +293,6 @@ namespace IS.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProviderCountries");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.UserDataEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AddressToDelivery")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserDataEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
@@ -428,15 +396,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89e00057-5f98-478b-a372-22995a1f0a0e",
-                            ConcurrencyStamp = "80cceef5-d86c-4e4a-b9e0-1dfdf2284bfa",
+                            Id = "23de9470-5253-4aca-a331-5a51604de95e",
+                            ConcurrencyStamp = "58526e78-d6cd-4192-abd8-68a6b2c40c2e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "d5fcb0ce-8590-4b1d-bd36-dd9f7b2e1911",
-                            ConcurrencyStamp = "27fbe523-09bf-4536-aff8-a16e9373afb6",
+                            Id = "17b9d804-07be-4965-9ea3-63ebd737b3d0",
+                            ConcurrencyStamp = "bc05decc-9ecf-4dff-9b50-944023ee5f4c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -536,17 +504,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("Currency");
 
                     b.Navigation("ProviderCountry");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.UserDataEntity", "UserData")
-                        .WithMany()
-                        .HasForeignKey("UserDataId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserData");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
