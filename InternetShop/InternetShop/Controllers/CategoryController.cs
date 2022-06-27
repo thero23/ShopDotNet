@@ -5,6 +5,7 @@ using AutoMapper;
 using InternetShop.API.ViewModels.Category;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShop.API.Controllers
@@ -21,7 +22,7 @@ namespace InternetShop.API.Controllers
             _genericService = genericService;
             _mapper = mapper;
         }
-
+        [Authorize]
         [HttpGet] 
         public async Task<IEnumerable<CategoryViewModel>> GetAll(CancellationToken ct)
         {
@@ -29,6 +30,7 @@ namespace InternetShop.API.Controllers
             return _mapper.Map<IEnumerable<CategoryViewModel>>(categoryList);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<CategoryViewModel> GetById(int id, CancellationToken ct)
         {

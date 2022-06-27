@@ -2,6 +2,7 @@
 using InternetShop.API.ViewModels.Product;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
@@ -66,6 +67,7 @@ namespace InternetShop.API.Controllers
             return Ok();
         }
 
+        [Authorize(Policy ="Admin")]
         [HttpGet("category/{categoryId}")]
         public async Task<IEnumerable<ProductViewModel>> GetProductWithCategoryId(int categoryId, CancellationToken ct)
         {
