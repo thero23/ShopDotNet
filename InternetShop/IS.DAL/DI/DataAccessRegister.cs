@@ -20,6 +20,7 @@ namespace IS.DAL.DI
             services.AddScoped<IWhishListRepository, WhishListRepository>();
             services.AddScoped<IProductInOrderRepository, ProductInOrderRepository>();
             services.AddScoped<IUserDataRepository, UserDataRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));

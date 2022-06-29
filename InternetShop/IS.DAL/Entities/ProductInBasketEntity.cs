@@ -3,7 +3,7 @@
     public class ProductInBasketEntity
     {
         public int Id { get; set; }
-        public int USerId { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string ShortDescription { get; set; }

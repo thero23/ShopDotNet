@@ -60,16 +60,6 @@ namespace IS.DAL.Contexts
                 );
             modelBuilder.Entity<IdentityUserRole<string>>().HasKey(p => new { p.UserId, p.RoleId });
 
-            modelBuilder.Entity<UserEntity>()
-                .HasOne(a => a.Basket)
-                .WithOne(b => b.User)
-                .HasForeignKey<BasketEntity>(b => b.UserId);
-
-            modelBuilder.Entity<OrderEntity>()
-                .HasOne(a => a.User)
-                .WithMany(b => b.Orders)
-                .HasForeignKey(u => u.UserId);
-
             modelBuilder.Entity<ProductEntity>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)

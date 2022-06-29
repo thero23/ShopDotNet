@@ -23,7 +23,7 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IEnumerable<ProductInBasketViewModel>> GetById(int id, CancellationToken ct)
+        public async Task<IEnumerable<ProductInBasketViewModel>> GetProductsInBasketByUserId(string id, CancellationToken ct)
         {
             var result = await _service.GetById(id, ct);
             return _mapper.Map<IEnumerable<ProductInBasketViewModel>>(result);
@@ -46,7 +46,6 @@ namespace InternetShop.Api.Controllers
         [HttpPut]
         public async Task<IEnumerable<ProductInBasketViewModel>> Put(IEnumerable<UpdateProductInBasketViewModel> updateProductInBasketViewModels, CancellationToken ct)
         {
-            
             var result = await _service.Update(_mapper.Map<IEnumerable<ProductInBasket>>(updateProductInBasketViewModels), ct);
             return _mapper.Map<IEnumerable<ProductInBasketViewModel>>(result);
         }

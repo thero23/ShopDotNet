@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220628113013_deleteuserIdFieldInProductInOrder")]
+    partial class deleteuserIdFieldInProductInOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,9 @@ namespace IS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Baskets");
                 });
@@ -245,9 +249,8 @@ namespace IS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("USerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -261,9 +264,6 @@ namespace IS.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
 
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
@@ -305,19 +305,14 @@ namespace IS.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Auth0Id")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BasketId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -353,16 +348,7 @@ namespace IS.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -416,15 +402,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "18bbd3a7-eaf8-4f86-8fdf-cddee3118009",
-                            ConcurrencyStamp = "25ae8fc1-9c66-455d-b882-dd562e559bee",
+                            Id = "a31ed0fc-952e-4964-b96c-a37a9482838c",
+                            ConcurrencyStamp = "10c4e184-c16d-4fcf-8951-e6f6cc769446",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "9c616e47-0d85-4138-a2b0-c5d072d195ff",
-                            ConcurrencyStamp = "466d5276-470c-4299-b2ee-26d0f4f91a09",
+                            Id = "5183f406-2758-48e0-b07c-6f5fb3002d4e",
+                            ConcurrencyStamp = "ec96a72b-c1a6-49af-972a-0e07b9ecafaf",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -446,8 +432,8 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("Basket")
+                        .HasForeignKey("IS.DAL.Entities.BasketEntity", "UserId");
 
                     b.Navigation("User");
                 });
@@ -455,7 +441,7 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.UserEntity", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -565,6 +551,13 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
+                {
+                    b.Navigation("Basket");
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

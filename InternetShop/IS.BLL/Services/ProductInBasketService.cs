@@ -17,7 +17,7 @@ namespace IS.BLL.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProductInBasket>> GetById(int id, CancellationToken ct)
+        public async Task<IEnumerable<ProductInBasket>> GetById(string id, CancellationToken ct)
         {
             var products = await _repository.GetById(id, ct);
             return _mapper.Map<IEnumerable<ProductInBasket>>(products);

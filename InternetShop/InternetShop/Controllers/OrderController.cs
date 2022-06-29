@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using InternetShop.Api.ViewModels.ProductInOrder;
 using InternetShop.Api.ViewModels.User;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
@@ -11,20 +10,20 @@ namespace InternetShop.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductInOrderController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly IProductInOrderService _productInOrderService;
         private readonly IMapper _mapper;
-        public ProductInOrderController(IProductInOrderService productInOrderService, IMapper mapper)
+        public OrderController(IProductInOrderService productInOrderService, IMapper mapper)
         {
             _productInOrderService = productInOrderService;
             _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddUserViewModel productInOrderViewModel, CancellationToken ct)
+        public async Task<IActionResult> Post([FromBody] UserViewModel productInOrderViewModel, CancellationToken ct)
         {
-            await _productInOrderService.Post(_mapper.Map<UserData>(productInOrderViewModel), ct);
+            await _productInOrderService.Post(_mapper.Map<User>(productInOrderViewModel), ct);
             return Ok();
         }
     }

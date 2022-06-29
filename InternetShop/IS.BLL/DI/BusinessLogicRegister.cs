@@ -14,6 +14,7 @@ namespace IS.BLL.DI
         {
             services.AddScoped(typeof(IGenericService<Category>), typeof(GenericService<Category, CategoryEntity>));
             services.AddScoped(typeof(IGenericService<WhishList>), typeof(GenericService<WhishList, WhishListEntity>));
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductInBasketService, ProductInBasketService>();
             services.AddScoped<IProviderCountryService, ProviderCountryService>();

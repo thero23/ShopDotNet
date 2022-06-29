@@ -12,9 +12,15 @@ namespace IS.DAL.Repositories
 
         }
 
-        public async Task<IEnumerable<ProductInBasketEntity>> GetById(int id, CancellationToken ct)
+        public Task DeleteProductsFromBasket(IEnumerable<ProductInBasketEntity> productInOrderEntities, CancellationToken ct)
         {
-            return await _dbSet.AsNoTracking().Where(x => x.USerId == id).ToListAsync(ct);
+            _dbSet.RemoveRange(productInOrderEntities);
+               return _context.SaveChangesAsync(ct);
+        }
+
+        public async Task<IEnumerable<ProductInBasketEntity>> GetById(string id, CancellationToken ct)
+        {
+            return await _dbSet.AsNoTracking().Where(x => x.UserId == id).ToListAsync(ct);
         }
 
         public async Task<IEnumerable<ProductInBasketEntity>> Update(IEnumerable<ProductInBasketEntity> entities, CancellationToken ct)

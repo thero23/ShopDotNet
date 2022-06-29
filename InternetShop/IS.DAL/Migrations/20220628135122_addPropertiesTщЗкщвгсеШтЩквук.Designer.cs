@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220628135122_addPropertiesTщЗкщвгсеШтЩквук")]
+    partial class addPropertiesTщЗкщвгсеШтЩквук
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,9 @@ namespace IS.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Baskets");
                 });
@@ -305,19 +309,14 @@ namespace IS.DAL.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Area")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Auth0Id")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BasketId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -353,16 +352,7 @@ namespace IS.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -416,15 +406,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "18bbd3a7-eaf8-4f86-8fdf-cddee3118009",
-                            ConcurrencyStamp = "25ae8fc1-9c66-455d-b882-dd562e559bee",
+                            Id = "75bdcde7-6291-42d6-9d43-0fc45f6d12c8",
+                            ConcurrencyStamp = "9124c2f2-d012-4d6e-bcf5-90969a22e67f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "9c616e47-0d85-4138-a2b0-c5d072d195ff",
-                            ConcurrencyStamp = "466d5276-470c-4299-b2ee-26d0f4f91a09",
+                            Id = "3b0f10b5-0dc7-419e-b217-03209219e372",
+                            ConcurrencyStamp = "0c48788e-fd6d-4d52-97b5-834655b68623",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -446,8 +436,8 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithOne("Basket")
+                        .HasForeignKey("IS.DAL.Entities.BasketEntity", "UserId");
 
                     b.Navigation("User");
                 });
@@ -455,7 +445,7 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.UserEntity", "User")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -565,6 +555,13 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
+                {
+                    b.Navigation("Basket");
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

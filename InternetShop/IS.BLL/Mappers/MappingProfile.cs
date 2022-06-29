@@ -22,6 +22,8 @@ namespace IS.BLL.Mappers
             CreateMap<WhishListEntity, WhishList>().ReverseMap();
             CreateMap<ProductInOrder, ProductInOrderEntity>().ReverseMap();
             CreateMap<UserData, UserDataEntity>().ReverseMap();
+
+            CreateMap<User, UserEntity>().ReverseMap();
         }
     }
 }
