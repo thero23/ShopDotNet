@@ -47,12 +47,11 @@ namespace InternetShop.Api.Controllers
             return _mapper.Map<UserViewModel>(user);
         }
 
-        [HttpPut("{id}")]
-        public async Task<UserViewModel> Put(string id, [FromBody] UserViewModel userViewModel, CancellationToken ct)
+        [Authorize]
+        [HttpPut]
+        public async Task<UserViewModel> Put([FromBody] UserViewModel userViewModel, CancellationToken ct)
         {
             var mappedObject = _mapper.Map<User>(userViewModel);
-            mappedObject.Id = id;
-
             var result = await _userService.Update(mappedObject, ct);
             return _mapper.Map<UserViewModel>(result);
         }

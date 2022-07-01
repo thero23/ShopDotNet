@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220701074921_deleteProductId")]
+    partial class deleteProductId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -418,15 +420,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "42b90020-0474-430c-bfe0-1d689665511b",
-                            ConcurrencyStamp = "e74f7097-2458-4d9d-91d0-e02dc6d281c2",
+                            Id = "c5bcfc96-55c6-4c9f-9dc5-298e6eadf68a",
+                            ConcurrencyStamp = "e2a023e4-93b3-4dac-b2a4-127249f935c4",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fff827f6-19ab-4f69-814c-d32e243f7aeb",
-                            ConcurrencyStamp = "16a7ec8e-f442-4ce9-879a-df23715194a5",
+                            Id = "31befd07-85b4-4bb2-9fa4-9e52742405fc",
+                            ConcurrencyStamp = "b8b85d77-88dc-4e43-b0e3-dca92d1850b8",
                             Name = "User",
                             NormalizedName = "USER"
                         });

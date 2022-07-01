@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220630071731_removeAndAddFieldToProductInOrderEntity")]
+    partial class removeAndAddFieldToProductInOrderEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,7 +271,7 @@ namespace IS.DAL.Migrations
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductEntityId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -277,8 +279,6 @@ namespace IS.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductEntityId");
 
                     b.ToTable("productInOrderEntities");
                 });
@@ -418,15 +418,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "42b90020-0474-430c-bfe0-1d689665511b",
-                            ConcurrencyStamp = "e74f7097-2458-4d9d-91d0-e02dc6d281c2",
+                            Id = "ef8411ba-8958-4c54-9b9b-13eafb7cfa94",
+                            ConcurrencyStamp = "9d928315-b2c3-4a23-bb79-e9a49525abb1",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fff827f6-19ab-4f69-814c-d32e243f7aeb",
-                            ConcurrencyStamp = "16a7ec8e-f442-4ce9-879a-df23715194a5",
+                            Id = "cb627032-ff57-4c77-b687-7fb45d207066",
+                            ConcurrencyStamp = "33786001-1268-4574-b4e8-16491ac6367a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -526,17 +526,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("Currency");
 
                     b.Navigation("ProviderCountry");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "ProductEntity")
-                        .WithMany()
-                        .HasForeignKey("ProductEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>

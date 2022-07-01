@@ -37,6 +37,11 @@ namespace IS.BLL.Services
         }
         public async Task<User> Add(User user, CancellationToken ct)
         {
+            var isUserExists = await _repository.GetById(user.Auth0Id, ct);
+            if(isUserExists is not null)
+            {
+                return user;
+            }
             var result = await _repository.Add(_mapper.Map<UserEntity>(user), ct);
             return _mapper.Map<User>(result);
         }

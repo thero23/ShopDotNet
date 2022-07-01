@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220629125844_ChangeEntityToBuyinOneClick")]
+    partial class ChangeEntityToBuyinOneClick
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,16 +271,15 @@ namespace IS.DAL.Migrations
                     b.Property<int>("OrderNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductEntityId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductEntityId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("productInOrderEntities");
                 });
@@ -418,15 +419,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "42b90020-0474-430c-bfe0-1d689665511b",
-                            ConcurrencyStamp = "e74f7097-2458-4d9d-91d0-e02dc6d281c2",
+                            Id = "2a092d8f-ee11-45bf-b77c-ad3407fabda3",
+                            ConcurrencyStamp = "2d4c040e-b4e6-4fa4-ba26-420174264094",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fff827f6-19ab-4f69-814c-d32e243f7aeb",
-                            ConcurrencyStamp = "16a7ec8e-f442-4ce9-879a-df23715194a5",
+                            Id = "42696d61-e612-44ce-997a-62a883499580",
+                            ConcurrencyStamp = "d350a6f0-a4ea-4142-952d-b664b1467029",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -530,13 +531,11 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
                 {
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "ProductEntity")
+                    b.HasOne("IS.DAL.Entities.UserEntity", "User")
                         .WithMany()
-                        .HasForeignKey("ProductEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("ProductEntity");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>

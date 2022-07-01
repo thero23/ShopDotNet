@@ -7,6 +7,7 @@ using InternetShop.API.ViewModels.ProviderCountry;
 using IS.BLL.Models;
 using InternetShop.Api.ViewModels.WhishList;
 using InternetShop.Api.ViewModels.User;
+using InternetShop.Api.ViewModels.Order;
 
 namespace InternetShop.API.Mappers
 {
@@ -38,6 +39,7 @@ namespace InternetShop.API.Mappers
             CreateMap<AddUserViewModel, UserData>().ReverseMap();
 
             CreateMap<UserViewModel, User>().ReverseMap();
+            CreateMap<OrderViewModel, ProductInOrder>().ReverseMap();
         }
     }
 }

@@ -11,10 +11,17 @@ namespace IS.BLL.Services
         private readonly IProductInBasketService _productInBasketService;
         private readonly IMapper _mapper;
         private readonly IUserDataService _userDataService;
+        private readonly IProductService _productService;
         private readonly IProductInOrderRepository _repository;
         private readonly IProductInBasketRepository _productInBasketRepository;
         private readonly IUserService _userService;
-        public ProductInOrderService(IProductInOrderRepository repository, IMapper mapper, IProductInBasketService productInBasketService, IUserDataService userDataService, IUserService userService, IProductInBasketRepository productInBasketRepository) : base(repository, mapper)
+        public ProductInOrderService(IProductInOrderRepository repository,
+            IMapper mapper,
+            IProductInBasketService productInBasketService, 
+            IUserDataService userDataService, 
+            IUserService userService, 
+            IProductInBasketRepository productInBasketRepository,
+            IProductService productService) : base(repository, mapper)
         {
             _productInBasketService = productInBasketService;
             _mapper = mapper;
@@ -22,6 +29,7 @@ namespace IS.BLL.Services
             _repository = repository;
             _userService = userService;
             _productInBasketRepository = productInBasketRepository;
+            _productService = productService;
         }
 
         public async Task<IEnumerable<ProductInOrder>> Post(User userData, CancellationToken ct)
@@ -57,13 +65,19 @@ namespace IS.BLL.Services
                 productInOrder.Add(new ProductInOrder
                 {
                     OrderNumber = orderNumber,
-                    ProductId = el.Id,
                     Count = el.Count,
                     Price = el.Price,
-                    UserData = user
+                    UserId = user.Auth0Id,
+                    ProductId = el.Id
                 });
             }
             return productInOrder;
+        }
+
+        public async Task<IEnumerable<ProductInOrder>> GetByUserId(string id, CancellationToken ct)
+        {
+            var result = await _repository.GetByUserId(id, ct);
+            return _mapper.Map<IEnumerable<ProductInOrder>>(result);
         }
     }
 }

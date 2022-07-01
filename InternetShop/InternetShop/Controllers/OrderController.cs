@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using InternetShop.Api.ViewModels.Order;
 using InternetShop.Api.ViewModels.User;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,6 +28,14 @@ namespace InternetShop.Api.Controllers
         {
             await _productInOrderService.Post(_mapper.Map<User>(productInOrderViewModel), ct);
             return Ok();
+        }
+
+       // [Authorize]
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<OrderViewModel>> GetByuserId(string id, CancellationToken ct)
+        {
+            var result = await _productInOrderService.GetByUserId(id, ct);
+            return _mapper.Map<IEnumerable<OrderViewModel>>(result);
         }
     }
 }

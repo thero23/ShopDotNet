@@ -67,7 +67,7 @@ namespace InternetShop.API.Controllers
             return Ok();
         }
 
-        [Authorize(Policy ="Admin")]
+
         [HttpGet("category/{categoryId}")]
         public async Task<IEnumerable<ProductViewModel>> GetProductWithCategoryId(int categoryId, CancellationToken ct)
         {
