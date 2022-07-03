@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220703102501_addFieldForDataToCreateOrder")]
+    partial class addFieldForDataToCreateOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -421,15 +423,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "df0ba6bb-787f-4f6f-8196-cbc36f9dcddb",
-                            ConcurrencyStamp = "dd44a3c7-ee29-4c08-b876-30838b03b9cf",
+                            Id = "c49a1b45-9209-4f1b-999b-3f5a9bd92af0",
+                            ConcurrencyStamp = "66e67120-688a-46d1-87ef-0ed607932034",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "0c4ac912-40a0-4f51-9ddf-2836c902b1e3",
-                            ConcurrencyStamp = "ca57e7a0-43dd-45cd-b630-9b609a6527ea",
+                            Id = "2bd3d53c-929e-499f-b5ae-8bf0da19d439",
+                            ConcurrencyStamp = "00011076-3119-4e33-9e22-e56d48a7fad8",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -68,7 +68,8 @@ namespace IS.BLL.Services
                     Count = el.Count,
                     Price = el.Price,
                     UserId = user.Auth0Id,
-                    ProductId = el.Id
+                    ProductId = el.Id,
+                    CreatedAt = DateTime.UtcNow
                 });
             }
             return productInOrder;

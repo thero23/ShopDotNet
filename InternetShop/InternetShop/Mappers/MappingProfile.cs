@@ -39,7 +39,7 @@ namespace InternetShop.API.Mappers
             CreateMap<AddUserViewModel, UserData>().ReverseMap();
 
             CreateMap<UserViewModel, User>().ReverseMap();
-            CreateMap<OrderViewModel, ProductInOrder>().ReverseMap();
+            CreateMap<OrderViewModel, ProductInOrder>().ForMember(x=> x.Product, y=> y.MapFrom(z=> z.ProductViewModel)).ReverseMap();
         }
     }
 }
