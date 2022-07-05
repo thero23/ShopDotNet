@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220704072313_SetupProductInOrderEntityFK")]
+    partial class SetupProductInOrderEntityFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,11 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -123,15 +128,6 @@ namespace IS.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
@@ -162,13 +158,10 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
-                    b.Property<string>("BasketId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ProductId")
+                    b.Property<int>("BasketId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Count")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("BasketId", "ProductId");
@@ -285,6 +278,7 @@ namespace IS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -429,15 +423,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "19f0752c-39e6-4e6c-be75-150a33ac032e",
-                            ConcurrencyStamp = "b63ee38a-0ac9-4847-bb50-f626b977d564",
+                            Id = "dc5c0b22-2129-42b5-9d4f-b74dfec131df",
+                            ConcurrencyStamp = "0b189791-d894-49d0-bd7a-1fc7eb6c5491",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4ef6be7b-d942-444f-af19-072b9859a150",
-                            ConcurrencyStamp = "606bbe45-af48-4dcb-b388-224b8b5f592f",
+                            Id = "f0dcbb06-aa62-47da-957e-388b991fa1e1",
+                            ConcurrencyStamp = "6af831a6-2a2e-462d-92d2-a7de0203f6a3",
                             Name = "User",
                             NormalizedName = "USER"
                         });

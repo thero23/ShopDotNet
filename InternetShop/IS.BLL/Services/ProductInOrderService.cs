@@ -8,19 +8,19 @@ namespace IS.BLL.Services
 {
     public class ProductInOrderService : GenericService<ProductInOrder, ProductInOrderEntity>, IProductInOrderService
     {
-        private readonly IProductInBasketService _productInBasketService;
+        private readonly IBasketService _productInBasketService;
         private readonly IMapper _mapper;
         private readonly IUserDataService _userDataService;
         private readonly IProductService _productService;
         private readonly IProductInOrderRepository _repository;
-        private readonly IProductInBasketRepository _productInBasketRepository;
+        private readonly IProductBasketRepository _productInBasketRepository;
         private readonly IUserService _userService;
         public ProductInOrderService(IProductInOrderRepository repository,
             IMapper mapper,
-            IProductInBasketService productInBasketService, 
+            IBasketService productInBasketService, 
             IUserDataService userDataService, 
             IUserService userService, 
-            IProductInBasketRepository productInBasketRepository,
+            IProductBasketRepository productInBasketRepository,
             IProductService productService) : base(repository, mapper)
         {
             _productInBasketService = productInBasketService;
@@ -46,14 +46,14 @@ namespace IS.BLL.Services
 
             var result = await _repository.AddRange(productsInOrder, ct);
 
-            await _productInBasketRepository.DeleteProductsFromBasket(_mapper.Map<IEnumerable<ProductInBasketEntity>>(products), ct);
+          //  await _productInBasketRepository.DeleteProductsFromBasket(_mapper.Map<IEnumerable<ProductInBasketEntity>>(products), ct);
 
             return _mapper.Map<IEnumerable<ProductInOrder>>(result);
         }
 
         private async Task<IEnumerable<ProductInBasket>> GetProductInBasketByuserId(string userId, CancellationToken ct)
         {
-            return await _productInBasketService.GetById(userId, ct);
+            return (IEnumerable<ProductInBasket>)await _productInBasketService.GetById(1, ct);
         }
 
         private IEnumerable<ProductInOrder> CreateInstance(User user, IEnumerable<ProductInBasket> productsInBasket)

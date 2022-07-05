@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IS.DAL.Repositories
 {
-    public class ProductInBasketRepository: GenericRepository<ProductInBasketEntity>, IProductInBasketRepository
+    public class ProductInBasketRepository: GenericRepository<ProductBasketEntity>
     {
         public ProductInBasketRepository(DatabaseContext context) : base(context)
         {
 
         }
 
-        public Task DeleteProductsFromBasket(IEnumerable<ProductInBasketEntity> productInOrderEntities, CancellationToken ct)
+       /* public Task DeleteProductsFromBasket(IEnumerable<ProductInBasketEntity> productInOrderEntities, CancellationToken ct)
         {
             _dbSet.RemoveRange(productInOrderEntities);
                return _context.SaveChangesAsync(ct);
@@ -28,6 +28,6 @@ namespace IS.DAL.Repositories
             _context.UpdateRange(entities);
             await _context.SaveChangesAsync(ct);
             return entities;
-        }
+        }*/
     }
 }

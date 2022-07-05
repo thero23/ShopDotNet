@@ -96,6 +96,11 @@ namespace IS.DAL.Contexts
                 .HasOne(op => op.Product)
                 .WithMany(p => p.OrderProductEntities)
                 .HasForeignKey(op => op.ProductId);
+            modelBuilder.Entity<ProductInOrderEntity>()
+                .HasOne(op=> op.ProductEntity)
+                .WithMany(x=> x.ProductInOrderEntities)
+                .HasForeignKey(y=> y.ProductEntityId);
+            
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);
 

@@ -8,6 +8,8 @@
 
         public int BasketId { get; set; }
         public virtual Basket Basket { get; set; }
+
+        public int Count { get; set; }
 #nullable enable
     }
 }

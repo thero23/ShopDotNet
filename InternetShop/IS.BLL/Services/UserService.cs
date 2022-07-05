@@ -10,10 +10,12 @@ namespace IS.BLL.Services
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
-        public UserService(IUserRepository repository, IMapper mapper) : base(repository, mapper)
+        private readonly IBasketRepository _basketRepository;
+        public UserService(IUserRepository repository, IBasketRepository basketRepository, IMapper mapper) : base(repository, mapper)
         {
             _repository = repository;
             _mapper = mapper;
+            _basketRepository = basketRepository;
         }
 
         public async Task<User> GetById(string id, CancellationToken ct)
@@ -25,24 +27,23 @@ namespace IS.BLL.Services
         public async Task<User> Put(User user, CancellationToken ct)
         {
             var result = await _repository.GetById(user.Auth0Id, ct);
-            if(result is not null)
+            if (result is not null)
             {
                 var mappedObject = _mapper.Map<UserEntity>(user);
                 return _mapper.Map<User>(await _repository.Update(mappedObject, ct));
             }
-            else
-            {
-                return _mapper.Map<User>(await Add(user, ct));
-            }
+            return _mapper.Map<User>(await Add(user, ct));
         }
         public async Task<User> Add(User user, CancellationToken ct)
         {
             var isUserExists = await _repository.GetById(user.Auth0Id, ct);
-            if(isUserExists is not null)
+            if (isUserExists is not null)
             {
                 return user;
             }
             var result = await _repository.Add(_mapper.Map<UserEntity>(user), ct);
+            await _basketRepository.Add(new BasketEntity {User = result}, ct);
+            
             return _mapper.Map<User>(result);
         }
     }

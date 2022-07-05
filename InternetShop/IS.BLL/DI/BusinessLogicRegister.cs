@@ -16,12 +16,14 @@ namespace IS.BLL.DI
             services.AddScoped(typeof(IGenericService<WhishList>), typeof(GenericService<WhishList, WhishListEntity>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProductInBasketService, ProductInBasketService>();
+            services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IProviderCountryService, ProviderCountryService>();
             services.AddScoped<IBuyInOneClickService, BuyInOneClickService>();
             services.AddScoped<IWhishListService, WhishListService>();
             services.AddScoped<IProductInOrderService, ProductInOrderService>();
             services.AddScoped<IUserDataService, UserDataService>();
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IProductBasketService, ProductBasketService>();
             services.AddDataAccess(config);
         }
     }

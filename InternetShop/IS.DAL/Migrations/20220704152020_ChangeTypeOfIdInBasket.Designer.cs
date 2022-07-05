@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220704152020_ChangeTypeOfIdInBasket")]
+    partial class ChangeTypeOfIdInBasket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,11 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -162,8 +167,8 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
-                    b.Property<string>("BasketId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -429,15 +434,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "19f0752c-39e6-4e6c-be75-150a33ac032e",
-                            ConcurrencyStamp = "b63ee38a-0ac9-4847-bb50-f626b977d564",
+                            Id = "cf194247-95a2-4d2b-baca-fb024ef51841",
+                            ConcurrencyStamp = "cbb7337c-ae13-4bf5-8ee3-d3e48711d13b",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4ef6be7b-d942-444f-af19-072b9859a150",
-                            ConcurrencyStamp = "606bbe45-af48-4dcb-b388-224b8b5f592f",
+                            Id = "d13a16fc-891e-4660-a17b-4e9ed13b657e",
+                            ConcurrencyStamp = "99e9b6dd-4d5c-44e7-a0a0-42b9fe1a4685",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -26,6 +26,7 @@
 #nullable enable
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
         public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
+        public ICollection<ProductInOrderEntity>? ProductInOrderEntities { get; set; }
 
     }
 }

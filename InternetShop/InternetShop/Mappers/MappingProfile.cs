@@ -8,6 +8,8 @@ using IS.BLL.Models;
 using InternetShop.Api.ViewModels.WhishList;
 using InternetShop.Api.ViewModels.User;
 using InternetShop.Api.ViewModels.Order;
+using InternetShop.Api.ViewModels.Basket;
+using InternetShop.Api.ViewModels.ProductBasket;
 
 namespace InternetShop.API.Mappers
 {
@@ -40,6 +42,14 @@ namespace InternetShop.API.Mappers
 
             CreateMap<UserViewModel, User>().ReverseMap();
             CreateMap<OrderViewModel, ProductInOrder>().ForMember(x=> x.Product, y=> y.MapFrom(z=> z.ProductViewModel)).ReverseMap();
+
+            CreateMap<Basket, BasketViewModel>();
+            CreateMap<AddBasketViewModel, Basket>();
+            CreateMap<UpdateBasketViewModel, Basket>();
+
+            CreateMap<ProductBasket, ProductInBasketViewModel>();
+            CreateMap<AddProductBasketViewModel, ProductBasket>();
+            CreateMap<UpdateProductBasketViewModel, ProductBasket>();
         }
     }
 }
