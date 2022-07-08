@@ -22,7 +22,7 @@ namespace InternetShop.API.Controllers
             _genericService = genericService;
             _mapper = mapper;
         }
-        [Authorize]
+        //[Authorize]
         [HttpGet] 
         public async Task<IEnumerable<CategoryViewModel>> GetAll(CancellationToken ct)
         {

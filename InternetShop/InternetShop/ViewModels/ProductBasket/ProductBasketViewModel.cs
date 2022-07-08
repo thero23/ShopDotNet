@@ -9,7 +9,7 @@ namespace InternetShop.Api.ViewModels.ProductBasket
         public int ProductId { get; set; }
         public virtual ProductViewModel Product { get; set; }
 
-        public int BasketId { get; set; }
+        public string BasketId { get; set; }
         public virtual BasketViewModel Basket { get; set; }
 #nullable enable
     }

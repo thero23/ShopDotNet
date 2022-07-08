@@ -23,6 +23,7 @@ namespace IS.DAL.Repositories
         {
             var result = await _dbSet.Where(x => x.UserId == userId).Include(x=> x.ProductEntity).ToListAsync(ct);
             return result;
+            //return null;
         }
     }
 }

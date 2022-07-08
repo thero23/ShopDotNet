@@ -11,16 +11,15 @@ namespace IS.DAL.Repositories
         {
         }
 
-        public int GetByAuth0Id(string id, CancellationToken ct)
+
+        public async Task<BasketEntity> GetByAuth0Id(string id, CancellationToken ct)
         {
-            var result = _dbSet.AsNoTracking().FirstOrDefaultAsync(x=> x.User.Auth0Id == id, ct).Id;
-            return result;
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id, ct);
         }
 
-        Task<BasketEntity> IBasketRepository.GetByAuth0Id(string id, CancellationToken ct)
+        public async Task<BasketEntity> GetProductsBasketByUserId(string id, CancellationToken ct)
         {
-            //return _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, ct);
-            return null;
+            return await _dbSet.AsNoTracking().Include(x => x.ProductBasketEntities).ThenInclude(x=> x.Product).FirstOrDefaultAsync(x => x.UserId == id, ct);
         }
     }
 }

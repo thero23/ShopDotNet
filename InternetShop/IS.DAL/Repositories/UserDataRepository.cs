@@ -13,8 +13,9 @@ namespace IS.DAL.Repositories
 
         public async Task<UserDataEntity> GetLastUserDataById(int userId, CancellationToken ct)
         {
-            var result = _dbSet.AsNoTracking().OrderBy(x=> x.Id).LastOrDefault(x => x.UserId == userId);
-            return result;
+          //  var result = _dbSet.AsNoTracking().OrderBy(x=> x.Id).LastOrDefault(x => x.UserId == userId);
+           // return result;
+            return null;
         }
     }
 }

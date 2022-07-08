@@ -1,16 +1,11 @@
-﻿using InternetShop.Api.ViewModels.Basket;
-using InternetShop.API.ViewModels.Product;
-
-namespace InternetShop.Api.ViewModels.ProductBasket
+﻿namespace InternetShop.Api.ViewModels.ProductBasket
 {
     public class AddProductBasketViewModel
     {
 #nullable disable
         public int ProductId { get; set; }
-        public virtual ProductViewModel Product { get; set; }
 
-        public int BasketId { get; set; }
-        public virtual BasketViewModel Basket { get; set; }
+        public string UserId { get; set; }
 #nullable enable
     }
 }

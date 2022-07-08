@@ -24,7 +24,7 @@ namespace InternetShop.API.Mappers
 
             CreateMap<AddProductViewModel, Product>();
             CreateMap<UpdateProductViewModel, Product>();
-            CreateMap<Product, ProductViewModel>();
+            CreateMap<Product, ProductViewModel>().ReverseMap();
             CreateMap<Product, ShortProductViewModel>();
 
             CreateMap<AddProviderCountryViewModel, ProviderCountry>();
@@ -49,7 +49,11 @@ namespace InternetShop.API.Mappers
 
             CreateMap<ProductBasket, ProductInBasketViewModel>();
             CreateMap<AddProductBasketViewModel, ProductBasket>();
-            CreateMap<UpdateProductBasketViewModel, ProductBasket>();
+            CreateMap<UpdateProductBasketViewModel, ProductBasket>().ReverseMap();
+
+            CreateMap<ProductBasket, ProductBasketViewModel>().ReverseMap();
+
+            CreateMap<ShortProductBasketViewModel, ProductBasket>().ReverseMap();
         }
     }
 }

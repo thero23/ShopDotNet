@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using InternetShop.Api.ViewModels.Basket;
-using InternetShop.Api.ViewModels.ProductInBasket;
+using InternetShop.Api.ViewModels.ProductBasket;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace InternetShop.Api.Controllers
 {
@@ -42,9 +42,6 @@ namespace InternetShop.Api.Controllers
         {
             var result = await _service.Add(_mapper.Map<Basket>(addBasketViewModel), ct);
             return _mapper.Map<BasketViewModel>(result);
-            //var result = await _service.Add(_mapper.Map<ProductInBasket>(productInBasket), ct);
-            //return _mapper.Map<ProductInBasketViewModel>(result);
-            //return null;
         }
 
         [HttpDelete("{id}")]
@@ -59,8 +56,13 @@ namespace InternetShop.Api.Controllers
         {
             var result = await _service.Update(_mapper.Map<Basket>(updateBasketViewModel), ct);
             return _mapper.Map<BasketViewModel>(result);
-            //var result = await _service.Update(_mapper.Map<IEnumerable<ProductInBasket>>(updateProductInBasketViewModels), ct);
-            // return _mapper.Map<IEnumerable<ProductInBasketViewModel>>(result);
+        }
+
+        [HttpGet("{authId}")]
+        public async Task<IEnumerable<ShortProductBasketViewModel>> GetBasketWithProduct(string authId, CancellationToken ct)
+        {
+            var productsBasket = await _service.GetBasketWithProductsByUserId(authId, ct);
+            return _mapper.Map<IEnumerable<ShortProductBasketViewModel>>(productsBasket);
         }
     }
 }

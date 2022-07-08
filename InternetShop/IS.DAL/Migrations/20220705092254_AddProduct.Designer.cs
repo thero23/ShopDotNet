@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220705092254_AddProduct")]
+    partial class AddProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,7 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("909f73bc-4700-4496-b303-70be05303363");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -164,24 +164,16 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("BasketId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
 
-                    b.HasIndex("BasketId");
+                    b.HasKey("BasketId", "ProductId");
 
                     b.HasIndex("ProductId");
 
@@ -402,15 +394,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "69bb37e4-9813-40d5-a9c4-e8fe8f820f17",
-                            ConcurrencyStamp = "66b65458-1288-45b8-929f-3f9711122853",
+                            Id = "70805eb9-833d-47be-9017-4e24748f333a",
+                            ConcurrencyStamp = "4f1e2ff2-734b-4be8-8fda-96e53836ac7a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1afc25dc-f683-4e0a-8b00-43aed96d443e",
-                            ConcurrencyStamp = "0c2973ac-f506-44da-9fa3-cd35c8b9abbf",
+                            Id = "5cf2a86f-b724-45f4-a67b-b34fed15b5de",
+                            ConcurrencyStamp = "088c7956-cf61-4d65-a23d-6055f089e430",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -470,7 +462,9 @@ namespace IS.DAL.Migrations
                 {
                     b.HasOne("IS.DAL.Entities.BasketEntity", "Basket")
                         .WithMany("ProductBasketEntities")
-                        .HasForeignKey("BasketId");
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
                         .WithMany("ProductBasketEntities")

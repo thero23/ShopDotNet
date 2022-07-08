@@ -6,5 +6,6 @@ namespace IS.DAL.Interfaces
     {
         Task<IEnumerable<ProductEntity>> GetProductWithCategory(int categoryId, CancellationToken ct);
         Task<IEnumerable<ProductEntity>> GetProductFromwhishList(IEnumerable<int> ids, CancellationToken ct);
+        Task<ProductEntity> GetById (int id, CancellationToken ct);
     }
 }

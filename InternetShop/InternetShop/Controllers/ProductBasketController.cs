@@ -30,22 +30,22 @@ namespace InternetShop.Api.Controllers
         }
 
         [HttpDelete]
-        public async Task Delete(int id, CancellationToken ct)
+        public async Task Delete([FromQuery]string basketId, int id, CancellationToken ct)
         {
-            await _service.Delete(id, ct);
+            await _service.Delete(basketId, id, ct);
         }
 
         [HttpPost]
         public async Task<ProductBasketViewModel> Post(AddProductBasketViewModel addProductBasketViewModel, CancellationToken ct)
         {
-            var result = await _service.AddProductToBasket("", ct);// (_mapper.Map<ProductBasket>(addProductBasketViewModel), ct);
+            var result = await _service.AddProductToBasket(addProductBasketViewModel.UserId, addProductBasketViewModel.ProductId, ct);
             return _mapper.Map<ProductBasketViewModel>(result);
         }
 
         [HttpPut]
         public async Task<ProductBasketViewModel> Put(UpdateProductBasketViewModel updateProductViewModel, CancellationToken ct)
         {
-            var result = await _service.Update(_mapper.Map<ProductBasket>(updateProductViewModel), ct);
+            var result = await _service.Put(_mapper.Map<ProductBasket>(updateProductViewModel), ct);
             return _mapper.Map<ProductBasketViewModel>(result);
         }
     }

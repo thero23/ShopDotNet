@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220705091813_addProductBasket")]
+    partial class addProductBasket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,7 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("909f73bc-4700-4496-b303-70be05303363");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -164,107 +164,18 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<string>("BasketId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductsBaskets");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProviderCountryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuantityInStock")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Rate")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShortDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CurrencyId");
-
-                    b.HasIndex("ProviderCountryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.HasKey("BasketId", "ProductId");
 
-                    b.Property<int>("OrderNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductEntityId");
-
-                    b.ToTable("ProductInOrder");
+                    b.ToTable("ProductsBaskets");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
@@ -402,15 +313,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "69bb37e4-9813-40d5-a9c4-e8fe8f820f17",
-                            ConcurrencyStamp = "66b65458-1288-45b8-929f-3f9711122853",
+                            Id = "54e0d9f3-7603-4aa3-aefa-2131ef43decd",
+                            ConcurrencyStamp = "1384e22d-aaaa-417e-bf57-d2ff1115fca0",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "1afc25dc-f683-4e0a-8b00-43aed96d443e",
-                            ConcurrencyStamp = "0c2973ac-f506-44da-9fa3-cd35c8b9abbf",
+                            Id = "889ea732-ed7c-40e0-ad98-9b851be446b5",
+                            ConcurrencyStamp = "92f79e42-30a1-4266-9426-fa9359f3c728",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -455,70 +366,18 @@ namespace IS.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("OrderProductEntities")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProductBasketEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.BasketEntity", "Basket")
                         .WithMany("ProductBasketEntities")
-                        .HasForeignKey("BasketId");
-
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("ProductBasketEntities")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Basket");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.CategoryEntity", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.CurrencyEntity", "Currency")
-                        .WithMany("Products")
-                        .HasForeignKey("CurrencyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProviderCountryEntity", "ProviderCountry")
-                        .WithMany("Products")
-                        .HasForeignKey("ProviderCountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Currency");
-
-                    b.Navigation("ProviderCountry");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductInOrderEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "ProductEntity")
-                        .WithMany("ProductInOrderEntities")
-                        .HasForeignKey("ProductEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProductEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
@@ -526,33 +385,9 @@ namespace IS.DAL.Migrations
                     b.Navigation("ProductBasketEntities");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.CategoryEntity", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.CurrencyEntity", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
                 {
                     b.Navigation("OrderProductEntities");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
-                {
-                    b.Navigation("OrderProductEntities");
-
-                    b.Navigation("ProductBasketEntities");
-
-                    b.Navigation("ProductInOrderEntities");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,9 @@ namespace IS.BLL.Interfaces
 {
     public interface IProductBasketService: IGenericService<ProductBasket>
     {
-        Task<IEnumerable<ProductBasket>> AddProductToBasket(string id, CancellationToken ct);
+        Task<ProductBasket> AddProductToBasket(string userId, int productId, CancellationToken ct);
+        ValueTask Delete(string basketId, int productId, CancellationToken ct);
+        Task<ProductBasket> Put(ProductBasket basket, CancellationToken ct);
+
     }
 }
