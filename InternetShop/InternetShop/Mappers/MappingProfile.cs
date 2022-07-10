@@ -54,6 +54,8 @@ namespace InternetShop.API.Mappers
             CreateMap<ProductBasket, ProductBasketViewModel>().ReverseMap();
 
             CreateMap<ShortProductBasketViewModel, ProductBasket>().ReverseMap();
+
+            CreateMap<UpdateProductBasketViewModel, ProductBasket>().ReverseMap();
         }
     }
 }

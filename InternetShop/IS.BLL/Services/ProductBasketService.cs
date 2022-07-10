@@ -55,10 +55,9 @@ namespace IS.BLL.Services
 
         public async Task<ProductBasket> Put(ProductBasket product, CancellationToken ct)
         {
-            var basket = await _repository.GetByBasketIdAndProductId(product.BasketId, product.ProductId, ct);
-            var result = _mapper.Map<ProductBasketEntity>(product);
-            result.Basket = basket.Basket;
-            return _mapper.Map<ProductBasket>(await _repository.Update(result, ct));
+            var productsBasket = await _repository.GetByBasketIdAndProductId(product.BasketId, product.ProductId, ct);
+            productsBasket.Count = product.Count;
+            return _mapper.Map<ProductBasket>(await _repository.Update(productsBasket, ct));
         }
     }
 }
