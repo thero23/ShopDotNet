@@ -47,9 +47,9 @@ namespace IS.BLL.Services
         private IEnumerable<OrderProductEntity> CreateList(IEnumerable<ProductBasketEntity> products, OrderEntity order)
         {
             var orderProductEntities = new List<OrderProductEntity>();
-            foreach(var el in products)
+            foreach (var el in products)
             {
-                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId});
+                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId });
             }
             return orderProductEntities;
         }
@@ -80,7 +80,7 @@ namespace IS.BLL.Services
 
         public async Task<IEnumerable<Order>> GetByUserId(string id, CancellationToken ct)
         {
-            var result = await _repository.GetByUserId(id, ct);
+            var result = await _repository.GetByUserId("00c30afb-6ac8-4336-8b05-8d95f7430f44", ct);
             return _mapper.Map<IEnumerable<Order>>(result);
         }
     }

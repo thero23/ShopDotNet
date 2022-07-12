@@ -7,7 +7,7 @@ namespace IS.DAL.Repositories
 {
     public class OrderRepository : GenericRepository<OrderEntity>, IOrderRepository
     {
-        public OrderRepository(DatabaseContext context): base(context)
+        public OrderRepository(DatabaseContext context) : base(context)
         {
 
         }
@@ -20,7 +20,7 @@ namespace IS.DAL.Repositories
 
         public async Task<IEnumerable<OrderEntity>> GetByUserId(string userId, CancellationToken ct)
         {
-            var result = await _dbSet.Where(x => x.UserId == userId).Include(x=> x.OrderProductEntities).ToListAsync(ct);
+            var result = await _dbSet.Where(x => x.UserId == userId).Include(x => x.OrderProductEntities).ThenInclude(x => x.Product).ToListAsync(ct);
             return result;
         }
     }

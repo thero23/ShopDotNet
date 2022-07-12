@@ -10,6 +10,7 @@ using InternetShop.Api.ViewModels.User;
 using InternetShop.Api.ViewModels.Order;
 using InternetShop.Api.ViewModels.Basket;
 using InternetShop.Api.ViewModels.ProductBasket;
+using InternetShop.Api.ViewModels.OrderProduct;
 
 namespace InternetShop.API.Mappers
 {
@@ -41,7 +42,9 @@ namespace InternetShop.API.Mappers
             CreateMap<AddUserViewModel, UserData>().ReverseMap();
 
             CreateMap<UserViewModel, User>().ReverseMap();
-            CreateMap<OrderViewModel, ProductInOrder>().ForMember(x=> x.Product, y=> y.MapFrom(z=> z.ProductViewModel)).ReverseMap();
+            CreateMap<OrderViewModel, Order>().ReverseMap().ForMember(x=> x.OrderProduct, y=> y.MapFrom(z=> z.OrderProduct));
+
+            CreateMap<OrderProduct, OrderProductViewModel>().ReverseMap();
 
             CreateMap<Basket, BasketViewModel>();
             CreateMap<AddBasketViewModel, Basket>();
@@ -56,6 +59,7 @@ namespace InternetShop.API.Mappers
             CreateMap<ShortProductBasketViewModel, ProductBasket>().ReverseMap();
 
             CreateMap<UpdateProductBasketViewModel, ProductBasket>().ReverseMap();
+
         }
     }
 }
