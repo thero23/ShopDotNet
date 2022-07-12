@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220711144539_DeleteFieldCountFromOrder")]
+    partial class DeleteFieldCountFromOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("681da06d-a6c2-4ea5-bfe9-a1546d9b8cb2");
+                        .HasDefaultValue("7e9daa1a-b15b-4777-928e-99ea987cc744");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -131,8 +133,8 @@ namespace IS.DAL.Migrations
                     b.Property<string>("OrderNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -399,15 +401,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e866c8da-3972-4fed-99ff-32e393ddfa7e",
-                            ConcurrencyStamp = "ad3c4c73-df80-4e9f-9f4d-10b41a9a83fe",
+                            Id = "45a22d2e-08b2-4f5d-bf14-e867989ed1ee",
+                            ConcurrencyStamp = "b7116280-5977-421e-b29f-40a1e926dccf",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e38f39da-6cb4-45af-b56c-211f0fc56e20",
-                            ConcurrencyStamp = "c9175ba7-5e74-4665-9636-0cd97f6742b2",
+                            Id = "d8825240-d48d-4dfd-a8e6-6c93b3d2d591",
+                            ConcurrencyStamp = "beea1512-4d66-4919-9036-383cc4c68717",
                             Name = "User",
                             NormalizedName = "USER"
                         });

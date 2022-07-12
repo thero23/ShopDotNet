@@ -45,7 +45,7 @@ namespace InternetShop.Api.Controllers
         [HttpPut]
         public async Task<ProductBasketViewModel> Put(UpdateProductBasketViewModel updateProductViewModel, CancellationToken ct)
         {
-            var result = await _service.Put(_mapper.Map<ProductBasket>(updateProductViewModel), ct);
+            var result = await _service.UpdateCountProductsInBasket(_mapper.Map<ProductBasket>(updateProductViewModel), ct);
             return _mapper.Map<ProductBasketViewModel>(result);
         }
     }

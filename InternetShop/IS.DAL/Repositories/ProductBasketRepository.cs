@@ -17,10 +17,10 @@ namespace IS.DAL.Repositories
             await _context.SaveChangesAsync(ct);
         }
 
-        public Task DeleteProductsFromBasket(IEnumerable<ProductInBasketEntity> productInOrderEntities, CancellationToken ct)
+        public async Task DeleteProductsbasketRange(IEnumerable<ProductBasketEntity> entity, CancellationToken ct)
         {
-            //_dbSet.RemoveRange(productInOrderEntities);
-            return _context.SaveChangesAsync(ct);
+            _dbSet.RemoveRange(entity);
+            await _context.SaveChangesAsync(ct);
         }
 
         public Task<ProductBasketEntity> GetByAuth0Id(string id, CancellationToken ct)
@@ -34,10 +34,10 @@ namespace IS.DAL.Repositories
             return result;
         }
 
-        public async Task<IEnumerable<ProductInBasketEntity>> GetById(string id, CancellationToken ct)
+        public async Task<IEnumerable<ProductBasketEntity>> GetProductsByBasketId(string basketId, CancellationToken ct)
         {
-            
-            return null;
+            var result = await _dbSet.AsNoTracking().Include(x=> x.Product).Where(x => x.BasketId == basketId).ToListAsync(ct);
+            return result;
         }
 
         public async Task<IEnumerable<ProductInBasketEntity>> Update(IEnumerable<ProductInBasketEntity> entities, CancellationToken ct)

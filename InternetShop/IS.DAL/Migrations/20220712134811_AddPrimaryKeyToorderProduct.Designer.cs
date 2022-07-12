@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220712134811_AddPrimaryKeyToorderProduct")]
+    partial class AddPrimaryKeyToorderProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("681da06d-a6c2-4ea5-bfe9-a1546d9b8cb2");
+                        .HasDefaultValue("5bb0c292-bd1c-4036-92ec-e998bea73b21");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -150,6 +152,9 @@ namespace IS.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId", "OrderId");
@@ -399,15 +404,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e866c8da-3972-4fed-99ff-32e393ddfa7e",
-                            ConcurrencyStamp = "ad3c4c73-df80-4e9f-9f4d-10b41a9a83fe",
+                            Id = "9c8eab25-5b7b-451d-9926-d7ea22f18302",
+                            ConcurrencyStamp = "5d7fb66c-72ff-4752-a7ee-20c925b7edc0",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "e38f39da-6cb4-45af-b56c-211f0fc56e20",
-                            ConcurrencyStamp = "c9175ba7-5e74-4665-9636-0cd97f6742b2",
+                            Id = "17d8b4f1-d471-413f-b6cc-5bac92f62da8",
+                            ConcurrencyStamp = "bd1a512b-2a30-4ce9-92e7-201bd396839a",
                             Name = "User",
                             NormalizedName = "USER"
                         });

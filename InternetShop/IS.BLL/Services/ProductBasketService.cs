@@ -53,7 +53,7 @@ namespace IS.BLL.Services
             }
         }
 
-        public async Task<ProductBasket> Put(ProductBasket product, CancellationToken ct)
+        public async Task<ProductBasket> UpdateCountProductsInBasket(ProductBasket product, CancellationToken ct)
         {
             var productsBasket = await _repository.GetByBasketIdAndProductId(product.BasketId, product.ProductId, ct);
             productsBasket.Count = product.Count;

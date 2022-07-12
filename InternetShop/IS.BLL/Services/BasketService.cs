@@ -21,7 +21,7 @@ namespace IS.BLL.Services
 
         public async Task<Basket> GetBasketByUserId(string id, CancellationToken ct)
         {
-            var result = await _repository.GetByAuth0Id(id, ct);
+            var result = await _repository.GetByUserId(id, ct);
             return _mapper.Map<Basket>(result);
         }
        

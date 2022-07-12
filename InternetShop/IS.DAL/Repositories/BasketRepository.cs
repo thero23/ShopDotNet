@@ -11,10 +11,9 @@ namespace IS.DAL.Repositories
         {
         }
 
-
-        public async Task<BasketEntity> GetByAuth0Id(string id, CancellationToken ct)
+        public async Task<BasketEntity> GetByUserId(string userId, CancellationToken ct)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id, ct);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId, cancellationToken: ct);
         }
 
         public async Task<BasketEntity> GetProductsBasketByUserId(string id, CancellationToken ct)

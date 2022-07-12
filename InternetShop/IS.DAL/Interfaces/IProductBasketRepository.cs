@@ -6,5 +6,8 @@ namespace IS.DAL.Interfaces
     {
         Task<ProductBasketEntity> GetByBasketIdAndProductId (string basketId, int productId, CancellationToken ct);
         ValueTask Delete(ProductBasketEntity entity, CancellationToken ct);
+
+        Task DeleteProductsbasketRange(IEnumerable<ProductBasketEntity> entity, CancellationToken ct);
+        Task<IEnumerable<ProductBasketEntity>> GetProductsByBasketId(string basketId, CancellationToken ct);
     }
 }

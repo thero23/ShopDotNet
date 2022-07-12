@@ -45,8 +45,8 @@ namespace InternetShop.API.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<ProviderCountryViewModel> Put(int id, [FromBody] UpdateProviderCountryViewModel updateProviderCountryViewModel, CancellationToken ct)
+        [HttpPut]
+        public async Task<ProviderCountryViewModel> Put([FromQuery] int id, [FromBody] UpdateProviderCountryViewModel updateProviderCountryViewModel, CancellationToken ct)
         {
             var mappedObject = _mapper.Map<ProviderCountry>(updateProviderCountryViewModel);
             mappedObject.Id = id;

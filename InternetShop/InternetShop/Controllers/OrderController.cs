@@ -3,7 +3,6 @@ using InternetShop.Api.ViewModels.Order;
 using InternetShop.Api.ViewModels.User;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
@@ -15,18 +14,18 @@ namespace InternetShop.Api.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IProductInOrderService _productInOrderService;
+        private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-        public OrderController(IProductInOrderService productInOrderService, IMapper mapper)
+        public OrderController(IOrderService orderService, IMapper mapper)
         {
-            _productInOrderService = productInOrderService;
+            _orderService = orderService;
             _mapper = mapper;
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserViewModel productInOrderViewModel, CancellationToken ct)
         {
-            await _productInOrderService.Post(_mapper.Map<User>(productInOrderViewModel), ct);
+            await _orderService.Post(_mapper.Map<User>(productInOrderViewModel), ct);
             return Ok();
         }
 
@@ -34,7 +33,7 @@ namespace InternetShop.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IEnumerable<OrderViewModel>> GetByuserId(string id, CancellationToken ct)
         {
-            var result = await _productInOrderService.GetByUserId(id, ct);
+            var result = await _orderService.GetByUserId(id, ct);
             return _mapper.Map<IEnumerable<OrderViewModel>>(result);
         }
     }

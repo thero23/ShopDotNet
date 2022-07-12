@@ -20,7 +20,7 @@ namespace IS.BLL.DI
             services.AddScoped<IProviderCountryService, ProviderCountryService>();
             services.AddScoped<IBuyInOneClickService, BuyInOneClickService>();
             services.AddScoped<IWhishListService, WhishListService>();
-            services.AddScoped<IProductInOrderService, ProductInOrderService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IUserDataService, UserDataService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IProductBasketService, ProductBasketService>();

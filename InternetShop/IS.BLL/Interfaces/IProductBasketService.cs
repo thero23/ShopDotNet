@@ -6,7 +6,7 @@ namespace IS.BLL.Interfaces
     {
         Task<ProductBasket> AddProductToBasket(string userId, int productId, CancellationToken ct);
         ValueTask Delete(string basketId, int productId, CancellationToken ct);
-        Task<ProductBasket> Put(ProductBasket basket, CancellationToken ct);
+        Task<ProductBasket> UpdateCountProductsInBasket(ProductBasket basket, CancellationToken ct);
 
     }
 }

@@ -4,6 +4,7 @@ namespace InternetShop.Api.ViewModels.User
 {
     public class UserViewModel : IdentityUser
     {
+        public override string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Auth0Id { get; set; }
