@@ -9,6 +9,7 @@
         public string UserId { get; set; }
         public string OrderNumber { get; set; }
         public DateTime CreatedAt { get; set; }
+
 #nullable enable
         public ICollection<OrderProduct>? OrderProduct { get; set; }
     }

@@ -49,7 +49,7 @@ namespace IS.BLL.Services
             var orderProductEntities = new List<OrderProductEntity>();
             foreach (var el in products)
             {
-                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId });
+                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId, Count = el.Count });
             }
             return orderProductEntities;
         }
