@@ -7,6 +7,7 @@
         public virtual OrderEntity Order { get; set; }
         public int ProductId { get; set; }
         public virtual ProductEntity Product { get; set; }
+        public int Count { get; set; }
 #nullable enable
     }
 }
