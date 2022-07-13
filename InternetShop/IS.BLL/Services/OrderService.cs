@@ -49,9 +49,14 @@ namespace IS.BLL.Services
             var orderProductEntities = new List<OrderProductEntity>();
             foreach (var el in products)
             {
-                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId, Count = el.Count });
+                orderProductEntities.Add(new OrderProductEntity { OrderId = order.Id, ProductId = el.ProductId, Count = el.Count, Price = CalculatePriceWithDiscount(el.Product.Discount, el.Product.Price) }); ;
             }
             return orderProductEntities;
+        }
+
+        private decimal CalculatePriceWithDiscount(int discount, decimal price)
+        {
+            return (100 - discount) / 100 * price;
         }
 
         private OrderEntity CreateOrder(IEnumerable<ProductBasketEntity> products, string userId, CancellationToken ct)

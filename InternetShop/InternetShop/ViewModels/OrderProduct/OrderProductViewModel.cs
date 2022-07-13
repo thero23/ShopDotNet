@@ -11,6 +11,7 @@ namespace InternetShop.Api.ViewModels.OrderProduct
         public int ProductId { get; set; }
         public virtual ProductViewModel Product { get; set; }
         public int Count { get; set; }
+        public decimal Price { get; set; }
 #nullable enable
     }
 }

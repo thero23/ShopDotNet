@@ -3,6 +3,7 @@ using InternetShop.Api.ViewModels.Order;
 using InternetShop.Api.ViewModels.User;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace InternetShop.Api.Controllers
             return Ok();
         }
 
-       // [Authorize]
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IEnumerable<OrderViewModel>> GetByuserId(string id, CancellationToken ct)
         {
