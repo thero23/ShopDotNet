@@ -21,7 +21,6 @@ namespace IS.BLL.DI
             services.AddScoped<IBuyInOneClickService, BuyInOneClickService>();
             services.AddScoped<IWhishListService, WhishListService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IUserDataService, UserDataService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IProductBasketService, ProductBasketService>();
             services.AddDataAccess(config);

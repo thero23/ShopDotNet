@@ -14,5 +14,6 @@ namespace InternetShop.Api.ViewModels.User
         public string Area { get; set; }
         public string Country { get; set; }
         public string Region { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

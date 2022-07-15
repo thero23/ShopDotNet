@@ -20,7 +20,6 @@ namespace IS.BLL.Mappers
             CreateMap<ProductInBasket, ProductInBasketEntity>().ReverseMap();
             CreateMap<BuyInOneClickEntity, BuyInOneClick>().ReverseMap();
             CreateMap<WhishListEntity, WhishList>().ReverseMap();
-             CreateMap<UserData, UserDataEntity>().ReverseMap();
             CreateMap<User, UserEntity>().ReverseMap();
 
             CreateMap<BasketEntity, Basket>().ForMember(x => x.ProductsBaskets, y => y.MapFrom(z => z.ProductBasketEntities)).ForMember(x => x.User, y => y.MapFrom(z => z.User)).ReverseMap();

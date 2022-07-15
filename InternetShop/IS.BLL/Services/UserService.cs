@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
+using System.Security.Claims;
 
 namespace IS.BLL.Services
 {
@@ -34,17 +36,29 @@ namespace IS.BLL.Services
             }
             return _mapper.Map<User>(await Add(user, ct));
         }
-        public async Task<User> Add(User user, CancellationToken ct)
+        public async Task<User> Add(User user, IEnumerable<Claim> claims, CancellationToken ct)
         {
             var isUserExists = await _repository.GetById(user.Auth0Id, ct);
             if (isUserExists is not null)
             {
                 return user;
             }
+            user.IsAdmin = ISAdmin(claims);
             var result = await _repository.Add(_mapper.Map<UserEntity>(user), ct);
             await _basketRepository.Add(new BasketEntity {User = result}, ct);
             
             return _mapper.Map<User>(result);
+        }
+        private bool ISAdmin(IEnumerable<Claim> claims)
+        {
+            var permission = "";
+            foreach(var el in claims)
+            {
+                permission = el.Value;
+            }
+
+            return permission.Contains("admin");
+
         }
     }
 }

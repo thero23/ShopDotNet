@@ -1,4 +1,5 @@
 ﻿using IS.BLL.Models;
+using System.Security.Claims;
 
 namespace IS.BLL.Interfaces
 {
@@ -6,5 +7,6 @@ namespace IS.BLL.Interfaces
     {
         Task<User> Put(User user, CancellationToken ct);
         Task<User> GetById(string id, CancellationToken ct);
+        Task<User> Add(User user, IEnumerable<Claim> claims, CancellationToken ct);
     }
 }

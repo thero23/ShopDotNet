@@ -28,7 +28,7 @@ namespace IS.BLL.Services
             return Mapper.Map<TModel>(await Repository.GetById(id, ct));
         }
 
-        public async Task<TModel> Add(TModel model, CancellationToken ct)
+        public virtual async Task<TModel> Add(TModel model, CancellationToken ct)
         {
             return Mapper.Map<TModel>(await Repository.Add(
                 Mapper.Map<TEntity>(model), ct

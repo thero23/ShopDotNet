@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,7 +44,8 @@ namespace InternetShop.Api.Controllers
         [HttpPost]
         public async Task<UserViewModel> Post([FromBody] UserViewModel userViewModel, CancellationToken ct)
         {
-            var user = await _userService.Add(_mapper.Map<User>(userViewModel), ct);
+            var claims = HttpContext.User.Claims;
+            var user = await _userService.Add(_mapper.Map<User>(userViewModel), claims, ct);
             return _mapper.Map<UserViewModel>(user);
         }
 

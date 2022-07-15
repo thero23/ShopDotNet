@@ -39,7 +39,6 @@ namespace InternetShop.API.Mappers
             CreateMap<WhishListAddViewModel, WhishList>().ReverseMap();
             CreateMap<UpdateProductInBasketViewModel, ProductInBasket>().ReverseMap();
             CreateMap<AddProductInBasketViewModel, ProductInOrder>().ReverseMap();
-            CreateMap<AddUserViewModel, UserData>().ReverseMap();
 
             CreateMap<UserViewModel, User>().ReverseMap();
             CreateMap<OrderViewModel, Order>().ReverseMap().ForMember(x=> x.OrderProduct, y=> y.MapFrom(z=> z.OrderProduct));

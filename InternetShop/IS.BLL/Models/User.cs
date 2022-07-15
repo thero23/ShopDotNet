@@ -14,5 +14,6 @@ namespace IS.BLL.Models
         public string Country { get; set; }
         public string Region { get; set; }
         public string UserId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
