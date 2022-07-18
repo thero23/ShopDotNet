@@ -37,5 +37,14 @@ namespace InternetShop.Api.Controllers
             var result = await _orderService.GetByUserId(id, ct);
             return _mapper.Map<IEnumerable<OrderViewModel>>(result);
         }
+
+        [Authorize(Policy = "Admin")]
+        [HttpGet]
+        public async Task<IEnumerable<OrderViewModel>> GetAll(CancellationToken ct)
+        {
+            var result = await _orderService.GetAll(ct);
+            return _mapper.Map<IEnumerable<OrderViewModel>>(result);
+        }
+
     }
 }
