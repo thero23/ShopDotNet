@@ -6,6 +6,7 @@ namespace IS.BLL.Interfaces
     public interface IUserService : IGenericService<User>
     {
         Task<User> Put(User user, CancellationToken ct);
+        Task<User> GetByAuthId(string id, CancellationToken ct);
         Task<User> GetById(string id, CancellationToken ct);
         Task<User> Add(User user, IEnumerable<Claim> claims, CancellationToken ct);
 

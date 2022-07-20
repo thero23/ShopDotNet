@@ -34,10 +34,10 @@ namespace InternetShop.Api.Controllers
         }
 
         [Authorize]
-        [HttpGet("user/{id}")]
-        public async Task<UserViewModel> GetById(string id, CancellationToken ct)
+        [HttpGet("userAuth/{id}")]
+        public async Task<UserViewModel> GetByAuthId(string id, CancellationToken ct)
         {
-            var result = await _userService.GetById(id, ct);
+            var result = await _userService.GetByAuthId(id, ct);
             return _mapper.Map<UserViewModel>(result);
         }
 
@@ -64,5 +64,14 @@ namespace InternetShop.Api.Controllers
         {
             await _userService.Delete(id, ct);
         }
+
+        [Authorize(Policy = "Admin")]
+        [HttpGet("user/{id}")]
+        public async Task<UserViewModel> GetById(string id, CancellationToken ct)
+        {
+            var result = await _userService.GetById(id, ct);
+            return _mapper.Map<UserViewModel>(result);
+        }
+
     }
 }

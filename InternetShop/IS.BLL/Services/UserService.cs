@@ -20,9 +20,14 @@ namespace IS.BLL.Services
             _basketRepository = basketRepository;
         }
 
-        public async Task<User> GetById(string id, CancellationToken ct)
+        public async Task<User> GetByAuthId(string id, CancellationToken ct)
         {
             var result = await _repository.GetByAuthId(id, ct);
+            return _mapper.Map<User>(result);
+        } 
+        public async Task<User> GetById(string id, CancellationToken ct)
+        {
+            var result = await _repository.GetById(id, ct);
             return _mapper.Map<User>(result);
         }
 
