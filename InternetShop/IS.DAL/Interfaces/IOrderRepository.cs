@@ -6,5 +6,6 @@ namespace IS.DAL.Interfaces
     {
         Task<IEnumerable<OrderEntity>> AddRange(IEnumerable<OrderEntity> productInOrderEntities, CancellationToken ct);
         Task<IEnumerable<OrderEntity>> GetByUserId(string userId, CancellationToken ct);
+        Task<OrderEntity> GetByOrderNumber(string orderNumber, CancellationToken ct);
     }
 }

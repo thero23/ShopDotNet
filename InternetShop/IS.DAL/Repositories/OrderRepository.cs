@@ -18,6 +18,12 @@ namespace IS.DAL.Repositories
             return productInOrderEntities;
         }
 
+        public async Task<OrderEntity> GetByOrderNumber(string orderNumber, CancellationToken ct)
+        {
+            var result = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.OrderNumber == orderNumber, ct);
+            return result;
+        }
+
         public async Task<IEnumerable<OrderEntity>> GetByUserId(string userId, CancellationToken ct)
         {
             var result = await _dbSet.Where(x => x.UserId == userId).Include(x => x.OrderProductEntities).ThenInclude(x => x.Product).ToListAsync(ct);

@@ -35,9 +35,9 @@ namespace IS.BLL.Services
             ));
         }
 
-        public ValueTask Delete(int id, CancellationToken ct)
+        public ValueTask Delete(TModel model, CancellationToken ct)
         {
-            return Repository.Delete(id, ct);
+            return Repository.Delete(Mapper.Map<TEntity>(model), ct);
         }
 
         public async Task<TModel> Update(TModel entity, CancellationToken ct)
@@ -45,6 +45,12 @@ namespace IS.BLL.Services
             return Mapper.Map<TModel>(
                 await Repository.Update(Mapper.Map<TEntity>(entity), ct)
             );
+        }
+
+        public async ValueTask Delete(int id, CancellationToken ct)
+        {
+            var result = await Repository.GetById(id, ct);
+            await Repository.Delete(result, ct);
         }
     }
 }

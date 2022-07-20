@@ -46,5 +46,11 @@ namespace InternetShop.Api.Controllers
             return _mapper.Map<IEnumerable<OrderViewModel>>(result);
         }
 
+        [Authorize(Policy = "Admin")]
+        [HttpDelete("id")]
+        public async Task DeletebyOrderNumber(string id, CancellationToken ct)
+        {
+            await _orderService.DeleteByOrderNumber(id, ct);
+        }
     }
 }

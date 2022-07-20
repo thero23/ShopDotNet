@@ -19,7 +19,7 @@ namespace IS.DAL.Repositories
         {
             return await _dbSet.AsNoTracking().ToListAsync(ct);
         }
-        
+
         public virtual async Task<TEntity?> GetById(int id, CancellationToken ct)
         {
             return await _dbSet.FindAsync(new object[] { id }, ct);
@@ -32,15 +32,10 @@ namespace IS.DAL.Repositories
             return entity;
         }
 
-        public virtual async ValueTask Delete(int id, CancellationToken ct)
+        public virtual async ValueTask Delete(TEntity entity, CancellationToken ct)
         {
-            var entity = await _dbSet.FindAsync(new object[] { id }, ct);
-            if (entity != null)
-            {
-                _dbSet.Remove(entity);
-                await _context.SaveChangesAsync(ct);
-            }
-           
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync(ct);
         }
 
         public virtual async Task<TEntity> Update(TEntity entity, CancellationToken ct)

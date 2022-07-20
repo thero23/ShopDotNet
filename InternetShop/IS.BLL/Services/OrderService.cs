@@ -88,5 +88,11 @@ namespace IS.BLL.Services
             var result = await _repository.GetByUserId("00c30afb-6ac8-4336-8b05-8d95f7430f44", ct);
             return _mapper.Map<IEnumerable<Order>>(result);
         }
+
+        public async Task DeleteByOrderNumber(string id, CancellationToken ct)
+        {
+            var result = await _repository.GetByOrderNumber(id, ct);
+            await _repository.Delete(result, ct);
+        }
     }
 }

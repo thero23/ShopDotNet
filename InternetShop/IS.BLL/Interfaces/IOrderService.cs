@@ -6,5 +6,6 @@ namespace IS.BLL.Interfaces
     {
         Task<Order> Post(User userData, CancellationToken ct);
         Task<IEnumerable<Order>> GetByUserId(string id, CancellationToken ct);
+        Task DeleteByOrderNumber(string id, CancellationToken ct);
     }
 }
