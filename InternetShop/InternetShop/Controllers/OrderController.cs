@@ -47,7 +47,7 @@ namespace InternetShop.Api.Controllers
         }
 
         [Authorize(Policy = "Admin")]
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task DeletebyOrderNumber(string id, CancellationToken ct)
         {
             await _orderService.DeleteByOrderNumber(id, ct);

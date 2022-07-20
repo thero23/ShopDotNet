@@ -59,7 +59,7 @@ namespace InternetShop.API.Controllers
             var result = await _service.Update(mappedObject, ct);
             return _mapper.Map<ProductViewModel>(result);
         }
-
+        [Authorize(Policy = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id, CancellationToken ct)
         {
