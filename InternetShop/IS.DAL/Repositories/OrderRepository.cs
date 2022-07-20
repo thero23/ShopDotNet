@@ -20,7 +20,7 @@ namespace IS.DAL.Repositories
 
         public async Task<OrderEntity> GetByOrderNumber(string orderNumber, CancellationToken ct)
         {
-            var result = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.OrderNumber == orderNumber, ct);
+            var result = await _dbSet.AsNoTracking().Include(x => x.OrderProductEntities).ThenInclude(x => x.Product).FirstOrDefaultAsync(x => x.OrderNumber == orderNumber, ct);
             return result;
         }
 

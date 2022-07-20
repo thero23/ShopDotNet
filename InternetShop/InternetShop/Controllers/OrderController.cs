@@ -52,5 +52,13 @@ namespace InternetShop.Api.Controllers
         {
             await _orderService.DeleteByOrderNumber(id, ct);
         }
+
+        [Authorize(Policy ="Admin")]
+        [HttpGet("orderNumber/{orderNumber}")]
+        public async Task<OrderViewModel> GetOrderByNumber(string orderNumber, CancellationToken ct)
+        {
+            var result = await _orderService.GetByOrderNumber(orderNumber, ct);
+            return _mapper.Map<OrderViewModel>(result);
+        }
     }
 }

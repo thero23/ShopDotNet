@@ -94,5 +94,11 @@ namespace IS.BLL.Services
             var result = await _repository.GetByOrderNumber(id, ct);
             await _repository.Delete(result, ct);
         }
+
+        public async Task<Order> GetByOrderNumber(string orderNumber, CancellationToken ct)
+        {
+            var result = await _repository.GetByOrderNumber(orderNumber, ct);
+            return _mapper.Map<Order>(result);
+        }
     }
 }
