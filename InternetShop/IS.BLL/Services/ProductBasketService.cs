@@ -28,7 +28,7 @@ namespace IS.BLL.Services
 
         public async Task<ProductBasket> AddProductToBasket(string userId, int productId, CancellationToken ct)
         {
-            var user = await _userService.GetById(userId, ct);
+            var user = await _userService.GetByAuthId(userId, ct);
             var basket = await _basketService.GetBasketByUserId(user.Id, ct);
             var product = await _productRepository.GetById(productId, ct);
 

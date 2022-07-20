@@ -27,7 +27,7 @@ namespace IS.BLL.Services
        
         public async Task<IEnumerable<ProductBasket>> GetBasketWithProductsByUserId(string authId, CancellationToken ct)
         {
-            var user = await _userRepository.GetById(authId, ct);
+            var user = await _userRepository.GetByAuthId(authId, ct);
             var basket = await _repository.GetProductsBasketByUserId(user.Id, ct);
             var test = basket.ProductBasketEntities;
             var result = _mapper.Map<IEnumerable<ProductBasket>>(basket.ProductBasketEntities);
