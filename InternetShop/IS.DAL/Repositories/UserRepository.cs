@@ -11,9 +11,14 @@ namespace IS.DAL.Repositories
         {
         }
 
-        public async Task<UserEntity> GetById(string id, CancellationToken ct)
+        public async Task<UserEntity> GetByAuthId(string id, CancellationToken ct)
         {
             return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Auth0Id == id, ct);
+        }
+
+        public async Task<UserEntity> GetById(string id, CancellationToken ct)
+        {
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id, ct);
         }
     }
 }

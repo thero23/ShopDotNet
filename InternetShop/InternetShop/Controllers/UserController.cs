@@ -58,10 +58,11 @@ namespace InternetShop.Api.Controllers
             return _mapper.Map<UserViewModel>(result);
         }
 
+        [Authorize(Policy = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id, CancellationToken ct)
+        public async Task Delete(string id, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            await _userService.Delete(id, ct);
         }
     }
 }

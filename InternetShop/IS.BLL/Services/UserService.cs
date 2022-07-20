@@ -22,13 +22,13 @@ namespace IS.BLL.Services
 
         public async Task<User> GetById(string id, CancellationToken ct)
         {
-            var result = await _repository.GetById(id, ct);
+            var result = await _repository.GetByAuthId(id, ct);
             return _mapper.Map<User>(result);
         }
 
         public async Task<User> Put(User user, CancellationToken ct)
         {
-            var result = await _repository.GetById(user.Auth0Id, ct);
+            var result = await _repository.GetByAuthId(user.Auth0Id, ct);
             if (result is not null)
             {
                 var mappedObject = _mapper.Map<UserEntity>(user);
@@ -38,7 +38,7 @@ namespace IS.BLL.Services
         }
         public async Task<User> Add(User user, IEnumerable<Claim> claims, CancellationToken ct)
         {
-            var isUserExists = await _repository.GetById(user.Auth0Id, ct);
+            var isUserExists = await _repository.GetByAuthId(user.Auth0Id, ct);
             if (isUserExists is not null)
             {
                 return user;
@@ -59,6 +59,12 @@ namespace IS.BLL.Services
 
             return permission.Contains("admin");
 
+        }
+
+        public async Task Delete(string id, CancellationToken ct)
+        {
+            var result = await _repository.GetById(id, ct);
+            await _repository.Delete(result, ct);
         }
     }
 }

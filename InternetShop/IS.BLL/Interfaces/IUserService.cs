@@ -8,5 +8,7 @@ namespace IS.BLL.Interfaces
         Task<User> Put(User user, CancellationToken ct);
         Task<User> GetById(string id, CancellationToken ct);
         Task<User> Add(User user, IEnumerable<Claim> claims, CancellationToken ct);
+
+        Task Delete(string id, CancellationToken ct);
     }
 }
