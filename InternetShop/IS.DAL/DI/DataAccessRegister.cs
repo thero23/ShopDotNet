@@ -23,6 +23,7 @@ namespace IS.DAL.DI
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductBasketRepository, ProductBasketRepository>();
             services.AddScoped<IOrderProductRepository, OrderProductsRepository>();
+            services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));

@@ -14,6 +14,7 @@ namespace IS.DAL.Contexts
         }
 
    #nullable disable 
+         public DbSet<SubCategoryEntity> SubCategories { get; set; }
          public DbSet<ProductEntity> Products { get; set; }
          public DbSet<CategoryEntity> Categories { get; set; }
          public DbSet<ProviderCountryEntity> ProviderCountries { get; set; }

@@ -3,6 +3,8 @@ using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
+using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace IS.BLL.Services
 {
@@ -29,6 +31,17 @@ namespace IS.BLL.Services
             {
                 product.PriceWithDiscount = CalculatePriceWithDiscount(product.Price, product.Discount);
             }
+
+            //string json = JsonConvert.SerializeObject(mappedProductsList, new JsonSerializerSettings
+            //{
+            //  //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
+
+            //using (StreamWriter writer = new("products.json", true, System.Text.Encoding.Default))
+            //{
+            //    await writer.WriteAsync(json);
+            //}
+
             return mappedProductsList;
         }
 

@@ -10,6 +10,11 @@ namespace IS.DAL.Repositories
         public ProductRepository(DatabaseContext context) : base(context)
         {
         }
+
+        public override async Task<IEnumerable<ProductEntity>> GetAll(CancellationToken ct)
+        {
+            return await _dbSet.AsNoTracking().Include(x=> x.Currency).Include(x=> x.Category).Include(x=> x.ProviderCountry).ToListAsync(ct);
+        }
         public async Task<ProductEntity> GetById(int id, CancellationToken ct)
         {
             var result = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x=> x.Id == id, ct);

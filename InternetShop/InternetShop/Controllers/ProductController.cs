@@ -4,7 +4,9 @@ using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,6 +35,18 @@ namespace InternetShop.API.Controllers
             {
                 el.Characteristic = "Characteristic1";
             }
+
+
+            string json = JsonConvert.SerializeObject(productList, new JsonSerializerSettings
+            {
+                  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+
+            using (StreamWriter writer = new("products.json", true, System.Text.Encoding.Default))
+            {
+                await writer.WriteAsync(json);
+            }
+
             return _mapper.Map<IEnumerable<ShortProductViewModel>>(productList);
         }
 

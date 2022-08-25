@@ -1,5 +1,6 @@
 ﻿namespace IS.BLL.Models
 {
+    [Serializable]
     public class Product
     {
 

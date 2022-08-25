@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace InternetShop.API
 {
@@ -60,6 +61,10 @@ namespace InternetShop.API
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }).AddJsonOptions(op =>
+            {
+                op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                op.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
             services.AddAuthorization();
             services.AddSwaggerGen(c =>
