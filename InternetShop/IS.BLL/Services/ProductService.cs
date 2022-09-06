@@ -3,8 +3,6 @@ using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
-using Newtonsoft.Json;
-using System.Text.Json;
 
 namespace IS.BLL.Services
 {

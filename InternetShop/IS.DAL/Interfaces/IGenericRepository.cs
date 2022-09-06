@@ -7,5 +7,6 @@
         Task<TEntity> Add(TEntity entity, CancellationToken ct);
         ValueTask Delete(TEntity entity, CancellationToken ct);
         Task<TEntity> Update(TEntity entity, CancellationToken ct);
+        Task AddRange(IEnumerable<TEntity> entities, CancellationToken ct);
     }
 }

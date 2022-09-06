@@ -4,8 +4,6 @@
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
-#nullable disable
-        public string Name { get; set; }
-#nullable enable
+        public ICollection<GeneralSubCategoryNameEntity> SubCategories { get; set; }
     }
 }

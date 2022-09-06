@@ -52,5 +52,10 @@ namespace IS.BLL.Services
             var result = await Repository.GetById(id, ct);
             await Repository.Delete(result, ct);
         }
+
+        public async Task AddRange(IEnumerable<TModel> entities, CancellationToken ct)
+        {
+            await Repository.AddRange(Mapper.Map<IEnumerable<TEntity>>(entities), ct);
+        }
     }
 }

@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220905092941_addSubCategoriesFieldToSubCategoryEntity")]
+    partial class addSubCategoriesFieldToSubCategoryEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("635a7bcb-f626-4097-95cf-c5e7186f9ee0");
+                        .HasDefaultValue("7bf3e41e-2681-479e-8b52-45c025e5fa64");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -323,28 +325,6 @@ namespace IS.DAL.Migrations
                     b.ToTable("SubCategories");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.SubCategoryNameEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("GeneralSubCategoryNameEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GeneralSubCategoryNameEntityId");
-
-                    b.ToTable("SubCategoryNameEntity");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -467,15 +447,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d1951e1-a819-46e9-89c2-00d7f1929307",
-                            ConcurrencyStamp = "3e7885c0-8620-4439-9c9a-4730b8f777bd",
+                            Id = "d81e49e6-6f26-4669-a78f-65c650aeb5c1",
+                            ConcurrencyStamp = "5e6e682b-64a3-49e2-af15-e278b7284336",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "6a382490-c77b-4576-8ec7-744ee44615a7",
-                            ConcurrencyStamp = "1ade4644-8307-40a7-8729-4ce5b1dfe90b",
+                            Id = "caec68db-e38e-4e0e-879b-1e49a6c40837",
+                            ConcurrencyStamp = "c2d70542-bf7b-4dcd-90e3-514cedb64209",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -593,13 +573,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("ProductEntity");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.SubCategoryNameEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.GeneralSubCategoryNameEntity", null)
-                        .WithMany("SubCategoriesName")
-                        .HasForeignKey("GeneralSubCategoryNameEntityId");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.Navigation("ProductBasketEntities");
@@ -613,11 +586,6 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.CurrencyEntity", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.GeneralSubCategoryNameEntity", b =>
-                {
-                    b.Navigation("SubCategoriesName");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>

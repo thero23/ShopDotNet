@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220905103301_DeleteGeneralSubCategoryNameIdFromSubCategoryName")]
+    partial class DeleteGeneralSubCategoryNameIdFromSubCategoryName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("635a7bcb-f626-4097-95cf-c5e7186f9ee0");
+                        .HasDefaultValue("6b8d74cf-c536-4224-8a33-f55cb7eca55e");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -334,6 +336,9 @@ namespace IS.DAL.Migrations
                     b.Property<int?>("GeneralSubCategoryNameEntityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("GeneralSubCategoryNameId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -467,15 +472,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d1951e1-a819-46e9-89c2-00d7f1929307",
-                            ConcurrencyStamp = "3e7885c0-8620-4439-9c9a-4730b8f777bd",
+                            Id = "1cd09057-3bc2-47d1-9cf8-8053acb7eafe",
+                            ConcurrencyStamp = "d9844d52-2e17-4cb5-b4d5-c7699659a0a5",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "6a382490-c77b-4576-8ec7-744ee44615a7",
-                            ConcurrencyStamp = "1ade4644-8307-40a7-8729-4ce5b1dfe90b",
+                            Id = "232cd522-1a2a-42a7-9b27-5a02b2620f42",
+                            ConcurrencyStamp = "c2543797-4301-43fe-8735-83f16149a596",
                             Name = "User",
                             NormalizedName = "USER"
                         });

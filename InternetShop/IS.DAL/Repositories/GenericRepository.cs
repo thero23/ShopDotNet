@@ -44,5 +44,11 @@ namespace IS.DAL.Repositories
             await _context.SaveChangesAsync(ct);
             return entity;
         }
+
+        public async Task AddRange(IEnumerable<TEntity> entities, CancellationToken ct)
+        {
+            await _dbSet.AddRangeAsync(entities, ct);
+            await _context.SaveChangesAsync(ct);
+        }
     }
 }

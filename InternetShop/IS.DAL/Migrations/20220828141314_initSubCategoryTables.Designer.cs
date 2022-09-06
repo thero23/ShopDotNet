@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220828141314_initSubCategoryTables")]
+    partial class initSubCategoryTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("635a7bcb-f626-4097-95cf-c5e7186f9ee0");
+                        .HasDefaultValue("1540294f-a08c-4d57-991c-962928d3f757");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -115,27 +117,6 @@ namespace IS.DAL.Migrations
                             Name = "EUR",
                             Sign = "€"
                         });
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.GeneralSubCategoryNameEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("SubCategoryEntityId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubCategoryEntityId");
-
-                    b.ToTable("GeneralSubCategoryNameEntity");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
@@ -323,28 +304,6 @@ namespace IS.DAL.Migrations
                     b.ToTable("SubCategories");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.SubCategoryNameEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("GeneralSubCategoryNameEntityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GeneralSubCategoryNameEntityId");
-
-                    b.ToTable("SubCategoryNameEntity");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.UserEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -467,15 +426,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d1951e1-a819-46e9-89c2-00d7f1929307",
-                            ConcurrencyStamp = "3e7885c0-8620-4439-9c9a-4730b8f777bd",
+                            Id = "05ef48ee-b00b-438c-9718-66d5afe49088",
+                            ConcurrencyStamp = "a3ad08bd-b121-40e7-ba50-f0c04cdc1fcb",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "6a382490-c77b-4576-8ec7-744ee44615a7",
-                            ConcurrencyStamp = "1ade4644-8307-40a7-8729-4ce5b1dfe90b",
+                            Id = "9ef7f9bf-8fa6-4743-912d-2fd953bb6ac6",
+                            ConcurrencyStamp = "dff3565b-a620-4f8f-8e13-05aae6c4c1b5",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -501,13 +460,6 @@ namespace IS.DAL.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.GeneralSubCategoryNameEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.SubCategoryEntity", null)
-                        .WithMany("SubCategories")
-                        .HasForeignKey("SubCategoryEntityId");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
@@ -593,13 +545,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("ProductEntity");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.SubCategoryNameEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.GeneralSubCategoryNameEntity", null)
-                        .WithMany("SubCategoriesName")
-                        .HasForeignKey("GeneralSubCategoryNameEntityId");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.BasketEntity", b =>
                 {
                     b.Navigation("ProductBasketEntities");
@@ -613,11 +558,6 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.CurrencyEntity", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.GeneralSubCategoryNameEntity", b =>
-                {
-                    b.Navigation("SubCategoriesName");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.OrderEntity", b =>
@@ -637,11 +577,6 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.SubCategoryEntity", b =>
-                {
-                    b.Navigation("SubCategories");
                 });
 #pragma warning restore 612, 618
         }

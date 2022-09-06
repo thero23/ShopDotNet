@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220905101937_addSubCategoriesTables")]
+    partial class addSubCategoriesTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("635a7bcb-f626-4097-95cf-c5e7186f9ee0");
+                        .HasDefaultValue("d007359b-e425-4bf4-87e0-e9081a5d21b2");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -129,6 +131,9 @@ namespace IS.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SubCategoryEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubcategoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -334,6 +339,9 @@ namespace IS.DAL.Migrations
                     b.Property<int?>("GeneralSubCategoryNameEntityId")
                         .HasColumnType("int");
 
+                    b.Property<int>("GeneralSubCategoryNameId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -467,15 +475,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d1951e1-a819-46e9-89c2-00d7f1929307",
-                            ConcurrencyStamp = "3e7885c0-8620-4439-9c9a-4730b8f777bd",
+                            Id = "d61f66b6-6bf2-4f94-9523-9fbe562e6d68",
+                            ConcurrencyStamp = "2b1c4ab0-07c3-4716-9176-3725f98ecc1c",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "6a382490-c77b-4576-8ec7-744ee44615a7",
-                            ConcurrencyStamp = "1ade4644-8307-40a7-8729-4ce5b1dfe90b",
+                            Id = "484c6c08-eccf-4ed6-a232-b7795b1941bd",
+                            ConcurrencyStamp = "297e5285-2abf-463e-a35e-42bbd87d4a0a",
                             Name = "User",
                             NormalizedName = "USER"
                         });

@@ -27,6 +27,12 @@ namespace IS.BLL.Mappers
             CreateMap<ProductBasket, ProductBasketEntity>().ForMember(x => x.Basket, y => y.MapFrom(z => z.Basket)).ForMember(x => x.Product, y => y.MapFrom(z => z.Product)).ReverseMap();
             CreateMap<OrderEntity, Order>().ForMember(x=> x.OrderProduct, y=> y.MapFrom(z=> z.OrderProductEntities));
             CreateMap<OrderProductEntity, OrderProduct>();//.ReverseMap().ForMember(x=> x.Product, y=> y.MapFrom(z=> z.Product)).ForMember(x=> x.Order, y=> y.MapFrom(z=> z.Order));
+
+            CreateMap<SubCategory, SubCategoryEntity>().ReverseMap();
+            CreateMap<SubCategoryName, SubCategoryNameEntity>().ReverseMap();
+            CreateMap<GeneralSubCategoryName, GeneralSubCategoryNameEntity>().ReverseMap();
+
+
         }
     }
 }

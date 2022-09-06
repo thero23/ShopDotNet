@@ -12,7 +12,7 @@ namespace IS.DAL.DI
         public static void AddDataAccess(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-         
+
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProviderCountryRepository, ProviderCountryRepository>();
             services.AddScoped<IBuyInOneClickRepository, BuyInOneClickRepository>();

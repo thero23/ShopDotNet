@@ -14,6 +14,8 @@ namespace IS.BLL.DI
         {
             services.AddScoped(typeof(IGenericService<Category>), typeof(GenericService<Category, CategoryEntity>));
             services.AddScoped(typeof(IGenericService<WhishList>), typeof(GenericService<WhishList, WhishListEntity>));
+            services.AddScoped(typeof(IGenericService<SubCategoryName>), typeof(GenericService<SubCategoryName, SubCategoryNameEntity>));
+            services.AddScoped(typeof(IGenericService<GeneralSubCategoryName>), typeof(GenericService<GeneralSubCategoryName, GeneralSubCategoryNameEntity>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IBasketService, BasketService>();
@@ -23,6 +25,7 @@ namespace IS.BLL.DI
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IProductBasketService, ProductBasketService>();
+            services.AddScoped<ISubCategoryService, SubCategoryService>();
             services.AddDataAccess(config);
         }
     }
