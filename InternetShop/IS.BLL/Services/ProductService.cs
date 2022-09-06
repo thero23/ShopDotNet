@@ -54,6 +54,13 @@ namespace IS.BLL.Services
             return mappedProduct;
         }
 
+        public async Task<IEnumerable<Product>> GetProductsBySubCategory(int subCategoryId, CancellationToken ct)
+        {
+            var products = await _repository.GetProductsBySubCategory(subCategoryId, ct);
+            var mappedProducts = _mapper.Map<IEnumerable<Product>>(products);
+            return mappedProducts;
+        }
+
         public async Task<IEnumerable<Product>> GetProductWithCategory(int categoryId, CancellationToken ct)
         {
             var products = await _repository.GetProductWithCategory(categoryId, ct);

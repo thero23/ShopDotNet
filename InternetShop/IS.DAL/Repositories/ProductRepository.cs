@@ -27,6 +27,12 @@ namespace IS.DAL.Repositories
             //return null;
         }
 
+        public async Task<IEnumerable<ProductEntity>> GetProductsBySubCategory(int subCategoryId, CancellationToken ct)
+        {
+            var result = await _dbSet.AsNoTracking().Where(x => x.SubCategoryId == subCategoryId).ToListAsync();
+            return result;
+        }
+
         public async Task<IEnumerable<ProductEntity>> GetProductWithCategory(int categoryId, CancellationToken ct)
         {
             var result = await _dbSet.AsNoTracking().ToListAsync(ct);

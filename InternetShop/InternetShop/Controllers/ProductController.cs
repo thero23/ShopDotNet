@@ -88,5 +88,12 @@ namespace InternetShop.API.Controllers
             var result = await _service.GetProductWithCategory(categoryId, ct);
             return _mapper.Map<IEnumerable<ProductViewModel>>(result);
         }
+
+        [HttpGet("Product/SubCategory/{subCategoryId}")]
+        public async Task<IEnumerable<ProductViewModel>> GetProductsWithSubCategory(int subCategoryId, CancellationToken ct)
+        {
+            var result = await _service.GetProductsBySubCategory(subCategoryId, ct);
+            return _mapper.Map<IEnumerable<ProductViewModel>>(result);
+        }
     }
 }
