@@ -28,5 +28,6 @@
 #nullable enable
         public ICollection<ProductBasket>? ProductsBaskets { get; set; }
         public ICollection<OrderProduct>? OrdersProducts { get; set; }
+        public int SubCategoryId { get; set; }
     }
 }

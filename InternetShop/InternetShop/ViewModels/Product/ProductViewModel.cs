@@ -17,5 +17,6 @@
         public string Characteristics { get; set; }
         public int Rate { get; set; }
 #nullable enable
+        public int SubCategoryId { get; set; }
     }
 }

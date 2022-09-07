@@ -26,6 +26,9 @@ namespace IS.BLL.DI
             services.AddScoped<IBasketService, BasketService>();
             services.AddScoped<IProductBasketService, ProductBasketService>();
             services.AddScoped<ISubCategoryService, SubCategoryService>();
+            services.AddScoped<IStrategy, GetProductsByCategoryStrategy>();
+            services.AddScoped<IStrategy, GetProductsBySubCategoryStrategy>();
+            services.AddScoped<IStrategy, GetAllProductsStrategy>();
             services.AddDataAccess(config);
         }
     }

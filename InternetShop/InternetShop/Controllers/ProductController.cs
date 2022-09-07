@@ -28,9 +28,10 @@ namespace InternetShop.API.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ShortProductViewModel>> GetAll(CancellationToken ct)
+        public async Task<IEnumerable<ShortProductViewModel>> GetAll([FromQuery] string key, [FromQuery]int value, CancellationToken ct)
         {
-            var productList = await _service.GetAll(ct);
+            
+            var productList = await _service.GetAll(key, value, ct);
             foreach (var el in productList)
             {
                 el.Characteristic = "Characteristic1";
