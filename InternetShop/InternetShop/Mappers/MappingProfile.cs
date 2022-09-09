@@ -12,6 +12,8 @@ using InternetShop.Api.ViewModels.Basket;
 using InternetShop.Api.ViewModels.ProductBasket;
 using InternetShop.Api.ViewModels.OrderProduct;
 using InternetShop.Api.ViewModels.SubCategories;
+using InternetShop.Api.ViewModels.Characteristics;
+using InternetShop.Api.ViewModels.Characteristics.AdditionalCharacteristics;
 
 namespace InternetShop.API.Mappers
 {
@@ -66,6 +68,9 @@ namespace InternetShop.API.Mappers
             CreateMap<AddSubCategoryViewModel, SubCategory>().ReverseMap();
             CreateMap<AddGeneralSubCategoryNameViewModel, GeneralSubCategoryName>().ReverseMap().ForMember(x=> x.SubCategoryId, y=> y.MapFrom(z=> z.SubCategoriesName));
             CreateMap<AddSubCategoryNameViewModel, SubCategoryName>().ReverseMap();
+
+            CreateMap<CharacteristicsViewModel, Characteristics>().ReverseMap();
+            CreateMap<AdditionalCharacteristics, AdditionalCharacteristicsViewModel>().ReverseMap();
         }
     }
 }

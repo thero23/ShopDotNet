@@ -1,4 +1,7 @@
-﻿namespace InternetShop.API.ViewModels.Product
+﻿using InternetShop.Api.ViewModels.Characteristics;
+using System.Collections.Generic;
+
+namespace InternetShop.API.ViewModels.Product
 {
     public class ShortProductViewModel
     {
@@ -8,7 +11,7 @@
         public int Discount { get; set; }
         public decimal Price { get; set; }
         public decimal PriceWithDiscount { get; set; }
-        public string Characteristic { get; set; }
+        public IEnumerable<CharacteristicsViewModel> Characteristics { get; set; }
         public int Rate { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220908150109_ChangeProductIdToProductEntityIdInAdditionalCharacteristics")]
+    partial class ChangeProductIdToProductEntityIdInAdditionalCharacteristics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("5f2d2272-b784-4402-be64-0b5e36dd84c4");
+                        .HasDefaultValue("5afa1623-db2d-44b7-848d-13aa8f156539");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -276,9 +278,6 @@ namespace IS.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharacteristicId")
                         .HasColumnType("int");
 
                     b.Property<int>("CurrencyId")
@@ -528,15 +527,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9fa7b352-372b-4737-bbe0-9bf568190dea",
-                            ConcurrencyStamp = "17b3c59d-a86f-4166-b361-c0af69eca7d4",
+                            Id = "d280d678-e47e-4864-993f-492b9c06d3f5",
+                            ConcurrencyStamp = "0355a44b-6eb9-406f-bd86-2377da21eaf5",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "76c29573-63e2-46ca-a671-b64ff60dcfbd",
-                            ConcurrencyStamp = "08f025be-52c0-4dec-9ea4-4312d6434483",
+                            Id = "7a56262c-b7d2-4625-9ceb-e9b6461de7d1",
+                            ConcurrencyStamp = "b456d98e-d286-405d-b5d5-0b541deb8f52",
                             Name = "User",
                             NormalizedName = "USER"
                         });

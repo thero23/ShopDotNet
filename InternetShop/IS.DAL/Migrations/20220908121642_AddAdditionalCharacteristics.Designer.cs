@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220908121642_AddAdditionalCharacteristics")]
+    partial class AddAdditionalCharacteristics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace IS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductEntityId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -56,7 +58,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("5f2d2272-b784-4402-be64-0b5e36dd84c4");
+                        .HasDefaultValue("8c1f1915-81cd-44e5-8cd5-8d5223d1cff5");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -119,7 +121,7 @@ namespace IS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductEntityId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -127,8 +129,6 @@ namespace IS.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductEntityId");
 
                     b.ToTable("Characteristics");
                 });
@@ -276,9 +276,6 @@ namespace IS.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharacteristicId")
                         .HasColumnType("int");
 
                     b.Property<int>("CurrencyId")
@@ -528,15 +525,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9fa7b352-372b-4737-bbe0-9bf568190dea",
-                            ConcurrencyStamp = "17b3c59d-a86f-4166-b361-c0af69eca7d4",
+                            Id = "b005d59c-b3b1-47ee-a664-5db02a701b29",
+                            ConcurrencyStamp = "1c8d0eac-6ded-4e3a-8869-1ae9c8bcb2fe",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "76c29573-63e2-46ca-a671-b64ff60dcfbd",
-                            ConcurrencyStamp = "08f025be-52c0-4dec-9ea4-4312d6434483",
+                            Id = "d8e3ff04-f937-4a85-b40d-6a1d39e7164e",
+                            ConcurrencyStamp = "f92f21de-ad62-4446-9a1e-cf5223380113",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -569,15 +566,6 @@ namespace IS.DAL.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.CharacteristicsEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.ProductEntity", null)
-                        .WithMany("Characteristics")
-                        .HasForeignKey("ProductEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.GeneralSubCategoryNameEntity", b =>
@@ -709,8 +697,6 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
                 {
-                    b.Navigation("Characteristics");
-
                     b.Navigation("OrderProductEntities");
 
                     b.Navigation("ProductBasketEntities");

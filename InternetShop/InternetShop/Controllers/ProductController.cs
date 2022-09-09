@@ -32,11 +32,11 @@ namespace InternetShop.API.Controllers
         {
             
             var productList = await _service.GetAll(key, value, ct);
-            foreach (var el in productList)
+          /*  foreach (var el in productList)
             {
                 el.Characteristic = "Characteristic1";
             }
-
+          */
 
             string json = JsonConvert.SerializeObject(productList, new JsonSerializerSettings
             {

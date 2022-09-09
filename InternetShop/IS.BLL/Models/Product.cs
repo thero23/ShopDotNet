@@ -22,7 +22,8 @@
         public decimal Price { get; set; }
         public decimal PriceWithDiscount { get ; set; }
         public int Discount { get; set; }
-        public string Characteristic { get; set; }
+        public int ProductEntity { get; set; }
+        public IEnumerable<Characteristics> Characteristics { get; set; }
         public int Rate { get; set; }
 
 #nullable enable

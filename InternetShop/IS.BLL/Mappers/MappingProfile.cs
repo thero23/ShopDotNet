@@ -32,7 +32,8 @@ namespace IS.BLL.Mappers
             CreateMap<SubCategoryName, SubCategoryNameEntity>().ReverseMap();
             CreateMap<GeneralSubCategoryName, GeneralSubCategoryNameEntity>().ReverseMap();
 
-
+            CreateMap<Characteristics, CharacteristicsEntity>().ReverseMap();
+            CreateMap<AdditionalCharacteristics, AdditionalCharacteristicsEntity>().ReverseMap();
         }
     }
 }

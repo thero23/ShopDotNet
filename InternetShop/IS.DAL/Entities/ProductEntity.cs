@@ -14,7 +14,6 @@
         public int CategoryId { get; set; }
         public virtual CategoryEntity Category { get; set; }
 
-
         public int ProviderCountryId { get; set; }
         public virtual ProviderCountryEntity ProviderCountry { get; set; }
 
@@ -22,6 +21,9 @@
 
         public decimal Price { get; set; }
         public int? Rate { get; set; }
+      
+        public int CharacteristicId { get; set; }
+        public IEnumerable<CharacteristicsEntity> Characteristics { get; set; }
 
 #nullable enable
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }

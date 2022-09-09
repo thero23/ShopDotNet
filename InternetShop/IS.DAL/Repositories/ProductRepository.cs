@@ -14,12 +14,12 @@ namespace IS.DAL.Repositories
 
         public override async Task<IEnumerable<ProductEntity>> GetAll(CancellationToken ct)
         {
-            return await _dbSet.AsNoTracking().Include(x=> x.Currency).Include(x=> x.Category).Include(x=> x.ProviderCountry).ToListAsync(ct);
+            return await _dbSet.AsNoTracking().Include(x=> x.Currency).Include(x=> x.ProviderCountry).ToListAsync(ct);
         }
 
         public async Task<IEnumerable<ProductEntity>> GetAll(Expression<Func<ProductEntity, bool>> expression, CancellationToken ct)
         {
-            return await _context.Products.AsNoTracking().Where(expression).Select(u=> u).ToListAsync(ct);
+            return await _context.Products.AsNoTracking().Where(expression).Include(x=> x.Characteristics).ThenInclude(x=> x.AdditionalCharacteristics).Select(u=> u).ToListAsync(ct);
         }
 
         public async Task<ProductEntity> GetById(int id, CancellationToken ct)
@@ -32,7 +32,6 @@ namespace IS.DAL.Repositories
         {
             var result = await _dbSet.AsNoTracking().Where(x => ids.Contains(x.Id)).ToListAsync(ct);
             return result;
-            //return null;
         }
 
         public async Task<IEnumerable<ProductEntity>> GetProductsBySubCategory(int subCategoryId, CancellationToken ct)
