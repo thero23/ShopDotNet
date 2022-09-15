@@ -1,5 +1,4 @@
 ﻿using InternetShop.Api.ViewModels.Characteristics;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace InternetShop.API.ViewModels.Product
@@ -18,7 +17,7 @@ namespace InternetShop.API.ViewModels.Product
         public int Price { get; set; }
         public int PriceWithDiscount { get; set; }
         public int Discount { get; set; }
-        public IEnumerable<CharacteristicsViewModel> Characteristics { get; set; }
+        public IEnumerable<CharacteristicsViewModel> Characteristics{ get; set; }
         public int Rate { get; set; }
 #nullable enable
         public int SubCategoryId { get; set; }

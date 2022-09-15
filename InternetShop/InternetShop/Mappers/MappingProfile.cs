@@ -14,6 +14,8 @@ using InternetShop.Api.ViewModels.OrderProduct;
 using InternetShop.Api.ViewModels.SubCategories;
 using InternetShop.Api.ViewModels.Characteristics;
 using InternetShop.Api.ViewModels.Characteristics.AdditionalCharacteristics;
+using InternetShop.Api.ViewModels.Equals;
+using InternetShop.Api.ViewModels.ProductsCharacteristic;
 
 namespace InternetShop.API.Mappers
 {
@@ -71,6 +73,12 @@ namespace InternetShop.API.Mappers
 
             CreateMap<CharacteristicsViewModel, Characteristics>().ReverseMap();
             CreateMap<AdditionalCharacteristics, AdditionalCharacteristicsViewModel>().ReverseMap();
+
+            CreateMap<EqualsViewModel, Equals>().ReverseMap();
+            CreateMap<AddEqualsViewModel, Equals>().ReverseMap();
+            CreateMap<ProductsCharacteristicViewModel, ProductsCharacteristic>().ReverseMap();
+
+            CreateMap<ProductsCharacteristic, CharacteristicsViewModel>().ReverseMap();
         }
     }
 }

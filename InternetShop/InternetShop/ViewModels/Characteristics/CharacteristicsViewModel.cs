@@ -7,8 +7,7 @@ namespace InternetShop.Api.ViewModels.Characteristics
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Value { get; set; }
-        public int ProducEntitytId { get; set; }
+
         public IEnumerable<AdditionalCharacteristicsViewModel> AdditionalCharacteristics { get; set; }
     }
 }

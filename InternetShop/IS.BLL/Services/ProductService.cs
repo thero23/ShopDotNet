@@ -14,7 +14,10 @@ namespace IS.BLL.Services
         private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
         private readonly IEnumerable<IStrategy> _strategy;
-        public ProductService(IProductRepository repository, IMapper mapper, IEnumerable<IStrategy> strategy) : base(repository, mapper)
+        public ProductService(
+            IProductRepository repository,
+            IMapper mapper, 
+            IEnumerable<IStrategy> strategy) : base(repository, mapper)
         {
             _repository = repository;
             _mapper = mapper;

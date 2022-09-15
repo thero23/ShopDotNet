@@ -1,4 +1,6 @@
-﻿namespace IS.BLL.Models
+﻿using IS.DAL.Entities;
+
+namespace IS.BLL.Models
 {
     [Serializable]
     public class Product
@@ -29,6 +31,7 @@
 #nullable enable
         public ICollection<ProductBasket>? ProductsBaskets { get; set; }
         public ICollection<OrderProduct>? OrdersProducts { get; set; }
+
         public int SubCategoryId { get; set; }
     }
 }

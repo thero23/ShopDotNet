@@ -19,12 +19,12 @@ namespace IS.DAL.Repositories
 
         public async Task<IEnumerable<ProductEntity>> GetAll(Expression<Func<ProductEntity, bool>> expression, CancellationToken ct)
         {
-            return await _context.Products.AsNoTracking().Where(expression).Include(x=> x.Characteristics).ThenInclude(x=> x.AdditionalCharacteristics).Select(u=> u).ToListAsync(ct);
+            return await _context.Products.AsNoTracking().Where(expression).Include(x=> x.ProductsCharacteristics).ThenInclude(x=> x.Characteristics).ThenInclude(x=> x.AdditionalCharacteristics).Select(u=> u).ToListAsync(ct);
         }
 
         public async Task<ProductEntity> GetById(int id, CancellationToken ct)
         {
-            var result = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x=> x.Id == id, ct);
+            var result = await _dbSet.AsNoTracking().Include(x=> x.ProductsCharacteristics).ThenInclude(x => x.Characteristics).ThenInclude(x=> x.AdditionalCharacteristics).FirstOrDefaultAsync(x=> x.Id == id, ct);
             return result;
         }
 
@@ -44,6 +44,17 @@ namespace IS.DAL.Repositories
         {
             var result = await _dbSet.AsNoTracking().ToListAsync(ct);
             result = result.Where(x => x.CategoryId == categoryId).ToList();
+            return result;
+        }
+        public async Task<IEnumerable<ProductEntity>> GetFullInformationOfProductsInEquals(IEnumerable<int> productsListIds, CancellationToken ct)
+        {
+            var test = await _dbSet.AsNoTracking().Where(x => productsListIds.Contains(x.Id)).Include(x => x.ProductsCharacteristics).ToListAsync();
+            var result = await _dbSet.AsNoTracking().Where(
+                x => productsListIds.Contains(x.Id))
+                .Include(x => x.ProductsCharacteristics)
+                .ThenInclude(x => x.Characteristics)
+                .ThenInclude(x => x.AdditionalCharacteristics)
+                .ToListAsync(ct);
             return result;
         }
     }

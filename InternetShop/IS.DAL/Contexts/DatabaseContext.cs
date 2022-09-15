@@ -1,5 +1,6 @@
 ﻿using IS.DAL.Contexts.Configurations;
 using IS.DAL.Entities;
+using IS.DAL.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +31,8 @@ namespace IS.DAL.Contexts
         public DbSet<ProductInOrderEntity> ProductInOrder { get; set; }
         public DbSet<CharacteristicsEntity> Characteristics { get; set; }
         public DbSet<AdditionalCharacteristicsEntity> AdditionalCharacteristics { get; set; }
+        public DbSet<EqualsEntity> Equals { get; set; }
+        public DbSet<ProductsCharacteristicEntity> ProductCharacteristics { get; set; }
 
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -18,13 +18,15 @@ namespace IS.DAL.DI
             services.AddScoped<IBuyInOneClickRepository, BuyInOneClickRepository>();
             services.AddScoped<IWhishListRepository, WhishListRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IUserDataRepository, UserDataRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IProductBasketRepository, ProductBasketRepository>();
             services.AddScoped<IOrderProductRepository, OrderProductsRepository>();
             services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
             services.AddScoped<ICharacteristicRepository, CharacteristicRepository>();
+            services.AddScoped<IEqualsRepository, EqualsRepository>();
+            services.AddScoped<IProductsCharacteristicRepository, ProductCharacteristicsRepository>();
+            services.AddScoped<IAdditionalCharacteristicRepository, AdditionalCharacteristicRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));

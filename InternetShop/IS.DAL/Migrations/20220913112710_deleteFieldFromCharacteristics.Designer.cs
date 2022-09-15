@@ -4,6 +4,7 @@ using IS.DAL.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IS.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220913112710_deleteFieldFromCharacteristics")]
+    partial class deleteFieldFromCharacteristics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace IS.DAL.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("315121d5-4600-4da5-ba5d-84402ce527a9");
+                        .HasDefaultValue("caefb6ba-fd13-4310-8215-4e1ea080228e");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -119,7 +121,12 @@ namespace IS.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductEntityId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductEntityId");
 
                     b.ToTable("Characteristics");
                 });
@@ -291,6 +298,9 @@ namespace IS.DAL.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CharacteristicId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CurrencyId")
                         .HasColumnType("int");
 
@@ -360,29 +370,6 @@ namespace IS.DAL.Migrations
                     b.HasIndex("ProductEntityId");
 
                     b.ToTable("ProductInOrder");
-                });
-
-            modelBuilder.Entity("IS.DAL.Entities.ProductsCharacteristicEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CharacteristicsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacteristicsId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductCharacteristics");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>
@@ -561,15 +548,15 @@ namespace IS.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8f31c9f5-fffa-451d-b337-410da7aa29f6",
-                            ConcurrencyStamp = "94a99dd2-14b5-4405-8de3-a1be25da44e0",
+                            Id = "1e5c8747-87e1-4a5d-a380-46347e22a03c",
+                            ConcurrencyStamp = "63b39c39-e496-4335-b424-bc24fd6d250d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3aff40a0-df6b-4f20-afdb-0a00d845f904",
-                            ConcurrencyStamp = "ec5bd824-c877-4854-be82-e7623031cd44",
+                            Id = "3c6b5e0e-8456-4334-b56a-ea12ffdfdfe4",
+                            ConcurrencyStamp = "9c1ed25b-2bdb-44e1-9a87-490a0c47a263",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -602,6 +589,13 @@ namespace IS.DAL.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("IS.DAL.Entities.CharacteristicsEntity", b =>
+                {
+                    b.HasOne("IS.DAL.Entities.ProductEntity", null)
+                        .WithMany("Characteristics")
+                        .HasForeignKey("ProductEntityId");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.EqualsEntity", b =>
@@ -705,25 +699,6 @@ namespace IS.DAL.Migrations
                     b.Navigation("ProductEntity");
                 });
 
-            modelBuilder.Entity("IS.DAL.Entities.ProductsCharacteristicEntity", b =>
-                {
-                    b.HasOne("IS.DAL.Entities.CharacteristicsEntity", "Characteristics")
-                        .WithMany("ProductsCharacteristics")
-                        .HasForeignKey("CharacteristicsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("IS.DAL.Entities.ProductEntity", "Product")
-                        .WithMany("ProductsCharacteristics")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Characteristics");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("IS.DAL.Entities.SubCategoryNameEntity", b =>
                 {
                     b.HasOne("IS.DAL.Entities.GeneralSubCategoryNameEntity", null)
@@ -744,8 +719,6 @@ namespace IS.DAL.Migrations
             modelBuilder.Entity("IS.DAL.Entities.CharacteristicsEntity", b =>
                 {
                     b.Navigation("AdditionalCharacteristics");
-
-                    b.Navigation("ProductsCharacteristics");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.CurrencyEntity", b =>
@@ -765,13 +738,13 @@ namespace IS.DAL.Migrations
 
             modelBuilder.Entity("IS.DAL.Entities.ProductEntity", b =>
                 {
+                    b.Navigation("Characteristics");
+
                     b.Navigation("OrderProductEntities");
 
                     b.Navigation("ProductBasketEntities");
 
                     b.Navigation("ProductInOrderEntities");
-
-                    b.Navigation("ProductsCharacteristics");
                 });
 
             modelBuilder.Entity("IS.DAL.Entities.ProviderCountryEntity", b =>

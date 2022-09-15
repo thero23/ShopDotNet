@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,18 +20,18 @@ namespace InternetShop.API.Controllers
     {
         private readonly IProductService _service;
         private readonly IMapper _mapper;
+        private readonly IProductCharacteristicService _characteristicService;
 
-        public ProductController(IProductService service, IMapper mapper)
+        public ProductController(IProductService service, IProductCharacteristicService productCharacteristic, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
+            _characteristicService = productCharacteristic;
         }
-
 
         [HttpGet]
         public async Task<IEnumerable<ShortProductViewModel>> GetAll([FromQuery] string key, [FromQuery]int value, CancellationToken ct)
         {
-            
             var productList = await _service.GetAll(key, value, ct);
           /*  foreach (var el in productList)
             {
@@ -55,7 +56,9 @@ namespace InternetShop.API.Controllers
         public async Task<ProductViewModel> GetById(int id, CancellationToken ct)
         {
             var result = await _service.GetById(id, ct);
-            return _mapper.Map<ProductViewModel>(result);
+            var mappedresult = _mapper.Map<ProductViewModel>(result);
+          //  mappedresult.ProductsCharacteristic = mappedresult.ProductsCharacteristics.Select(x => x.Characteristics).ToList();
+            return _mapper.Map<ProductViewModel>(mappedresult);
         }
 
         [HttpPost]

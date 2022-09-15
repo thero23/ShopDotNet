@@ -1,4 +1,6 @@
-﻿namespace IS.DAL.Entities
+﻿using IS.DAL.Repositories;
+
+namespace IS.DAL.Entities
 {
     public class ProductEntity
     {
@@ -22,13 +24,12 @@
         public decimal Price { get; set; }
         public int? Rate { get; set; }
       
-        public int CharacteristicId { get; set; }
-        public IEnumerable<CharacteristicsEntity> Characteristics { get; set; }
 
 #nullable enable
         public ICollection<ProductBasketEntity>? ProductBasketEntities { get; set; }
         public ICollection<OrderProductEntity>? OrderProductEntities { get; set; }
         public ICollection<ProductInOrderEntity>? ProductInOrderEntities { get; set; }
+        public virtual ICollection<ProductsCharacteristicEntity> ProductsCharacteristics { get; set; }
         public int SubCategoryId { get; set; }
     }
 }

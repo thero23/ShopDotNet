@@ -4,8 +4,7 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Value { get; set; }
-        public int ProductEntityId { get; set; }
-        public IEnumerable<AdditionalCharacteristicsEntity> AdditionalCharacteristics { get; set; }
+        public virtual IEnumerable<AdditionalCharacteristicsEntity> AdditionalCharacteristics { get; set; }
+        public virtual ICollection<ProductsCharacteristicEntity> ProductsCharacteristics { get; set; }
     }
 }

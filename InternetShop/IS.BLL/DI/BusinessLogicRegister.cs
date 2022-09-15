@@ -30,6 +30,8 @@ namespace IS.BLL.DI
             services.AddScoped<IStrategy, GetProductsBySubCategoryStrategy>();
             services.AddScoped<IStrategy, GetAllProductsStrategy>();
             services.AddScoped<ICharacteristicsService, CharacteristicsService>();
+            services.AddScoped<IEqualsService, EqualsService>();
+            services.AddScoped<IProductCharacteristicService, ProductCharacteristicService>();
             services.AddDataAccess(config);
         }
     }
