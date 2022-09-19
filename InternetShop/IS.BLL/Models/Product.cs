@@ -33,5 +33,7 @@ namespace IS.BLL.Models
         public ICollection<OrderProduct>? OrdersProducts { get; set; }
 
         public int SubCategoryId { get; set; }
+
+        public IEnumerable<string> GeneralCharacteristicName { get; set; }
     }
 }

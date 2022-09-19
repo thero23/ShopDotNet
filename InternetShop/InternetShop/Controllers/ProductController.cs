@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,18 +29,13 @@ namespace InternetShop.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ShortProductViewModel>> GetAll([FromQuery] string key, [FromQuery]int value, CancellationToken ct)
+        public async Task<IEnumerable<ShortProductViewModel>> GetAll([FromQuery] string key, [FromQuery] int value, CancellationToken ct)
         {
             var productList = await _service.GetAll(key, value, ct);
-          /*  foreach (var el in productList)
-            {
-                el.Characteristic = "Characteristic1";
-            }
-          */
 
             string json = JsonConvert.SerializeObject(productList, new JsonSerializerSettings
             {
-                  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
 
             using (StreamWriter writer = new("products.json", true, System.Text.Encoding.Default))
@@ -57,7 +51,6 @@ namespace InternetShop.API.Controllers
         {
             var result = await _service.GetById(id, ct);
             var mappedresult = _mapper.Map<ProductViewModel>(result);
-          //  mappedresult.ProductsCharacteristic = mappedresult.ProductsCharacteristics.Select(x => x.Characteristics).ToList();
             return _mapper.Map<ProductViewModel>(mappedresult);
         }
 

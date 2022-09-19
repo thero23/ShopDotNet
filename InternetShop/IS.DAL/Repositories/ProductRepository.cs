@@ -46,15 +46,13 @@ namespace IS.DAL.Repositories
             result = result.Where(x => x.CategoryId == categoryId).ToList();
             return result;
         }
-        public async Task<IEnumerable<ProductEntity>> GetFullInformationOfProductsInEquals(IEnumerable<int> productsListIds, CancellationToken ct)
+        public async Task<ProductEntity> GetFullInformationOfProductsInEquals(int productId, CancellationToken ct)
         {
-            var test = await _dbSet.AsNoTracking().Where(x => productsListIds.Contains(x.Id)).Include(x => x.ProductsCharacteristics).ToListAsync();
-            var result = await _dbSet.AsNoTracking().Where(
-                x => productsListIds.Contains(x.Id))
-                .Include(x => x.ProductsCharacteristics)
-                .ThenInclude(x => x.Characteristics)
-                .ThenInclude(x => x.AdditionalCharacteristics)
-                .ToListAsync(ct);
+            var result = await _dbSet.AsNoTracking()
+               .Include(x => x.ProductsCharacteristics)
+               .ThenInclude(x => x.Characteristics)
+               .ThenInclude(x => x.AdditionalCharacteristics.Where(x => x.ProductEntityId == productId))
+               .FirstOrDefaultAsync(x => x.Id == productId, ct);
             return result;
         }
     }

@@ -4,6 +4,7 @@ using InternetShop.API.ViewModels.Product;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -43,7 +44,14 @@ namespace InternetShop.Api.Controllers
         {
             var result = await _equalsService.GetByUserId(authId, ct);
             return _mapper.Map<IEnumerable<ProductViewModel>>(result);
-
-        }
+        } 
+        
+      /*  [HttpGet("{test}")]
+        public async Task<IEnumerable<MyCharacteristics>> GetByIwwwd(int test, CancellationToken ct)
+        {
+            return new List<MyCharacteristics>();
+           // var result = await _equalsService.GetByUserId(authId, ct);
+          //  return _mapper.Map<IEnumerable<ProductViewModel>>(result);
+        }*/
     }
 }

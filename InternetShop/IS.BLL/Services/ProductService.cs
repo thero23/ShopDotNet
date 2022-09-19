@@ -28,27 +28,14 @@ namespace IS.BLL.Services
         {
             var expression = GetExpression(key, value);
             var products = _mapper.Map<IEnumerable<Product>>(await _repository.GetAll(expression, ct));
-           // var products = await _repository.GetAll(ct);
 
             if (products.ToList().Count == 0) return products;
-
-           // var mappedProductsList = _mapper.Map<IEnumerable<Product>>(products).ToList();
 
 
             foreach (var product in products)
             {
                 product.PriceWithDiscount = CalculatePriceWithDiscount(product.Price, product.Discount);
             }
-
-            //string json = JsonConvert.SerializeObject(mappedProductsList, new JsonSerializerSettings
-            //{
-            //  //  ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //});
-
-            //using (StreamWriter writer = new("products.json", true, System.Text.Encoding.Default))
-            //{
-            //    await writer.WriteAsync(json);
-            //}
 
             return products;
         }
@@ -57,13 +44,12 @@ namespace IS.BLL.Services
         {
             Expression<Func<ProductEntity, bool>> predicate = p => p.SubCategoryId == 2;
             var result = _mapper.Map<IEnumerable<Product>>(await _repository.GetAll(predicate, ct));
-            //var result = _mapper.Map<IEnumerable<Product>>(await _repository.GetAll(_mapper.Map<Expression<Func<ProductEntity, bool>>>(predicate), ct));
             return result;
         }
 
         public override async Task<Product?> GetById(int id, CancellationToken ct)
         {
-            var product = await _repository.GetById(id, ct);
+            var product = await _repository.GetFullInformationOfProductsInEquals(id, ct);
 
             if (product == null) return null;
 

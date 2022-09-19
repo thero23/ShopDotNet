@@ -3,8 +3,6 @@ using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using IS.DAL.Entities;
 using IS.DAL.Interfaces;
-using IS.DAL.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 namespace IS.BLL.Services
 {
@@ -13,21 +11,15 @@ namespace IS.BLL.Services
         private readonly IMapper _mapper;
         private readonly IEqualsRepository _equalsRepository;
         private readonly IUserRepository _userRepository;
-        private readonly ICharacteristicRepository _characteristicRepository;
-        private readonly IProductCharacteristicService _productCharacteristicService;
         private readonly IProductRepository _productRepository;
         public EqualsService(IEqualsRepository repository,
             IMapper mapper,
             IUserRepository userRepository,
-            ICharacteristicRepository characteristicRepository,
-            IProductCharacteristicService productCharacteristicService,
             IProductRepository productRepository) : base(repository, mapper)
         {
             _equalsRepository = repository;
             _userRepository = userRepository;
             _mapper = mapper;
-            _characteristicRepository = characteristicRepository;
-            _productCharacteristicService = productCharacteristicService;
             _productRepository = productRepository;
         }
 
@@ -36,19 +28,27 @@ namespace IS.BLL.Services
             var user = await _userRepository.GetByAuthId(authId, ct);
             var productsListInEquals = await _equalsRepository.GetByUserId(user.Id, ct);
             var productsIds = ConvertToList(productsListInEquals);
-            var result = await _productRepository.GetFullInformationOfProductsInEquals(productsIds, ct);
-
-            return _mapper.Map<IEnumerable<Product>>(result);
+            List<ProductEntity> products = new();
+            foreach(var el in productsIds)
+            {
+                products.Add(await _productRepository.GetFullInformationOfProductsInEquals(el, ct));
+            }          
+            
+            return GetGeneralNameCharacteristic(_mapper.Map<IEnumerable<Product>>(products));
         }
 
         public override async Task<Equals> Add(Equals model, CancellationToken ct)
         {
             var user = await _userRepository.GetByAuthId(model.UserId, ct);
             model.UserId = user.Id;
+            var isExists = await _equalsRepository.IsExistsProduct(user.Id, model.ProductId, ct);
+            if(isExists is not null)
+            {
+                return model;
+            }
             var result = await _equalsRepository.Add(_mapper.Map<EqualsEntity>(model), ct);
             return _mapper.Map<Equals>(result);
         }
-
 
         private IEnumerable<int> ConvertToList(IEnumerable<EqualsEntity> productInEquals)
         {
@@ -59,17 +59,19 @@ namespace IS.BLL.Services
             }
             return ids;
         }
-        private IEnumerable<Equals> AddCharacteristicsToProduct(List<Equals> equals, List<ProductsCharacteristic> productsCharacteristics)
+        private IEnumerable<Product> GetGeneralNameCharacteristic(IEnumerable<Product> products)
         {
-            for(int i =0; i < equals.Count(); i++)
+            HashSet<string> generalCharacteristicName = new();
+
+            foreach (var el in products)
             {
-                for(int j = 0; j < productsCharacteristics.Count(); j++)
+                foreach (var el1 in el.Characteristics)
                 {
-                    equals[i].Characteristics = productsCharacteristics[j];
-                    break;
+                    generalCharacteristicName.Add(el1.Name);
                 }
+                el.GeneralCharacteristicName = generalCharacteristicName;
             }
-            return equals;
+            return products;
         }
     }
 }

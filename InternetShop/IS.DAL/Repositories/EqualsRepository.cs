@@ -16,5 +16,11 @@ namespace IS.DAL.Repositories
             var result = await _dbSet.AsNoTracking().Where(x => x.UserId == userId).ToListAsync(ct);
             return result;
         }
+
+        public async Task<EqualsEntity> IsExistsProduct(string userId, int productId, CancellationToken ct)
+        {
+            var result = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId && x.ProductId == productId, ct);
+            return result;
+        }
     }
 }

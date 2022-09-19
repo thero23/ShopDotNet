@@ -21,5 +21,6 @@ namespace InternetShop.API.ViewModels.Product
         public int Rate { get; set; }
 #nullable enable
         public int SubCategoryId { get; set; }
+        public HashSet<string> GeneralCharacteristicName { get; set; }
     }
 }

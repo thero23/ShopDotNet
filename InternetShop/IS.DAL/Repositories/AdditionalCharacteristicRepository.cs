@@ -10,9 +10,10 @@ namespace IS.DAL.Repositories
         {
         }
 
-        public Task<IEnumerable<AdditionalCharacteristicsEntity>> Get(IEnumerable<int> ids, CancellationToken ct)
+        public async Task<IEnumerable<AdditionalCharacteristicsEntity>> Get(IEnumerable<int> ids, CancellationToken ct)
         {
             throw new NotImplementedException();
+         //   var result = await _dbSet.AsNoTracking().Where(x=> x.)
         }
     }
 }

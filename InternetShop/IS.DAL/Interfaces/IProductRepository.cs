@@ -10,6 +10,6 @@ namespace IS.DAL.Interfaces
         Task<IEnumerable<ProductEntity>> GetProductFromwhishList(IEnumerable<int> ids, CancellationToken ct);
         Task<ProductEntity> GetById (int id, CancellationToken ct);
         Task<IEnumerable<ProductEntity>> GetAll(Expression<Func<ProductEntity, bool>> expression, CancellationToken ct);
-        Task<IEnumerable<ProductEntity>> GetFullInformationOfProductsInEquals(IEnumerable<int> productsListIds, CancellationToken ct);
+        Task<ProductEntity> GetFullInformationOfProductsInEquals(int productId, CancellationToken ct);
     }
 }
