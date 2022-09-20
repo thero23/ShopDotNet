@@ -32,6 +32,7 @@ namespace IS.BLL.DI
             services.AddScoped<ICharacteristicsService, CharacteristicsService>();
             services.AddScoped<IEqualsService, EqualsService>();
             services.AddScoped<IProductCharacteristicService, ProductCharacteristicService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddDataAccess(config);
         }
     }

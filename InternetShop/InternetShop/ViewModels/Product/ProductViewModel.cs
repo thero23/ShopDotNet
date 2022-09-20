@@ -1,4 +1,6 @@
 ﻿using InternetShop.Api.ViewModels.Characteristics;
+using InternetShop.Api.ViewModels.FeedBack;
+using IS.BLL.Models;
 using System.Collections.Generic;
 
 namespace InternetShop.API.ViewModels.Product
@@ -22,5 +24,6 @@ namespace InternetShop.API.ViewModels.Product
 #nullable enable
         public int SubCategoryId { get; set; }
         public HashSet<string> GeneralCharacteristicName { get; set; }
+        public IEnumerable<ShortFeedbackViewModel> Feedbacks { get; set; }
     }
 }

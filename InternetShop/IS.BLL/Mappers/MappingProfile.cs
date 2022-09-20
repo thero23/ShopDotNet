@@ -38,6 +38,9 @@ namespace IS.BLL.Mappers
 
             CreateMap<ProductsCharacteristicEntity, ProductsCharacteristic>().ReverseMap();
             CreateMap<ProductsCharacteristicEntity, CharacteristicsEntity>().ReverseMap().ForMember(x => x.Characteristics, y => y.MapFrom(z => z.ProductsCharacteristics));
+
+            CreateMap<FeedbackEntity, Feedback>().ReverseMap();
+        
         }
     }
 }

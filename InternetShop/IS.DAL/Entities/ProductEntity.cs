@@ -31,5 +31,6 @@ namespace IS.DAL.Entities
         public ICollection<ProductInOrderEntity>? ProductInOrderEntities { get; set; }
         public virtual ICollection<ProductsCharacteristicEntity> ProductsCharacteristics { get; set; }
         public int SubCategoryId { get; set; }
+        public virtual IEnumerable<FeedbackEntity> Feedbacks { get; set; }
     }
 }

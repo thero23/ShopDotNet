@@ -27,6 +27,7 @@ namespace IS.DAL.DI
             services.AddScoped<IEqualsRepository, EqualsRepository>();
             services.AddScoped<IProductsCharacteristicRepository, ProductCharacteristicsRepository>();
             services.AddScoped<IAdditionalCharacteristicRepository, AdditionalCharacteristicRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddDbContext<DatabaseContext>(context =>
             {
                 context.UseSqlServer(config.GetConnectionString("DefaultConnection"));

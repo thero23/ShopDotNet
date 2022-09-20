@@ -33,6 +33,7 @@ namespace IS.DAL.Contexts
         public DbSet<AdditionalCharacteristicsEntity> AdditionalCharacteristics { get; set; }
         public DbSet<EqualsEntity> Equals { get; set; }
         public DbSet<ProductsCharacteristicEntity> ProductCharacteristics { get; set; }
+        public DbSet<FeedbackEntity> Feedbacks { get; set; }
 
 #nullable enable
         protected override void OnModelCreating(ModelBuilder modelBuilder)

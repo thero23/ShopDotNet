@@ -31,9 +31,8 @@ namespace IS.BLL.Models
 #nullable enable
         public ICollection<ProductBasket>? ProductsBaskets { get; set; }
         public ICollection<OrderProduct>? OrdersProducts { get; set; }
-
         public int SubCategoryId { get; set; }
-
         public IEnumerable<string> GeneralCharacteristicName { get; set; }
+        public virtual IEnumerable<Feedback> Feedbacks { get; set; }
     }
 }

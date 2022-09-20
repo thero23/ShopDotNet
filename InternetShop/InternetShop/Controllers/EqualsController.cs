@@ -4,9 +4,7 @@ using InternetShop.API.ViewModels.Product;
 using IS.BLL.Interfaces;
 using IS.BLL.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

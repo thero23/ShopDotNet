@@ -24,7 +24,12 @@ namespace IS.DAL.Repositories
 
         public async Task<ProductEntity> GetById(int id, CancellationToken ct)
         {
-            var result = await _dbSet.AsNoTracking().Include(x=> x.ProductsCharacteristics).ThenInclude(x => x.Characteristics).ThenInclude(x=> x.AdditionalCharacteristics).FirstOrDefaultAsync(x=> x.Id == id, ct);
+            var result = await _dbSet.AsNoTracking()
+                .Include(x=> x.ProductsCharacteristics)
+                .ThenInclude(x => x.Characteristics)
+                .ThenInclude(x=> x.AdditionalCharacteristics)
+                .Include(x=> x.Feedbacks)
+                .FirstOrDefaultAsync(x=> x.Id == id, ct);
             return result;
         }
 
@@ -52,6 +57,8 @@ namespace IS.DAL.Repositories
                .Include(x => x.ProductsCharacteristics)
                .ThenInclude(x => x.Characteristics)
                .ThenInclude(x => x.AdditionalCharacteristics.Where(x => x.ProductEntityId == productId))
+               .Include(x=> x.Feedbacks)
+               .ThenInclude(x=> x.User)
                .FirstOrDefaultAsync(x => x.Id == productId, ct);
             return result;
         }
